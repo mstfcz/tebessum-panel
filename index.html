@@ -4,7 +4,6 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Tebessüm Derneği — Yönetim Paneli</title>
-  <!-- Tailwind CSS & İkonlar & Supabase -->
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
@@ -14,14 +13,16 @@
         extend: {
           colors: {
             brand: {
-              50: '#eff6ff',
-              100: '#dbeafe',
-              200: '#bfdbfe',
-              500: '#1d4ed8',
-              600: '#1e40af',
-              700: '#1d3557',
-              800: '#0f2744',
-              900: '#0a192f'
+              50: '#f0f7fc',
+              100: '#e0eff9',
+              200: '#b9def3',
+              400: '#4a9ed5',
+              500: '#2b84c1',
+              600: '#1d68a2',
+              700: '#195484',
+              800: '#17476e',
+              900: '#173c5c',
+              950: '#0f263d'
             }
           }
         }
@@ -31,23 +32,38 @@
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap');
     body { font-family: 'Plus Jakarta Sans', sans-serif; }
-    .custom-scroll::-webkit-scrollbar { width: 5px; height: 5px; }
+    .custom-scroll::-webkit-scrollbar { width: 4px; height: 4px; }
     .custom-scroll::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 4px; }
   </style>
 </head>
-<body class="bg-[#F4F7FB] text-slate-800 antialiased min-h-screen flex">
+<body class="bg-[#F4F7FB] text-slate-800 antialiased min-h-screen flex overflow-x-hidden">
 
   <!-- ================= 1. GİRİŞ EKRANI ================= -->
   <div id="loginSection" class="fixed inset-0 z-50 flex items-center justify-center bg-slate-900/60 backdrop-blur-sm p-4">
     <div class="bg-white border border-slate-100 p-8 rounded-3xl w-full max-w-md shadow-2xl space-y-6">
       <div class="text-center">
-        <div class="h-14 flex items-center justify-center mb-3">
-          <img src="https://lh3.googleusercontent.com/d/1Xl5Zz7V_eG8wM3bA0aQp0Xk8h9vK3k8l=w400" 
-               onerror="this.src='https://placehold.co/180x60/0f2744/ffffff?text=TEBESSUM'" 
-               alt="Tebessüm Logo" class="h-12 object-contain mx-auto">
+        <div class="flex justify-center mb-4">
+          <svg class="w-48 h-auto" viewBox="0 0 826.5 313.95">
+            <path fill="#4a9ed5" d="M533.25,264.5c10.43,1.76,21.09,2.84,31.94,3.18,136.68,4.36,248.51-106.49,245.41-243.21-.16-7.18-.64-14.29-1.43-21.3-.38-3.4,4.45-4.47,5.51-1.23,7.58,23.1,11.72,47.75,11.8,73.36.44,131.34-106.64,238.72-237.98,238.64-22.28-.01-43.84-3.09-64.29-8.84-8.96-2.52-15.12-10.74-15.12-20.05,0-12.83,11.5-22.7,24.15-20.56"></path>
+            <path fill="#173c5c" d="M0,77.01v-19.58h8.16c4.41,0,7.02-3.1,7.02-7.67v-15.83h23.99v23.33h22.52v19.74h-22.52v35.25c0,6.53,3.92,10.28,11.1,10.28h11.1v20.89h-17.46c-18.93,0-30.02-10.93-30.02-29.86v-36.55H0Z"></path>
+            <path fill="#173c5c" d="M77.99,67.87c8.32-8.48,18.93-12.73,31.98-12.73,28.39,0,43.24,20.88,43.24,44.87l.04,5.4h-63c.82,11.1,8.47,20.71,20.22,20.71,9.63,0,16.48-4.41,19.09-10.28h22.85c-3.92,18.27-19.91,29.69-42.91,29.69-24.31.49-44.22-19.25-43.73-44.71,0-13.54,4.08-24.48,12.24-32.96M129.72,90.55c-.82-9.3-8.65-16.15-19.74-16.15-10.44,0-18.6,7.18-19.74,16.15h39.49Z"></path>
+            <path fill="#173c5c" d="M163.33,143.42V21.04h25.29v46.01h1.31c3.92-6.03,12.07-11.91,24.31-11.91,11.58,0,20.89,4.24,28.07,12.72,7.34,8.32,10.93,19.42,10.93,32.96s-3.75,24.31-11.1,32.47c-7.34,8.16-16.81,12.24-28.55,12.24-14.36,0-21.38-7.83-23.99-11.91h-1.3v9.79h-24.96ZM207.88,122.7c11.75,0,19.74-9.14,19.74-22.35s-8-22.35-19.74-22.35-19.74,8.65-19.74,22.35c0,12.89,7.83,22.35,19.74,22.35"></path>
+            <path fill="#173c5c" d="M374.15,116.99c.65,5.87,5.71,9.14,14.03,9.14s13.22-2.94,13.22-8c0-15.5-48.62,1.63-48.62-35.57,0-7.67,3.1-14.2,9.46-19.42,6.36-5.39,15.01-8,25.94-8,20.4,0,34.27,9.79,35.41,27.41h-21.86c-.81-5.39-5.55-8.81-13.54-8.81s-12.56,3.1-12.56,7.67c0,14.2,50.26-2.78,50.26,35.41,0,17.13-13.87,28.72-37.86,28.72s-36.22-10.77-36.88-28.55h23.01Z"></path>
+            <path fill="#173c5c" d="M454.26,116.99c.65,5.87,5.71,9.14,14.03,9.14s13.22-2.94,13.22-8c0-15.5-48.62,1.63-48.62-35.57,0-7.67,3.1-14.2,9.46-19.42,6.36-5.39,15.01-8,25.94-8,20.4,0,34.27,9.79,35.41,27.41h-21.86c-.82-5.39-5.55-8.81-13.54-8.81s-12.56,3.1-12.56,7.67c0,14.2,50.26-2.78,50.26,35.41,0,17.13-13.87,28.72-37.86,28.72s-36.22-10.77-36.88-28.55h23.01Z"></path>
+            <path fill="#173c5c" d="M515.78,57.27h25.29v49.6c0,9.14,5.38,15.17,13.87,15.17s14.68-7.18,14.68-16.48v-48.3h25.29v86.15h-23.99v-9.47h-1.3c-3.75,6.36-12.08,11.59-23.01,11.59-9.3,0-16.8-2.77-22.52-8.48-5.55-5.71-8.32-13.22-8.32-22.35v-57.43ZM538.95,20.88c7.18,0,12.07,5.39,12.07,12.08,0,7.18-4.9,12.07-12.07,12.07-6.69,0-11.91-5.06-11.91-12.07s5.22-12.08,11.91-12.08M583.33,32.96c0,7.02-5.22,12.07-11.91,12.07-7.18,0-12.07-4.9-12.07-11.91s4.89-12.24,12.07-12.24c6.69,0,11.91,5.39,11.91,12.08"></path>
+            <path fill="#173c5c" d="M604.7,143.42V57.27h23.82v9.3h1.31c4.08-6.53,11.91-11.42,22.52-11.42s19.41,3.92,24.96,11.75h1.14c6.04-7.83,14.36-11.75,24.97-11.75,9.3,0,16.97,2.77,22.68,8.48,5.71,5.71,8.65,12.89,8.65,21.87v57.92h-25.29v-49.11c0-9.79-4.57-15.67-13.05-15.67s-13.87,6.86-13.87,16.48v48.3h-25.29v-49.77c0-9.14-4.89-15.01-13.38-15.01-7.99,0-13.87,7.02-13.87,16.32v48.46h-25.29Z"></path>
+            <path fill="#173c5c" d="M9.93,192.41c6.33-6.73,14.38-10.16,24.02-10.16,6.73,0,12.93,2.11,16.76,5.15,3.83,3.04,5.94,5.41,7.39,7.65h.79v-41.44h10.43v98.97h-10.03v-10.82h-.79c-5.8,8.31-13.72,12.54-23.75,12.54s-18.21-3.3-24.68-10.03c-6.33-6.73-9.5-15.31-9.5-25.87s3.17-19.27,9.37-26M17.85,237.8c4.49,4.75,10.29,7.12,17.55,7.12s12.93-2.51,17.29-7.65c4.35-5.15,6.6-11.35,6.6-18.87,0-8.18-2.24-14.65-6.86-19.4-4.49-4.88-10.29-7.26-17.29-7.26s-12.8,2.51-17.29,7.52c-4.36,4.88-6.6,11.35-6.6,19.14s2.24,14.52,6.6,19.4"></path>
+            <path fill="#173c5c" d="M114.84,182.24c20.46-.13,33.65,15.57,33.26,35.11v4.62h-55.96c.53,13.86,9.37,22.83,23.49,22.83,9.5,0,17.95-4.49,20.98-12.4h10.82c-3.83,13.07-16.1,21.91-31.93,21.91-20.85,0-34.31-15.44-34.31-36.03,0-21.91,15.04-36.03,33.65-36.03M137.01,212.73c-.93-13.2-10.03-20.98-22.17-20.98-5.94,0-10.95,1.98-15.31,5.81-4.22,3.83-6.6,8.98-7.12,15.18h44.61Z"></path>
+            <path fill="#173c5c" d="M161.29,252.58v-68.62h10.29v12.8h.79c1.19-3.3,3.43-6.2,6.73-8.84,3.3-2.64,7.39-3.96,12.01-3.96h5.8v10.42h-5.67c-12.28,0-19.53,9.24-19.53,22.83v35.37h-10.42Z"></path>
+            <path fill="#173c5c" d="M208.8,252.58v-68.62h10.42v10.03h.79c3.04-6.73,10.82-11.75,20.98-11.75,7.79,0,13.99,2.64,18.61,7.79,4.62,5.15,6.99,11.61,6.99,19.4v43.15h-10.42v-42.49c0-5.41-1.71-9.77-5.15-13.07-3.43-3.3-7.65-5.02-12.54-5.02-5.41,0-10.03,1.85-13.73,5.68-3.7,3.69-5.54,8.31-5.54,13.99v40.91h-10.42Z"></path>
+            <path fill="#173c5c" d="M312.13,182.24c20.45-.13,33.65,15.57,33.26,35.11v4.62h-55.96c.53,13.86,9.37,22.83,23.49,22.83,9.5,0,17.95-4.49,20.98-12.4h10.82c-3.83,13.07-16.1,21.91-31.93,21.91-20.85,0-34.31-15.44-34.31-36.03,0-21.91,15.05-36.03,33.65-36.03M334.3,212.73c-.93-13.2-10.03-20.98-22.17-20.98-5.94,0-10.95,1.98-15.31,5.81-4.22,3.83-6.6,8.98-7.12,15.18h44.61Z"></path>
+            <path fill="#173c5c" d="M411.63,183.96v11.09h-.79c-1.45-2.24-3.57-4.62-7.39-7.65-3.83-3.04-10.03-5.15-16.76-5.15-9.63,0-17.68,3.43-24.02,10.16-6.2,6.73-9.37,15.44-9.37,26s3.17,19.14,9.5,25.87c6.47,6.73,14.65,10.03,24.68,10.03s17.95-4.22,23.75-12.54h.79v10.82c0,14.39-7.65,22.96-23.36,22.96-10.56,0-18.21-4.36-19.93-12.27h-9.9c2.24,12.67,13.46,21.38,29.83,21.38,20.59,0,33.39-12.01,33.39-32.07v-68.62h-10.42ZM405.43,237.27c-4.36,5.15-10.03,7.66-17.29,7.66s-13.07-2.38-17.55-7.13c-4.35-4.88-6.6-11.35-6.6-19.4s2.24-14.25,6.6-19.14c4.49-5.01,10.3-7.52,17.29-7.52s12.8,2.38,17.29,7.26c4.62,4.75,6.86,11.21,6.86,19.4,0,7.52-2.24,13.73-6.6,18.87"></path>
+            <path fill="#173c5c" d="M444.62,156.38c4.35,0,7.65,3.3,7.65,7.52s-3.3,7.65-7.65,7.65-7.52-3.3-7.52-7.65,3.17-7.52,7.52-7.52M439.21,183.96h10.42v68.62h-10.42v-68.62Z"></path>
+            <path fill="#4a9ed5" d="M365.83,162.43c2.3-2.3,4.6-4.6,6.9-6.9,9.29,9.29,24.36,9.29,33.65,0,2.3,2.3,4.6,4.6,6.9,6.9-13.11,13.11-34.35,13.11-47.46,0"></path>
+            <path fill="#173c5c" d="M270.7,67.87c8.32-8.48,18.93-12.73,31.98-12.73,28.39,0,43.24,20.89,43.24,44.87l.04,5.4h-63c.82,11.1,8.47,20.71,20.22,20.71,9.63,0,16.47-3.28,19.08-9.15h22.6c-3.92,18.27-19.65,28.56-42.66,28.56-24.31.49-44.22-19.25-43.73-44.71,0-13.54,4.08-24.48,12.24-32.96M322.42,90.55c-.82-9.3-8.65-16.15-19.74-16.15-10.44,0-18.6,7.18-19.74,16.15h39.49Z"></path>
+          </svg>
         </div>
-        <h2 class="text-xl font-bold text-brand-900 tracking-tight">Tebessüm Derneği</h2>
-        <p class="text-xs text-slate-500 mt-1">Yönetim ve Operasyon Portalı</p>
+        <h2 class="text-xl font-bold text-brand-900 tracking-tight">Yönetim Portalı</h2>
       </div>
 
       <div id="loginError" class="hidden p-3 bg-rose-50 border border-rose-200 text-rose-600 text-xs rounded-xl text-center font-medium"></div>
@@ -55,7 +71,7 @@
       <form id="loginForm" class="space-y-4" onsubmit="handleLogin(event)">
         <div>
           <label class="block text-xs font-semibold uppercase text-slate-600 mb-1">E-Posta</label>
-          <input type="email" id="emailInput" required placeholder="ad.soyad@tebessum.org.tr" class="w-full px-4 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-sm focus:outline-none focus:border-brand-500 focus:bg-white transition">
+          <input type="email" id="emailInput" required placeholder="ornek@tebessum.org.tr" class="w-full px-4 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-sm focus:outline-none focus:border-brand-500 focus:bg-white transition">
         </div>
         <div>
           <label class="block text-xs font-semibold uppercase text-slate-600 mb-1">Şifre</label>
@@ -68,123 +84,160 @@
     </div>
   </div>
 
-  <!-- ================= 2. SOL DİKEY MENÜ (SIDEBAR) ================= -->
-  <aside class="w-64 bg-white border-r border-slate-200 flex flex-col shrink-0 min-h-screen">
-    <!-- Kurumsal Logo Alanı -->
-    <div class="p-5 flex items-center justify-center border-b border-slate-100 h-20">
-      <div class="flex items-center gap-3">
-        <div class="w-10 h-10 rounded-xl bg-brand-800 text-white flex items-center justify-center font-black text-lg shadow-md shadow-brand-900/10">
-          <i class="fa-solid fa-hand-holding-heart text-sky-400"></i>
-        </div>
-        <div>
-          <h1 class="text-sm font-extrabold text-brand-900 tracking-wider">TEBESSÜM</h1>
-          <p class="text-[10px] font-bold text-sky-600 uppercase tracking-widest">Derneği</p>
-        </div>
+  <!-- ================= 2. MOBİL ARKA PLAN PERDESİ (OVERLAY) ================= -->
+  <div id="sidebarBackdrop" onclick="toggleSidebar()" class="fixed inset-0 bg-slate-900/50 backdrop-blur-sm z-30 hidden lg:hidden"></div>
+
+  <!-- ================= 3. SOL DİKEY MENÜ (SIDEBAR) ================= -->
+  <aside id="sidebar" class="fixed lg:static inset-y-0 left-0 z-40 bg-white border-r border-slate-200 flex flex-col shrink-0 min-h-screen transition-all duration-300 -translate-x-full lg:translate-x-0 w-64">
+    <!-- Logo Alanı -->
+    <div class="p-4 flex items-center justify-between border-b border-slate-100 h-20">
+      <div class="flex items-center gap-2 overflow-hidden">
+        <svg class="h-9 w-auto max-w-[170px]" viewBox="0 0 826.5 313.95">
+          <path fill="#4a9ed5" d="M533.25,264.5c10.43,1.76,21.09,2.84,31.94,3.18,136.68,4.36,248.51-106.49,245.41-243.21-.16-7.18-.64-14.29-1.43-21.3-.38-3.4,4.45-4.47,5.51-1.23,7.58,23.1,11.72,47.75,11.8,73.36.44,131.34-106.64,238.72-237.98,238.64-22.28-.01-43.84-3.09-64.29-8.84-8.96-2.52-15.12-10.74-15.12-20.05,0-12.83,11.5-22.7,24.15-20.56"></path>
+          <path fill="#173c5c" d="M0,77.01v-19.58h8.16c4.41,0,7.02-3.1,7.02-7.67v-15.83h23.99v23.33h22.52v19.74h-22.52v35.25c0,6.53,3.92,10.28,11.1,10.28h11.1v20.89h-17.46c-18.93,0-30.02-10.93-30.02-29.86v-36.55H0Z"></path>
+          <path fill="#173c5c" d="M77.99,67.87c8.32-8.48,18.93-12.73,31.98-12.73,28.39,0,43.24,20.88,43.24,44.87l.04,5.4h-63c.82,11.1,8.47,20.71,20.22,20.71,9.63,0,16.48-4.41,19.09-10.28h22.85c-3.92,18.27-19.91,29.69-42.91,29.69-24.31.49-44.22-19.25-43.73-44.71,0-13.54,4.08-24.48,12.24-32.96M129.72,90.55c-.82-9.3-8.65-16.15-19.74-16.15-10.44,0-18.6,7.18-19.74,16.15h39.49Z"></path>
+          <path fill="#173c5c" d="M163.33,143.42V21.04h25.29v46.01h1.31c3.92-6.03,12.07-11.91,24.31-11.91,11.58,0,20.89,4.24,28.07,12.72,7.34,8.32,10.93,19.42,10.93,32.96s-3.75,24.31-11.1,32.47c-7.34,8.16-16.81,12.24-28.55,12.24-14.36,0-21.38-7.83-23.99-11.91h-1.3v9.79h-24.96ZM207.88,122.7c11.75,0,19.74-9.14,19.74-22.35s-8-22.35-19.74-22.35-19.74,8.65-19.74,22.35c0,12.89,7.83,22.35,19.74,22.35"></path>
+          <path fill="#173c5c" d="M374.15,116.99c.65,5.87,5.71,9.14,14.03,9.14s13.22-2.94,13.22-8c0-15.5-48.62,1.63-48.62-35.57,0-7.67,3.1-14.2,9.46-19.42,6.36-5.39,15.01-8,25.94-8,20.4,0,34.27,9.79,35.41,27.41h-21.86c-.81-5.39-5.55-8.81-13.54-8.81s-12.56,3.1-12.56,7.67c0,14.2,50.26-2.78,50.26,35.41,0,17.13-13.87,28.72-37.86,28.72s-36.22-10.77-36.88-28.55h23.01Z"></path>
+          <path fill="#173c5c" d="M454.26,116.99c.65,5.87,5.71,9.14,14.03,9.14s13.22-2.94,13.22-8c0-15.5-48.62,1.63-48.62-35.57,0-7.67,3.1-14.2,9.46-19.42,6.36-5.39,15.01-8,25.94-8,20.4,0,34.27,9.79,35.41,27.41h-21.86c-.82-5.39-5.55-8.81-13.54-8.81s-12.56,3.1-12.56,7.67c0,14.2,50.26-2.78,50.26,35.41,0,17.13-13.87,28.72-37.86,28.72s-36.22-10.77-36.88-28.55h23.01Z"></path>
+          <path fill="#173c5c" d="M515.78,57.27h25.29v49.6c0,9.14,5.38,15.17,13.87,15.17s14.68-7.18,14.68-16.48v-48.3h25.29v86.15h-23.99v-9.47h-1.3c-3.75,6.36-12.08,11.59-23.01,11.59-9.3,0-16.8-2.77-22.52-8.48-5.55-5.71-8.32-13.22-8.32-22.35v-57.43ZM538.95,20.88c7.18,0,12.07,5.39,12.07,12.08,0,7.18-4.9,12.07-12.07,12.07-6.69,0-11.91-5.06-11.91-12.07s5.22-12.08,11.91-12.08M583.33,32.96c0,7.02-5.22,12.07-11.91,12.07-7.18,0-12.07-4.9-12.07-11.91s4.89-12.24,12.07-12.24c6.69,0,11.91,5.39,11.91,12.08"></path>
+          <path fill="#173c5c" d="M604.7,143.42V57.27h23.82v9.3h1.31c4.08-6.53,11.91-11.42,22.52-11.42s19.41,3.92,24.96,11.75h1.14c6.04-7.83,14.36-11.75,24.97-11.75,9.3,0,16.97,2.77,22.68,8.48,5.71,5.71,8.65,12.89,8.65,21.87v57.92h-25.29v-49.11c0-9.79-4.57-15.67-13.05-15.67s-13.87,6.86-13.87,16.48v48.3h-25.29v-49.77c0-9.14-4.89-15.01-13.38-15.01-7.99,0-13.87,7.02-13.87,16.32v48.46h-25.29Z"></path>
+          <path fill="#173c5c" d="M9.93,192.41c6.33-6.73,14.38-10.16,24.02-10.16,6.73,0,12.93,2.11,16.76,5.15,3.83,3.04,5.94,5.41,7.39,7.65h.79v-41.44h10.43v98.97h-10.03v-10.82h-.79c-5.8,8.31-13.72,12.54-23.75,12.54s-18.21-3.3-24.68-10.03c-6.33-6.73-9.5-15.31-9.5-25.87s3.17-19.27,9.37-26M17.85,237.8c4.49,4.75,10.29,7.12,17.55,7.12s12.93-2.51,17.29-7.65c4.35-5.15,6.6-11.35,6.6-18.87,0-8.18-2.24-14.65-6.86-19.4-4.49-4.88-10.29-7.26-17.29-7.26s-12.8,2.51-17.29,7.52c-4.36,4.88-6.6,11.35-6.6,19.14s2.24,14.52,6.6,19.4"></path>
+          <path fill="#173c5c" d="M114.84,182.24c20.46-.13,33.65,15.57,33.26,35.11v4.62h-55.96c.53,13.86,9.37,22.83,23.49,22.83,9.5,0,17.95-4.49,20.98-12.4h10.82c-3.83,13.07-16.1,21.91-31.93,21.91-20.85,0-34.31-15.44-34.31-36.03,0-21.91,15.04-36.03,33.65-36.03M137.01,212.73c-.93-13.2-10.03-20.98-22.17-20.98-5.94,0-10.95,1.98-15.31,5.81-4.22,3.83-6.6,8.98-7.12,15.18h44.61Z"></path>
+          <path fill="#173c5c" d="M161.29,252.58v-68.62h10.29v12.8h.79c1.19-3.3,3.43-6.2,6.73-8.84,3.3-2.64,7.39-3.96,12.01-3.96h5.8v10.42h-5.67c-12.28,0-19.53,9.24-19.53,22.83v35.37h-10.42Z"></path>
+          <path fill="#173c5c" d="M208.8,252.58v-68.62h10.42v10.03h.79c3.04-6.73,10.82-11.75,20.98-11.75,7.79,0,13.99,2.64,18.61,7.79,4.62,5.15,6.99,11.61,6.99,19.4v43.15h-10.42v-42.49c0-5.41-1.71-9.77-5.15-13.07-3.43-3.3-7.65-5.02-12.54-5.02-5.41,0-10.03,1.85-13.73,5.68-3.7,3.69-5.54,8.31-5.54,13.99v40.91h-10.42Z"></path>
+          <path fill="#173c5c" d="M312.13,182.24c20.45-.13,33.65,15.57,33.26,35.11v4.62h-55.96c.53,13.86,9.37,22.83,23.49,22.83,9.5,0,17.95-4.49,20.98-12.4h10.82c-3.83,13.07-16.1,21.91-31.93,21.91-20.85,0-34.31-15.44-34.31-36.03,0-21.91,15.05-36.03,33.65-36.03M334.3,212.73c-.93-13.2-10.03-20.98-22.17-20.98-5.94,0-10.95,1.98-15.31,5.81-4.22,3.83-6.6,8.98-7.12,15.18h44.61Z"></path>
+          <path fill="#173c5c" d="M411.63,183.96v11.09h-.79c-1.45-2.24-3.57-4.62-7.39-7.65-3.83-3.04-10.03-5.15-16.76-5.15-9.63,0-17.68,3.43-24.02,10.16-6.2,6.73-9.37,15.44-9.37,26s3.17,19.14,9.5,25.87c6.47,6.73,14.65,10.03,24.68,10.03s17.95-4.22,23.75-12.54h.79v10.82c0,14.39-7.65,22.96-23.36,22.96-10.56,0-18.21-4.36-19.93-12.27h-9.9c2.24,12.67,13.46,21.38,29.83,21.38,20.59,0,33.39-12.01,33.39-32.07v-68.62h-10.42ZM405.43,237.27c-4.36,5.15-10.03,7.66-17.29,7.66s-13.07-2.38-17.55-7.13c-4.35-4.88-6.6-11.35-6.6-19.4s2.24-14.25,6.6-19.14c4.49-5.01,10.3-7.52,17.29-7.52s12.8,2.38,17.29,7.26c4.62,4.75,6.86,11.21,6.86,19.4,0,7.52-2.24,13.73-6.6,18.87"></path>
+          <path fill="#173c5c" d="M444.62,156.38c4.35,0,7.65,3.3,7.65,7.52s-3.3,7.65-7.65,7.65-7.52-3.3-7.52-7.65,3.17-7.52,7.52-7.52M439.21,183.96h10.42v68.62h-10.42v-68.62Z"></path>
+          <path fill="#4a9ed5" d="M365.83,162.43c2.3-2.3,4.6-4.6,6.9-6.9,9.29,9.29,24.36,9.29,33.65,0,2.3,2.3,4.6,4.6,6.9,6.9-13.11,13.11-34.35,13.11-47.46,0"></path>
+          <path fill="#173c5c" d="M270.7,67.87c8.32-8.48,18.93-12.73,31.98-12.73,28.39,0,43.24,20.89,43.24,44.87l.04,5.4h-63c.82,11.1,8.47,20.71,20.22,20.71,9.63,0,16.47-3.28,19.08-9.15h22.6c-3.92,18.27-19.65,28.56-42.66,28.56-24.31.49-44.22-19.25-43.73-44.71,0-13.54,4.08-24.48,12.24-32.96M322.42,90.55c-.82-9.3-8.65-16.15-19.74-16.15-10.44,0-18.6,7.18-19.74,16.15h39.49Z"></path>
+        </svg>
       </div>
+      <button onclick="toggleSidebar()" class="lg:hidden text-slate-400 hover:text-slate-600 p-1.5">
+        <i class="fa-solid fa-xmark text-lg"></i>
+      </button>
     </div>
 
     <!-- Menü Başlıkları -->
-    <div class="p-4 flex-1 overflow-y-auto custom-scroll space-y-1">
-      <div class="px-3 pb-2 text-[10px] font-bold text-slate-400 tracking-wider uppercase">Genel</div>
-      <a href="#" class="flex items-center gap-3 px-3.5 py-2.5 rounded-xl bg-brand-50 text-brand-700 font-semibold text-xs border border-brand-100">
-        <i class="fa-solid fa-chart-pie w-4 text-center text-brand-600"></i>
-        <span>Ana Sayfa</span>
+    <div class="p-3 flex-1 overflow-y-auto custom-scroll space-y-1">
+      <div class="sidebar-text px-3 pb-1 text-[10px] font-bold text-slate-400 tracking-wider uppercase">Genel</div>
+      <a href="#" class="flex items-center gap-3 px-3 py-2.5 rounded-xl bg-brand-50 text-brand-700 font-semibold text-xs border border-brand-100">
+        <i class="fa-solid fa-chart-pie w-5 text-center text-brand-500 text-sm"></i>
+        <span class="sidebar-text">Ana Sayfa</span>
       </a>
 
-      <div class="pt-4 px-3 pb-2 text-[10px] font-bold text-slate-400 tracking-wider uppercase">Modüller</div>
-      <a href="#" class="flex items-center gap-3 px-3.5 py-2 rounded-xl text-slate-600 hover:bg-slate-50 hover:text-slate-900 font-medium text-xs transition">
-        <i class="fa-solid fa-users w-4 text-center text-slate-400"></i>
-        <span>1. Bağışçılar</span>
+      <div class="sidebar-text pt-3 px-3 pb-1 text-[10px] font-bold text-slate-400 tracking-wider uppercase">Modüller</div>
+      <a href="#" class="flex items-center gap-3 px-3 py-2 rounded-xl text-slate-600 hover:bg-slate-50 hover:text-slate-900 font-medium text-xs transition">
+        <i class="fa-solid fa-users w-5 text-center text-slate-400"></i>
+        <span class="sidebar-text">1. Bağışçılar</span>
       </a>
-      <a href="#" class="flex items-center gap-3 px-3.5 py-2 rounded-xl text-slate-600 hover:bg-slate-50 hover:text-slate-900 font-medium text-xs transition">
-        <i class="fa-solid fa-hand-holding-dollar w-4 text-center text-slate-400"></i>
-        <span>2. Bağışlar</span>
+      <a href="#" class="flex items-center gap-3 px-3 py-2 rounded-xl text-slate-600 hover:bg-slate-50 hover:text-slate-900 font-medium text-xs transition">
+        <i class="fa-solid fa-hand-holding-dollar w-5 text-center text-slate-400"></i>
+        <span class="sidebar-text">2. Bağışlar</span>
       </a>
-      <a href="#" class="flex items-center gap-3 px-3.5 py-2 rounded-xl text-slate-600 hover:bg-slate-50 hover:text-slate-900 font-medium text-xs transition">
-        <i class="fa-solid fa-map-location-dot w-4 text-center text-slate-400"></i>
-        <span>3. Ziyaret Takibi</span>
+      <a href="#" class="flex items-center gap-3 px-3 py-2 rounded-xl text-slate-600 hover:bg-slate-50 hover:text-slate-900 font-medium text-xs transition">
+        <i class="fa-solid fa-map-location-dot w-5 text-center text-slate-400"></i>
+        <span class="sidebar-text">3. Ziyaret Takibi</span>
       </a>
-      <a href="#" class="flex items-center gap-3 px-3.5 py-2 rounded-xl text-slate-600 hover:bg-slate-50 hover:text-slate-900 font-medium text-xs transition">
-        <i class="fa-solid fa-magnifying-glass-chart w-4 text-center text-slate-400"></i>
-        <span>4. Bağışçı Arama</span>
+      <a href="#" class="flex items-center gap-3 px-3 py-2 rounded-xl text-slate-600 hover:bg-slate-50 hover:text-slate-900 font-medium text-xs transition">
+        <i class="fa-solid fa-magnifying-glass-chart w-5 text-center text-slate-400"></i>
+        <span class="sidebar-text">4. Bağışçı Arama</span>
       </a>
-      <a href="#" class="flex items-center gap-3 px-3.5 py-2 rounded-xl text-slate-600 hover:bg-slate-50 hover:text-slate-900 font-medium text-xs transition">
-        <i class="fa-solid fa-calendar-days w-4 text-center text-brand-600"></i>
-        <span class="font-semibold text-brand-900">5. Sosyal Medya</span>
+      <a href="#" class="flex items-center gap-3 px-3 py-2 rounded-xl text-slate-600 hover:bg-slate-50 hover:text-slate-900 font-medium text-xs transition">
+        <i class="fa-solid fa-calendar-days w-5 text-center text-brand-500"></i>
+        <span class="sidebar-text font-semibold text-brand-900">5. Sosyal Medya</span>
       </a>
-      <a href="#" class="flex items-center gap-3 px-3.5 py-2 rounded-xl text-slate-600 hover:bg-slate-50 hover:text-slate-900 font-medium text-xs transition">
-        <i class="fa-solid fa-seedling w-4 text-center text-slate-400"></i>
-        <span>6. Uzun Soluklu Bağış</span>
+      <a href="#" class="flex items-center gap-3 px-3 py-2 rounded-xl text-slate-600 hover:bg-slate-50 hover:text-slate-900 font-medium text-xs transition">
+        <i class="fa-solid fa-seedling w-5 text-center text-slate-400"></i>
+        <span class="sidebar-text">6. Uzun Soluklu Bağış</span>
       </a>
-      <a href="#" class="flex items-center gap-3 px-3.5 py-2 rounded-xl text-slate-600 hover:bg-slate-50 hover:text-slate-900 font-medium text-xs transition">
-        <i class="fa-solid fa-list-check w-4 text-center text-slate-400"></i>
-        <span>7. İş ve Görevler</span>
+      <a href="#" class="flex items-center gap-3 px-3 py-2 rounded-xl text-slate-600 hover:bg-slate-50 hover:text-slate-900 font-medium text-xs transition">
+        <i class="fa-solid fa-list-check w-5 text-center text-slate-400"></i>
+        <span class="sidebar-text">7. İş ve Görevler</span>
       </a>
-      <a href="#" class="flex items-center gap-3 px-3.5 py-2 rounded-xl text-slate-600 hover:bg-slate-50 hover:text-slate-900 font-medium text-xs transition">
-        <i class="fa-brands fa-whatsapp w-4 text-center text-emerald-500"></i>
-        <span>8. WhatsApp Hatırlatıcı</span>
+      <a href="#" class="flex items-center gap-3 px-3 py-2 rounded-xl text-slate-600 hover:bg-slate-50 hover:text-slate-900 font-medium text-xs transition">
+        <i class="fa-brands fa-whatsapp w-5 text-center text-emerald-500"></i>
+        <span class="sidebar-text">8. WhatsApp Hatırlatıcı</span>
       </a>
-      <a href="#" class="flex items-center gap-3 px-3.5 py-2 rounded-xl text-slate-600 hover:bg-slate-50 hover:text-slate-900 font-medium text-xs transition">
-        <i class="fa-solid fa-brain w-4 text-center text-purple-500"></i>
-        <span>9. Hafıza</span>
+      <a href="#" class="flex items-center gap-3 px-3 py-2 rounded-xl text-slate-600 hover:bg-slate-50 hover:text-slate-900 font-medium text-xs transition">
+        <i class="fa-solid fa-brain w-5 text-center text-purple-500"></i>
+        <span class="sidebar-text">9. Hafıza</span>
       </a>
-      <a href="#" class="flex items-center gap-3 px-3.5 py-2 rounded-xl text-slate-600 hover:bg-slate-50 hover:text-slate-900 font-medium text-xs transition">
-        <i class="fa-solid fa-file-pdf w-4 text-center text-rose-500"></i>
-        <span>10. PDF Oluşturma</span>
+      <a href="#" class="flex items-center gap-3 px-3 py-2 rounded-xl text-slate-600 hover:bg-slate-50 hover:text-slate-900 font-medium text-xs transition">
+        <i class="fa-solid fa-file-pdf w-5 text-center text-rose-500"></i>
+        <span class="sidebar-text">10. PDF Oluşturma</span>
       </a>
 
-      <div class="pt-4 px-3 pb-2 text-[10px] font-bold text-slate-400 tracking-wider uppercase">Yönetim</div>
-      <a href="#" class="flex items-center gap-3 px-3.5 py-2 rounded-xl text-slate-600 hover:bg-slate-50 hover:text-slate-900 font-medium text-xs transition">
-        <i class="fa-solid fa-sliders w-4 text-center text-slate-400"></i>
-        <span>11. Ayarlar & Yetkiler</span>
+      <div class="sidebar-text pt-3 px-3 pb-1 text-[10px] font-bold text-slate-400 tracking-wider uppercase">Yönetim</div>
+      <a href="#" class="flex items-center gap-3 px-3 py-2 rounded-xl text-slate-600 hover:bg-slate-50 hover:text-slate-900 font-medium text-xs transition">
+        <i class="fa-solid fa-sliders w-5 text-center text-slate-400"></i>
+        <span class="sidebar-text">11. Ayarlar & Yetkiler</span>
       </a>
+    </div>
+
+    <!-- Alt Profil Özeti & Çıkış -->
+    <div class="p-3 border-t border-slate-100 bg-slate-50/50 flex items-center justify-between">
+      <div class="flex items-center gap-2 overflow-hidden">
+        <div class="w-8 h-8 rounded-full bg-brand-100 text-brand-800 flex items-center justify-center font-bold text-xs shrink-0">
+          M
+        </div>
+        <div class="sidebar-text truncate">
+          <p id="userEmailShort" class="text-xs font-bold text-slate-800 truncate">Mustafa Cengiz</p>
+          <span class="text-[10px] text-emerald-600 font-semibold">Aktif</span>
+        </div>
+      </div>
+      <button onclick="handleLogout()" title="Çıkış Yap" class="text-slate-400 hover:text-rose-600 text-xs p-1.5 transition">
+        <i class="fa-solid fa-right-from-bracket"></i>
+      </button>
     </div>
   </aside>
 
-  <!-- ================= 3. ANA İÇERİK ALANI ================= -->
-  <main class="flex-1 flex flex-col min-w-0 overflow-y-auto custom-scroll">
+  <!-- ================= 4. ANA İÇERİK ALANI ================= -->
+  <main class="flex-1 flex flex-col min-w-0 overflow-y-auto custom-scroll w-full">
     
     <!-- Üst Bar (Header) -->
-    <header class="h-20 bg-white border-b border-slate-200 px-8 flex items-center justify-between shrink-0 sticky top-0 z-30">
+    <header class="h-16 md:h-20 bg-white border-b border-slate-200 px-4 md:px-8 flex items-center justify-between shrink-0 sticky top-0 z-20">
       
-      <!-- Arama Kutusu -->
-      <div class="relative w-80">
-        <i class="fa-solid fa-magnifying-glass absolute left-3.5 top-3 text-slate-400 text-xs"></i>
-        <input type="text" placeholder="Görev, ziyaret veya içerik ara..." class="w-full pl-9 pr-4 py-2 bg-slate-50 border border-slate-200 rounded-full text-xs text-slate-700 focus:outline-none focus:border-brand-500 focus:bg-white transition">
+      <!-- Sol Alan: Menü Daraltma Tuşu & Arama Kutusu -->
+      <div class="flex items-center gap-3">
+        <button onclick="toggleSidebar()" class="p-2.5 rounded-xl border border-slate-200 text-slate-600 hover:bg-brand-50 hover:text-brand-700 hover:border-brand-200 transition">
+          <i class="fa-solid fa-bars-staggered text-sm"></i>
+        </button>
+        <div class="relative hidden sm:block w-48 md:w-64 lg:w-80">
+          <i class="fa-solid fa-magnifying-glass absolute left-3.5 top-2.5 md:top-3 text-slate-400 text-xs"></i>
+          <input type="text" placeholder="Görev, ziyaret veya içerik ara..." class="w-full pl-9 pr-4 py-1.5 md:py-2 bg-slate-50 border border-slate-200 rounded-full text-xs text-slate-700 focus:outline-none focus:border-brand-400 focus:bg-white transition">
+        </div>
       </div>
 
       <!-- Sağ Bölüm: Tarih/Saat, Bildirimler ve Profil Dropdown -->
-      <div class="flex items-center gap-5">
+      <div class="flex items-center gap-2 md:gap-4">
         
-        <!-- Canlı Tarih & Gün & Saat -->
-        <div class="flex items-center gap-2 bg-brand-50/70 border border-brand-100 px-3.5 py-2 rounded-xl text-brand-900">
-          <i class="fa-regular fa-calendar-days text-brand-600 text-xs"></i>
-          <span id="realtimeDate" class="text-xs font-bold font-mono">-- ... ----, ------</span>
+        <!-- Canlı Tarih & Gün & Saat (Mobilde ve Tablette Kompakt) -->
+        <div class="flex items-center gap-1.5 md:gap-2 bg-brand-50 border border-brand-100 px-2.5 md:px-3 py-1.5 rounded-xl text-brand-900 text-xs font-semibold">
+          <i class="fa-regular fa-calendar-days text-brand-500"></i>
+          <span id="realtimeDate" class="font-mono text-[11px] md:text-xs">-- ... ----</span>
           <span class="text-slate-300">|</span>
-          <span id="realtimeClock" class="text-xs font-extrabold font-mono text-brand-700">--:--:--</span>
+          <span id="realtimeClock" class="font-bold font-mono text-brand-700 text-[11px] md:text-xs">--:--:--</span>
         </div>
 
         <!-- Bildirim Çanı & Popover -->
         <div class="relative">
-          <button id="notifBtn" onclick="toggleNotifications()" class="relative p-2.5 text-slate-500 hover:text-brand-700 hover:bg-slate-100 rounded-xl transition">
-            <i class="fa-regular fa-bell text-base"></i>
+          <button id="notifBtn" onclick="toggleNotifications()" class="relative p-2 md:p-2.5 text-slate-500 hover:text-brand-700 hover:bg-slate-100 rounded-xl transition">
+            <i class="fa-regular fa-bell text-sm md:text-base"></i>
             <span class="absolute top-1.5 right-1.5 w-2 h-2 bg-rose-500 rounded-full ring-2 ring-white"></span>
           </button>
 
           <!-- Bildirim Popover Kutusu -->
-          <div id="notifDropdown" class="hidden absolute right-0 mt-3 w-80 bg-white border border-slate-200 rounded-2xl shadow-2xl z-40 overflow-hidden">
-            <div class="p-3.5 bg-brand-800 text-white flex justify-between items-center">
-              <span class="text-xs font-bold tracking-wide">Bildirimler</span>
+          <div id="notifDropdown" class="hidden absolute right-0 mt-3 w-72 md:w-80 bg-white border border-slate-200 rounded-2xl shadow-2xl z-40 overflow-hidden">
+            <div class="p-3 bg-brand-900 text-white flex justify-between items-center">
+              <span class="text-xs font-bold">Yaklaşan Bildirimler</span>
               <span class="text-[10px] bg-brand-700 px-2 py-0.5 rounded-full font-semibold">2 Yeni</span>
             </div>
             <div class="divide-y divide-slate-100 max-h-72 overflow-y-auto text-xs">
-              <!-- Bugün -->
               <div class="p-3 hover:bg-slate-50 transition">
                 <span class="text-[10px] font-extrabold uppercase px-1.5 py-0.5 rounded bg-emerald-50 text-emerald-700">Bugün</span>
                 <p class="font-bold text-slate-800 mt-1">Saha Ziyareti Raporu</p>
                 <p class="text-[11px] text-slate-500 mt-0.5">Üsküdar yetim burs görüşmesi saat 14:00'te tamamlanacak.</p>
               </div>
-              <!-- Yarın -->
               <div class="p-3 hover:bg-slate-50 transition">
                 <span class="text-[10px] font-extrabold uppercase px-1.5 py-0.5 rounded bg-sky-50 text-sky-700">Yarın</span>
                 <p class="font-bold text-slate-800 mt-1">Sosyal Medya Video Paylaşımı</p>
@@ -194,22 +247,22 @@
           </div>
         </div>
 
-        <!-- Profil Alanı (Üzerine Gelince / Tıklayınca Açılır) -->
+        <!-- Profil Alanı -->
         <div class="relative" id="profileDropdownContainer">
-          <button onclick="toggleProfileMenu()" class="flex items-center gap-3 p-1.5 pr-3 rounded-full hover:bg-slate-100 transition border border-transparent hover:border-slate-200">
+          <button onclick="toggleProfileMenu()" class="flex items-center gap-2 p-1 rounded-full hover:bg-slate-100 transition border border-transparent hover:border-slate-200">
             <img id="userAvatarImg" src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=100&auto=format&fit=crop&q=80" 
-                 alt="Profil" class="w-9 h-9 rounded-full object-cover ring-2 ring-brand-500">
+                 alt="Profil" class="w-8 h-8 md:w-9 md:h-9 rounded-full object-cover ring-2 ring-brand-400">
             <div class="text-left hidden md:block">
               <p id="profileDisplayName" class="text-xs font-bold text-slate-800 leading-tight">Mustafa Cengiz</p>
               <p class="text-[10px] font-semibold text-brand-600">Yönetici</p>
             </div>
-            <i class="fa-solid fa-chevron-down text-[10px] text-slate-400"></i>
+            <i class="fa-solid fa-chevron-down text-[10px] text-slate-400 hidden md:block"></i>
           </button>
 
-          <!-- Profil Dropdown Menü -->
+          <!-- Profil Menüsü -->
           <div id="profileMenu" class="hidden absolute right-0 mt-2 w-48 bg-white border border-slate-200 rounded-2xl shadow-xl z-40 py-2 text-xs">
             <button onclick="openProfileModal()" class="w-full text-left px-4 py-2.5 text-slate-700 hover:bg-brand-50 hover:text-brand-700 font-semibold flex items-center gap-2.5 transition">
-              <i class="fa-solid fa-user-pen text-brand-600"></i>
+              <i class="fa-solid fa-user-pen text-brand-500"></i>
               <span>Profili Düzenle</span>
             </button>
             <div class="border-t border-slate-100 my-1"></div>
@@ -224,47 +277,55 @@
     </header>
 
     <!-- Dashboard Gövdesi -->
-    <div class="p-8 space-y-6">
+    <div class="p-4 md:p-6 lg:p-8 space-y-6">
 
-      <!-- Karşılama Banner -->
-      <div class="bg-gradient-to-r from-brand-900 via-brand-800 to-brand-700 rounded-3xl p-6 text-white shadow-xl shadow-brand-900/10 flex flex-col md:flex-row md:items-center md:justify-between gap-4">
+      <!-- Karşılama Banner & HIZLI İŞLEMLER (Görev, Bildirim, Ziyaret) -->
+      <div class="bg-gradient-to-r from-brand-950 via-brand-900 to-brand-800 rounded-3xl p-5 md:p-6 text-white shadow-xl shadow-brand-950/10 flex flex-col lg:flex-row lg:items-center lg:justify-between gap-4">
         <div class="space-y-1">
           <div class="inline-flex items-center gap-2 px-3 py-1 bg-white/10 backdrop-blur-md rounded-full text-[11px] font-semibold text-sky-200 border border-white/10 mb-1">
             <i class="fa-solid fa-location-dot"></i> İstanbul, Türkiye
           </div>
-          <h2 class="text-2xl font-black tracking-tight">Hayırlı Günler, <span id="welcomeBannerName">Mustafa Bey</span> 👋</h2>
-          <p class="text-xs text-sky-100 max-w-xl">Bugün dernek bünyesindeki sosyal medya akışı, yaklaşan toplantılar ve güncel servisler hazır.</p>
+          <h2 class="text-xl md:text-2xl font-black tracking-tight">Hayırlı Günler, <span id="welcomeBannerName">Mustafa Cengiz</span> 👋</h2>
+          <p class="text-xs text-sky-100 max-w-xl">Bugün planlanan ziyaretler, yaklaşan takvim ve sosyal medya paylaşımları aşağıda listelenmiştir.</p>
         </div>
-        <div class="flex gap-2">
-          <button class="px-4 py-2.5 bg-sky-500 hover:bg-sky-400 text-brand-900 font-bold text-xs rounded-xl transition shadow">
-            + Hızlı Not Ekle
+        
+        <!-- Hızlı İşlemler Butonları -->
+        <div class="flex flex-wrap gap-2 pt-2 lg:pt-0">
+          <button onclick="openModal('taskModal')" class="px-3.5 py-2 bg-brand-400 hover:bg-brand-500 text-white font-bold text-xs rounded-xl transition flex items-center gap-2 shadow">
+            <i class="fa-solid fa-plus-circle"></i> Hızlı Görev Ekle
+          </button>
+          <button onclick="openModal('visitModal')" class="px-3.5 py-2 bg-white/10 hover:bg-white/20 text-white font-semibold text-xs rounded-xl border border-white/20 transition flex items-center gap-2">
+            <i class="fa-solid fa-car-side"></i> Ziyaret Ekle
+          </button>
+          <button onclick="openModal('notifModal')" class="px-3.5 py-2 bg-white/10 hover:bg-white/20 text-white font-semibold text-xs rounded-xl border border-white/20 transition flex items-center gap-2">
+            <i class="fa-regular fa-bell"></i> Bildirim Ekle
           </button>
         </div>
       </div>
 
-      <!-- BİLGİ ŞERİDİ: Namaz, Hava Durumu, Döviz, Deprem -->
-      <div class="grid grid-cols-1 md:grid-cols-4 gap-5">
+      <!-- BİLGİ ŞERİDİ (Namaz, Döviz, Hava, Deprem) — Tam Responsive Grid -->
+      <div class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-4 md:gap-5">
         
         <!-- Namaz Vakitleri -->
-        <div class="bg-white p-5 rounded-2xl border border-slate-200/80 shadow-sm space-y-3">
+        <div class="bg-white p-4 md:p-5 rounded-2xl border border-slate-200/80 shadow-sm space-y-3">
           <div class="flex items-center justify-between border-b border-slate-100 pb-2">
             <span class="text-xs font-bold text-brand-900 flex items-center gap-2">
-              <i class="fa-solid fa-mosque text-brand-600"></i> Namaz Vakitleri
+              <i class="fa-solid fa-mosque text-brand-500"></i> Namaz Vakitleri
             </span>
             <span class="text-[10px] text-slate-400 font-semibold">İstanbul</span>
           </div>
-          <div class="grid grid-cols-3 gap-2 text-center text-xs">
-            <div class="bg-slate-50 p-1.5 rounded-lg"><span class="text-[10px] text-slate-400 block font-semibold">İmsak</span><span class="font-bold text-slate-800">05:24</span></div>
-            <div class="bg-slate-50 p-1.5 rounded-lg"><span class="text-[10px] text-slate-400 block font-semibold">Öğle</span><span class="font-bold text-slate-800">13:08</span></div>
-            <div class="bg-brand-50 border border-brand-100 p-1.5 rounded-lg"><span class="text-[10px] text-brand-600 block font-semibold">İkindi</span><span class="font-bold text-brand-900">16:42</span></div>
-            <div class="bg-slate-50 p-1.5 rounded-lg"><span class="text-[10px] text-slate-400 block font-semibold">Akşam</span><span class="font-bold text-slate-800">19:15</span></div>
-            <div class="bg-slate-50 p-1.5 rounded-lg"><span class="text-[10px] text-slate-400 block font-semibold">Yatsı</span><span class="font-bold text-slate-800">20:34</span></div>
-            <div class="bg-slate-50 p-1.5 rounded-lg"><span class="text-[10px] text-slate-400 block font-semibold">Güneş</span><span class="font-bold text-slate-800">06:48</span></div>
+          <div class="grid grid-cols-3 gap-1.5 md:gap-2 text-center text-xs">
+            <div class="bg-slate-50 p-1.5 rounded-lg"><span class="text-[9px] text-slate-400 block font-semibold">İmsak</span><span class="font-bold text-slate-800 text-[11px]">05:24</span></div>
+            <div class="bg-slate-50 p-1.5 rounded-lg"><span class="text-[9px] text-slate-400 block font-semibold">Öğle</span><span class="font-bold text-slate-800 text-[11px]">13:08</span></div>
+            <div class="bg-brand-50 border border-brand-100 p-1.5 rounded-lg"><span class="text-[9px] text-brand-600 block font-semibold">İkindi</span><span class="font-bold text-brand-900 text-[11px]">16:42</span></div>
+            <div class="bg-slate-50 p-1.5 rounded-lg"><span class="text-[9px] text-slate-400 block font-semibold">Akşam</span><span class="font-bold text-slate-800 text-[11px]">19:15</span></div>
+            <div class="bg-slate-50 p-1.5 rounded-lg"><span class="text-[9px] text-slate-400 block font-semibold">Yatsı</span><span class="font-bold text-slate-800 text-[11px]">20:34</span></div>
+            <div class="bg-slate-50 p-1.5 rounded-lg"><span class="text-[9px] text-slate-400 block font-semibold">Güneş</span><span class="font-bold text-slate-800 text-[11px]">06:48</span></div>
           </div>
         </div>
 
         <!-- Canlı Piyasalar -->
-        <div class="bg-white p-5 rounded-2xl border border-slate-200/80 shadow-sm space-y-3">
+        <div class="bg-white p-4 md:p-5 rounded-2xl border border-slate-200/80 shadow-sm space-y-3">
           <div class="flex items-center justify-between border-b border-slate-100 pb-2">
             <span class="text-xs font-bold text-brand-900 flex items-center gap-2">
               <i class="fa-solid fa-coins text-amber-500"></i> Döviz & Altın
@@ -279,10 +340,10 @@
         </div>
 
         <!-- Hava Durumu -->
-        <div class="bg-white p-5 rounded-2xl border border-slate-200/80 shadow-sm space-y-3">
+        <div class="bg-white p-4 md:p-5 rounded-2xl border border-slate-200/80 shadow-sm space-y-3">
           <div class="flex items-center justify-between border-b border-slate-100 pb-2">
             <span class="text-xs font-bold text-brand-900 flex items-center gap-2">
-              <i class="fa-solid fa-cloud-sun text-sky-500"></i> Hava Durumu
+              <i class="fa-solid fa-cloud-sun text-brand-400"></i> Hava Durumu
             </span>
             <span class="text-[10px] text-slate-400 font-semibold">İstanbul</span>
           </div>
@@ -297,7 +358,7 @@
         </div>
 
         <!-- Son Depremler -->
-        <div class="bg-white p-5 rounded-2xl border border-slate-200/80 shadow-sm space-y-3">
+        <div class="bg-white p-4 md:p-5 rounded-2xl border border-slate-200/80 shadow-sm space-y-3">
           <div class="flex items-center justify-between border-b border-slate-100 pb-2">
             <span class="text-xs font-bold text-brand-900 flex items-center gap-2">
               <i class="fa-solid fa-triangle-exclamation text-rose-500"></i> Son Depremler
@@ -318,37 +379,36 @@
 
       </div>
 
-      <!-- ANA İÇERİK BLOKLARI: Sosyal Medya Takvimi + Google Takvim + Haberler -->
+      <!-- ANA BLOKLAR: Sosyal Medya + Google Takvim + Bülten -->
       <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
         
-        <!-- Sol 2 Kolon: SOSYAL MEDYA TAKVİMİ (Bugün, Yarın, Öbür Gün) -->
-        <div class="lg:col-span-2 bg-white p-6 rounded-2xl border border-slate-200/80 shadow-sm space-y-5">
-          <div class="flex items-center justify-between border-b border-slate-100 pb-3">
+        <!-- Sol 2 Kolon: SOSYAL MEDYA TAKVİMİ -->
+        <div class="lg:col-span-2 bg-white p-5 md:p-6 rounded-2xl border border-slate-200/80 shadow-sm space-y-5">
+          <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2 border-b border-slate-100 pb-3">
             <div>
               <h3 class="text-sm font-bold text-brand-900 flex items-center gap-2">
-                <i class="fa-solid fa-calendar-days text-brand-600"></i> Sosyal Medya Paylaşım Akışı
+                <i class="fa-solid fa-calendar-days text-brand-500"></i> Sosyal Medya Paylaşım Akışı
               </h3>
               <p class="text-xs text-slate-400">Önümüzdeki 3 günün planlanan dijital içerikleri</p>
             </div>
-            <button class="px-3 py-1.5 bg-brand-50 text-brand-700 rounded-xl text-xs font-bold hover:bg-brand-100 transition">
+            <button class="px-3 py-1.5 bg-brand-50 text-brand-700 rounded-xl text-xs font-bold hover:bg-brand-100 transition self-start sm:self-auto">
               + Yeni İçerik Planla
             </button>
           </div>
 
           <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
-            
             <!-- BUGÜN -->
             <div class="bg-brand-50/50 border border-brand-100 p-4 rounded-xl space-y-3">
               <div class="flex justify-between items-center">
                 <span class="text-[11px] font-extrabold uppercase px-2 py-0.5 rounded-full bg-brand-700 text-white">BUGÜN</span>
                 <span class="text-[11px] text-slate-500 font-semibold">18:00</span>
               </div>
-              <div class="space-y-1.5">
+              <div class="space-y-1">
                 <div class="flex items-center gap-1.5 text-pink-600 text-xs font-bold">
                   <i class="fa-brands fa-instagram"></i> Instagram Reels
                 </div>
                 <p class="text-xs font-bold text-slate-800">Su Kuyusu Açılış Videosu</p>
-                <p class="text-[11px] text-slate-500">Çad bölgesi 3. etap su kuyusu teslim görüntüleri montajı.</p>
+                <p class="text-[11px] text-slate-500">Çad bölgesi 3. etap su kuyusu teslim montajı.</p>
               </div>
               <span class="inline-block px-2 py-0.5 rounded text-[10px] font-bold bg-amber-50 text-amber-700 border border-amber-200">
                 Yayına Hazır
@@ -361,12 +421,12 @@
                 <span class="text-[11px] font-extrabold uppercase px-2 py-0.5 rounded-full bg-slate-200 text-slate-700">YARIN</span>
                 <span class="text-[11px] text-slate-500 font-semibold">12:30</span>
               </div>
-              <div class="space-y-1.5">
+              <div class="space-y-1">
                 <div class="flex items-center gap-1.5 text-red-600 text-xs font-bold">
                   <i class="fa-brands fa-youtube"></i> YouTube Shorts
                 </div>
                 <p class="text-xs font-bold text-slate-800">Yetim Kırtasiye Dağıtımı</p>
-                <p class="text-[11px] text-slate-500">Saha ekibinin çocuklara çanta dağıtım anları kurgusu.</p>
+                <p class="text-[11px] text-slate-500">Saha ekibi çanta teslim anları kurgusu.</p>
               </div>
               <span class="inline-block px-2 py-0.5 rounded text-[10px] font-bold bg-sky-50 text-sky-700 border border-sky-200">
                 Kurguda
@@ -379,24 +439,23 @@
                 <span class="text-[11px] font-extrabold uppercase px-2 py-0.5 rounded-full bg-slate-200 text-slate-700">ÖBÜR GÜN</span>
                 <span class="text-[11px] text-slate-500 font-semibold">20:00</span>
               </div>
-              <div class="space-y-1.5">
+              <div class="space-y-1">
                 <div class="flex items-center gap-1.5 text-slate-800 text-xs font-bold">
                   <i class="fa-brands fa-x-twitter"></i> X / Twitter Post
                 </div>
                 <p class="text-xs font-bold text-slate-800">Haftalık Faaliyet Bülteni</p>
-                <p class="text-[11px] text-slate-500">Grafik görsel eşliğinde haftalık yardım istatistikleri paylaşımı.</p>
+                <p class="text-[11px] text-slate-500">Haftalık yardım istatistikleri infografiği.</p>
               </div>
               <span class="inline-block px-2 py-0.5 rounded text-[10px] font-bold bg-slate-200 text-slate-600">
                 Taslak Halinde
               </span>
             </div>
-
           </div>
 
-          <!-- GÜNCEL HABERLER ŞERİDİ -->
+          <!-- BÜLTEN & HABERLER -->
           <div class="pt-2 border-t border-slate-100">
-            <h4 class="text-xs font-bold text-brand-900 mb-3 flex items-center gap-2">
-              <i class="fa-regular fa-newspaper text-brand-600"></i> Güncel Gelişmeler & Bülten
+            <h4 class="text-xs font-bold text-brand-900 mb-2 flex items-center gap-2">
+              <i class="fa-regular fa-newspaper text-brand-500"></i> Güncel Gelişmeler & Bülten
             </h4>
             <div class="space-y-2 text-xs">
               <div class="flex items-center justify-between p-2.5 rounded-xl hover:bg-slate-50 transition border border-slate-100">
@@ -404,25 +463,25 @@
                   <span class="w-2 h-2 rounded-full bg-brand-500 shrink-0"></span>
                   <p class="text-slate-800 font-semibold truncate">Afrika Kış Yardımları ve Gıda Dağıtım Seferberliği Başladı</p>
                 </div>
-                <span class="text-[11px] text-slate-400 font-mono shrink-0 ml-3">Bugün</span>
+                <span class="text-[11px] text-slate-400 font-mono shrink-0 ml-2">Bugün</span>
               </div>
               <div class="flex items-center justify-between p-2.5 rounded-xl hover:bg-slate-50 transition border border-slate-100">
                 <div class="flex items-center gap-2.5 truncate">
                   <span class="w-2 h-2 rounded-full bg-emerald-500 shrink-0"></span>
                   <p class="text-slate-800 font-semibold truncate">İstanbul İçi Eğitim Destek Bursları Başvuruları İnceleniyor</p>
                 </div>
-                <span class="text-[11px] text-slate-400 font-mono shrink-0 ml-3">Dün</span>
+                <span class="text-[11px] text-slate-400 font-mono shrink-0 ml-2">Dün</span>
               </div>
             </div>
           </div>
 
         </div>
 
-        <!-- Sağ 1 Kolon: GOOGLE TAKVİM & ETKİNLİKLER -->
-        <div class="bg-white p-6 rounded-2xl border border-slate-200/80 shadow-sm space-y-4">
+        <!-- Sağ 1 Kolon: GOOGLE TAKVİM & AI -->
+        <div class="bg-white p-5 md:p-6 rounded-2xl border border-slate-200/80 shadow-sm space-y-4">
           <div class="flex items-center justify-between border-b border-slate-100 pb-3">
             <h3 class="text-sm font-bold text-brand-900 flex items-center gap-2">
-              <i class="fa-solid fa-calendar-check text-brand-600"></i> Google Takvim
+              <i class="fa-solid fa-calendar-check text-brand-500"></i> Google Takvim
             </h3>
             <span class="text-[11px] font-bold text-brand-600">Görüşmeler</span>
           </div>
@@ -451,10 +510,10 @@
           <!-- Hızlı AI Kutusu -->
           <div class="pt-2 border-t border-slate-100">
             <label class="block text-[11px] font-bold text-slate-700 uppercase tracking-wider mb-1.5 flex items-center gap-1.5">
-              <i class="fa-solid fa-robot text-brand-600"></i> Yapay Zekaya Sor
+              <i class="fa-solid fa-robot text-brand-500"></i> Yapay Zekaya Sor
             </label>
             <div class="flex gap-2">
-              <input type="text" placeholder="Görev metni oluştur, bülten taslağı sor..." class="flex-1 px-3 py-2 bg-slate-50 border border-slate-200 rounded-xl text-xs focus:outline-none focus:border-brand-500">
+              <input type="text" placeholder="Görev oluştur, bülten sor..." class="flex-1 px-3 py-2 bg-slate-50 border border-slate-200 rounded-xl text-xs focus:outline-none focus:border-brand-400">
               <button class="px-3 py-2 bg-brand-700 hover:bg-brand-800 text-white rounded-xl text-xs transition">
                 <i class="fa-solid fa-paper-plane"></i>
               </button>
@@ -468,36 +527,127 @@
     </div>
   </main>
 
-  <!-- ================= 4. PROFİL DÜZENLEME MODAL (POP-UP) ================= -->
+  <!-- ================= 5. HIZLI İŞLEM MODALLARI ================= -->
+
+  <!-- Hızlı Görev Modal -->
+  <div id="taskModal" class="hidden fixed inset-0 z-50 flex items-center justify-center bg-slate-900/60 backdrop-blur-sm p-4">
+    <div class="bg-white border border-slate-100 p-6 rounded-3xl w-full max-w-md shadow-2xl space-y-4">
+      <div class="flex justify-between items-center border-b border-slate-100 pb-3">
+        <h3 class="text-base font-bold text-brand-900 flex items-center gap-2">
+          <i class="fa-solid fa-list-check text-brand-500"></i> Hızlı Görev Oluştur
+        </h3>
+        <button onclick="closeModal('taskModal')" class="text-slate-400 hover:text-slate-600"><i class="fa-solid fa-xmark text-lg"></i></button>
+      </div>
+      <form onsubmit="handleQuickAction(event, 'Görev eklendi!')" class="space-y-3">
+        <div>
+          <label class="block text-xs font-semibold text-slate-600 mb-1">Görev Başlığı</label>
+          <input type="text" required placeholder="ör. Bağışçı teşekkür mektupları" class="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-xl text-xs focus:outline-none focus:border-brand-400">
+        </div>
+        <div>
+          <label class="block text-xs font-semibold text-slate-600 mb-1">Atanan Kişi / Birim</label>
+          <input type="text" required placeholder="ör. Emre Dereci (Medya)" class="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-xl text-xs focus:outline-none focus:border-brand-400">
+        </div>
+        <div>
+          <label class="block text-xs font-semibold text-slate-600 mb-1">Öncelik</label>
+          <select class="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-xl text-xs focus:outline-none">
+            <option>Normal</option>
+            <option>Yüksek</option>
+            <option>Acil</option>
+          </select>
+        </div>
+        <div class="flex justify-end gap-2 pt-2">
+          <button type="button" onclick="closeModal('taskModal')" class="px-4 py-2 bg-slate-100 text-slate-700 rounded-xl text-xs font-semibold">İptal</button>
+          <button type="submit" class="px-5 py-2 bg-brand-700 text-white rounded-xl text-xs font-bold">Kaydet</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Hızlı Ziyaret Modal -->
+  <div id="visitModal" class="hidden fixed inset-0 z-50 flex items-center justify-center bg-slate-900/60 backdrop-blur-sm p-4">
+    <div class="bg-white border border-slate-100 p-6 rounded-3xl w-full max-w-md shadow-2xl space-y-4">
+      <div class="flex justify-between items-center border-b border-slate-100 pb-3">
+        <h3 class="text-base font-bold text-brand-900 flex items-center gap-2">
+          <i class="fa-solid fa-car-side text-brand-500"></i> Hızlı Saha Ziyareti Ekle
+        </h3>
+        <button onclick="closeModal('visitModal')" class="text-slate-400 hover:text-slate-600"><i class="fa-solid fa-xmark text-lg"></i></button>
+      </div>
+      <form onsubmit="handleQuickAction(event, 'Ziyaret planlandı!')" class="space-y-3">
+        <div>
+          <label class="block text-xs font-semibold text-slate-600 mb-1">Ziyaret Edilecek Kurum / Kişi</label>
+          <input type="text" required placeholder="ör. Fatih İlim Vakfı" class="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-xl text-xs focus:outline-none focus:border-brand-400">
+        </div>
+        <div class="grid grid-cols-2 gap-2">
+          <div>
+            <label class="block text-xs font-semibold text-slate-600 mb-1">Bölge / İlçe</label>
+            <input type="text" required placeholder="Üsküdar" class="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-xl text-xs">
+          </div>
+          <div>
+            <label class="block text-xs font-semibold text-slate-600 mb-1">Saat</label>
+            <input type="time" required value="14:00" class="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-xl text-xs">
+          </div>
+        </div>
+        <div class="flex justify-end gap-2 pt-2">
+          <button type="button" onclick="closeModal('visitModal')" class="px-4 py-2 bg-slate-100 text-slate-700 rounded-xl text-xs font-semibold">İptal</button>
+          <button type="submit" class="px-5 py-2 bg-brand-700 text-white rounded-xl text-xs font-bold">Kaydet</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Hızlı Bildirim Modal -->
+  <div id="notifModal" class="hidden fixed inset-0 z-50 flex items-center justify-center bg-slate-900/60 backdrop-blur-sm p-4">
+    <div class="bg-white border border-slate-100 p-6 rounded-3xl w-full max-w-md shadow-2xl space-y-4">
+      <div class="flex justify-between items-center border-b border-slate-100 pb-3">
+        <h3 class="text-base font-bold text-brand-900 flex items-center gap-2">
+          <i class="fa-regular fa-bell text-brand-500"></i> Hızlı Bildirim / Hatırlatma Ekle
+        </h3>
+        <button onclick="closeModal('notifModal')" class="text-slate-400 hover:text-slate-600"><i class="fa-solid fa-xmark text-lg"></i></button>
+      </div>
+      <form onsubmit="handleQuickAction(event, 'Bildirim oluşturuldu!')" class="space-y-3">
+        <div>
+          <label class="block text-xs font-semibold text-slate-600 mb-1">Bildirim Metni</label>
+          <textarea required rows="2" placeholder="ör. Yarın sabah 10:00 bülten revizesi yapılacak." class="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-xl text-xs focus:outline-none focus:border-brand-400"></textarea>
+        </div>
+        <div>
+          <label class="block text-xs font-semibold text-slate-600 mb-1">Zaman</label>
+          <select class="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-xl text-xs">
+            <option>Bugün</option>
+            <option>Yarın</option>
+            <option>Haftaya</option>
+          </select>
+        </div>
+        <div class="flex justify-end gap-2 pt-2">
+          <button type="button" onclick="closeModal('notifModal')" class="px-4 py-2 bg-slate-100 text-slate-700 rounded-xl text-xs font-semibold">İptal</button>
+          <button type="submit" class="px-5 py-2 bg-brand-700 text-white rounded-xl text-xs font-bold">Kaydet</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Profil Modal -->
   <div id="profileModal" class="hidden fixed inset-0 z-50 flex items-center justify-center bg-slate-900/60 backdrop-blur-sm p-4">
-    <div class="bg-white border border-slate-100 p-6 rounded-3xl w-full max-w-md shadow-2xl space-y-5">
+    <div class="bg-white border border-slate-100 p-6 rounded-3xl w-full max-w-md shadow-2xl space-y-4">
       <div class="flex justify-between items-center border-b border-slate-100 pb-3">
         <h3 class="text-base font-bold text-brand-900">Profil Bilgilerini Düzenle</h3>
-        <button onclick="closeProfileModal()" class="text-slate-400 hover:text-slate-600">
-          <i class="fa-solid fa-xmark text-lg"></i>
-        </button>
+        <button onclick="closeModal('profileModal')" class="text-slate-400 hover:text-slate-600"><i class="fa-solid fa-xmark text-lg"></i></button>
       </div>
-
-      <form id="profileEditForm" onsubmit="saveProfileInfo(event)" class="space-y-4">
+      <form id="profileEditForm" onsubmit="saveProfileInfo(event)" class="space-y-3">
         <div>
           <label class="block text-xs font-semibold text-slate-600 mb-1">Ad Soyad</label>
-          <input type="text" id="editFullName" required class="w-full px-3.5 py-2 bg-slate-50 border border-slate-200 rounded-xl text-xs focus:outline-none focus:border-brand-500">
+          <input type="text" id="editFullName" required class="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-xl text-xs focus:outline-none focus:border-brand-400">
         </div>
         <div>
           <label class="block text-xs font-semibold text-slate-600 mb-1">Profil Fotoğrafı URL</label>
-          <input type="url" id="editAvatarUrl" placeholder="https://..." class="w-full px-3.5 py-2 bg-slate-50 border border-slate-200 rounded-xl text-xs focus:outline-none focus:border-brand-500">
+          <input type="url" id="editAvatarUrl" class="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-xl text-xs focus:outline-none focus:border-brand-400">
         </div>
         <div>
           <label class="block text-xs font-semibold text-slate-600 mb-1">E-Posta (Salt Okunur)</label>
-          <input type="email" id="editEmail" disabled class="w-full px-3.5 py-2 bg-slate-100 border border-slate-200 rounded-xl text-xs text-slate-500 cursor-not-allowed">
+          <input type="email" id="editEmail" disabled class="w-full px-3 py-2 bg-slate-100 border border-slate-200 rounded-xl text-xs text-slate-400 cursor-not-allowed">
         </div>
         <div class="flex justify-end gap-2 pt-2">
-          <button type="button" onclick="closeProfileModal()" class="px-4 py-2 bg-slate-100 text-slate-700 rounded-xl text-xs font-semibold hover:bg-slate-200">
-            İptal
-          </button>
-          <button type="submit" class="px-5 py-2 bg-brand-700 hover:bg-brand-800 text-white rounded-xl text-xs font-bold transition shadow-md">
-            Kaydet & Güncelle
-          </button>
+          <button type="button" onclick="closeModal('profileModal')" class="px-4 py-2 bg-slate-100 text-slate-700 rounded-xl text-xs font-semibold">İptal</button>
+          <button type="submit" class="px-5 py-2 bg-brand-700 text-white rounded-xl text-xs font-bold">Kaydet</button>
         </div>
       </form>
     </div>
@@ -509,57 +659,87 @@
     const SUPABASE_ANON_KEY = "sb_publishable_NFS-iNYCga_9Nhc4yTElBA_9j7oU1An";
     const supabaseClient = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
 
-    // Canlı Tarih, Gün ve Saat
+    // Sidebar Aç / Kapa & Küçültme Mekanizması
+    let isSidebarCollapsed = false;
+    function toggleSidebar() {
+      const sidebar = document.getElementById('sidebar');
+      const backdrop = document.getElementById('sidebarBackdrop');
+      const isMobile = window.innerWidth < 1024;
+
+      if (isMobile) {
+        // Mobil ve Tablet Çekmece Modu
+        if (sidebar.classList.contains('-translate-x-full')) {
+          sidebar.classList.remove('-translate-x-full');
+          backdrop.classList.remove('hidden');
+        } else {
+          sidebar.classList.add('-translate-x-full');
+          backdrop.classList.add('hidden');
+        }
+      } else {
+        // Laptop / Geniş Ekran Daraltma Modu
+        isSidebarCollapsed = !isSidebarCollapsed;
+        const textElements = document.querySelectorAll('.sidebar-text');
+        if (isSidebarCollapsed) {
+          sidebar.classList.remove('w-64');
+          sidebar.classList.add('w-20');
+          textElements.forEach(el => el.classList.add('hidden'));
+        } else {
+          sidebar.classList.remove('w-20');
+          sidebar.classList.add('w-64');
+          textElements.forEach(el => el.classList.remove('hidden'));
+        }
+      }
+    }
+
+    // Modal Aç / Kapa
+    function openModal(id) { document.getElementById(id).classList.remove('hidden'); }
+    function closeModal(id) { document.getElementById(id).classList.add('hidden'); }
+    function handleQuickAction(e, msg) {
+      e.preventDefault();
+      alert(msg);
+      e.target.reset();
+      closeModal(e.target.closest('.fixed').id);
+    }
+
+    // Tarih & Saat
     function updateClockAndDate() {
       const now = new Date();
-      
-      // Saat
       document.getElementById('realtimeClock').innerText = now.toLocaleTimeString('tr-TR');
-
-      // Tarih ve Gün
-      const options = { day: 'numeric', month: 'long', year: 'numeric', weekday: 'long' };
+      const options = { day: 'numeric', month: 'short', year: 'numeric' };
       document.getElementById('realtimeDate').innerText = now.toLocaleDateString('tr-TR', options);
     }
     setInterval(updateClockAndDate, 1000);
     updateClockAndDate();
 
-    // Profil Bilgilerini Yerel Depolamadan Çekme
+    // Profil Yönetimi
     function loadSavedProfile(email) {
       const savedName = localStorage.getItem('tebessum_user_name') || 'Mustafa Cengiz';
       const savedAvatar = localStorage.getItem('tebessum_user_avatar') || 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=100&auto=format&fit=crop&q=80';
 
       document.getElementById('profileDisplayName').innerText = savedName;
       document.getElementById('welcomeBannerName').innerText = savedName;
+      document.getElementById('userEmailShort').innerText = savedName;
       document.getElementById('userAvatarImg').src = savedAvatar;
       document.getElementById('editFullName').value = savedName;
       document.getElementById('editAvatarUrl').value = savedAvatar;
       document.getElementById('editEmail').value = email;
     }
 
-    // Profil Kaydetme Pop-up'ı
     function saveProfileInfo(e) {
       e.preventDefault();
       const newName = document.getElementById('editFullName').value.trim();
       const newAvatar = document.getElementById('editAvatarUrl').value.trim();
-
       if (newName) localStorage.setItem('tebessum_user_name', newName);
       if (newAvatar) localStorage.setItem('tebessum_user_avatar', newAvatar);
-
-      const email = document.getElementById('editEmail').value;
-      loadSavedProfile(email);
-      closeProfileModal();
+      loadSavedProfile(document.getElementById('editEmail').value);
+      closeModal('profileModal');
     }
 
     function openProfileModal() {
       document.getElementById('profileMenu').classList.add('hidden');
-      document.getElementById('profileModal').classList.remove('hidden');
+      openModal('profileModal');
     }
 
-    function closeProfileModal() {
-      document.getElementById('profileModal').classList.add('hidden');
-    }
-
-    // Dropdown / Popover Kontrolleri
     function toggleProfileMenu() {
       document.getElementById('profileMenu').classList.toggle('hidden');
       document.getElementById('notifDropdown').classList.add('hidden');
@@ -570,25 +750,18 @@
       document.getElementById('profileMenu').classList.add('hidden');
     }
 
-    // Dışarı tıklandığında menüleri kapat
     window.addEventListener('click', (e) => {
       const profileContainer = document.getElementById('profileDropdownContainer');
       const notifBtn = document.getElementById('notifBtn');
       const notifDropdown = document.getElementById('notifDropdown');
-
-      if (!profileContainer.contains(e.target)) {
-        document.getElementById('profileMenu').classList.add('hidden');
-      }
-      if (!notifBtn.contains(e.target) && !notifDropdown.contains(e.target)) {
-        notifDropdown.classList.add('hidden');
-      }
+      if (!profileContainer.contains(e.target)) document.getElementById('profileMenu').classList.add('hidden');
+      if (!notifBtn.contains(e.target) && !notifDropdown.contains(e.target)) notifDropdown.classList.add('hidden');
     });
 
     // Oturum Kontrolü
     async function checkSession() {
       const { data: { session } } = await supabaseClient.auth.getSession();
       const loginSection = document.getElementById('loginSection');
-
       if (session) {
         loginSection.classList.add('hidden');
         loadSavedProfile(session.user.email);
@@ -597,7 +770,6 @@
       }
     }
 
-    // Giriş
     async function handleLogin(e) {
       e.preventDefault();
       const email = document.getElementById('emailInput').value.trim();
@@ -613,7 +785,7 @@
       btn.disabled = false;
 
       if (error) {
-        err.innerText = "Hatalı giriş: E-posta veya şifre yanlış!";
+        err.innerText = "Hatalı e-posta veya şifre!";
         err.classList.remove('hidden');
       } else {
         err.classList.add('hidden');
@@ -621,7 +793,6 @@
       }
     }
 
-    // Çıkış
     async function handleLogout() {
       await supabaseClient.auth.signOut();
       checkSession();
