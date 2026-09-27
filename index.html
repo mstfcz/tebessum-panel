@@ -43,15 +43,15 @@
 </head>
 <body class="bg-[#F4F7FB] dark:bg-darkbody text-slate-800 dark:text-slate-100 antialiased h-screen overflow-hidden flex transition-colors duration-200">
 
-  <!-- ================= MOBİL ARKA PLAN PERDESİ ================= -->
+  <!-- Mobil Arka Plan Perdesi -->
   <div id="sidebarBackdrop" onclick="toggleSidebar()" class="fixed inset-0 bg-slate-900/50 backdrop-blur-sm z-30 hidden lg:hidden"></div>
 
-  <!-- ================= 2. SOL DİKEY MENÜ (SABİT) ================= -->
+  <!-- ================= SOL DİKEY MENÜ (HER ZAMAN SABİT VE KUSURSUZ) ================= -->
   <aside id="sidebar" class="fixed inset-y-0 left-0 z-40 bg-white dark:bg-darkcard border-r border-slate-200 dark:border-slate-800 flex flex-col shrink-0 h-screen transition-all duration-300 -translate-x-full lg:translate-x-0 w-64">
     
+    <!-- Logo Alanı -->
     <div class="px-4 py-3 flex items-center justify-between border-b border-slate-100 dark:border-slate-800/80 h-20 shrink-0">
       <div class="flex items-center w-full justify-center overflow-hidden">
-        <!-- Geniş Logo (Yazı Siyah) -->
         <svg id="sidebarLogoFull" class="h-12 w-auto max-w-[210px] transition-all" viewBox="0 0 826.5 313.95">
           <path fill="#4a9ed5" d="M533.25,264.5c10.43,1.76,21.09,2.84,31.94,3.18,136.68,4.36,248.51-106.49,245.41-243.21-.16-7.18-.64-14.29-1.43-21.3-.38-3.4,4.45-4.47,5.51-1.23,7.58,23.1,11.72,47.75,11.8,73.36.44,131.34-106.64,238.72-237.98,238.64-22.28-.01-43.84-3.09-64.29-8.84-8.96-2.52-15.12-10.74-15.12-20.05,0-12.83,11.5-22.7,24.15-20.56"></path>
           <path class="fill-[#000000] dark:fill-white" d="M0,77.01v-19.58h8.16c4.41,0,7.02-3.1,7.02-7.67v-15.83h23.99v23.33h22.52v19.74h-22.52v35.25c0,6.53,3.92,10.28,11.1,10.28h11.1v20.89h-17.46c-18.93,0-30.02-10.93-30.02-29.86v-36.55H0Z"></path>
@@ -68,27 +68,25 @@
           <path class="fill-[#000000] dark:fill-white" d="M312.13,182.24c20.45-.13,33.65,15.57,33.26,35.11v4.62h-55.96c.53,13.86,9.37,22.83,23.49,22.83,9.5,0,17.95-4.49,20.98-12.4h10.82c-3.83,13.07-16.1,21.91-31.93,21.91-20.85,0-34.31-15.44-34.31-36.03,0-21.91,15.05-36.03,33.65-36.03M334.3,212.73c-.93-13.2-10.03-20.98-22.17-20.98-5.94,0-10.95,1.98-15.31,5.81-4.22,3.83-6.6,8.98-7.12,15.18h44.61Z"></path>
           <path class="fill-[#000000] dark:fill-white" d="M411.63,183.96v11.09h-.79c-1.45-2.24-3.57-4.62-7.39-7.65-3.83-3.04-10.03-5.15-16.76-5.15-9.63,0-17.68,3.43-24.02,10.16-6.2,6.73-9.37,15.44-9.37,26s3.17,19.14,9.5,25.87c6.47,6.73,14.65,10.03,24.68,10.03s17.95-4.22,23.75-12.54h.79v10.82c0,14.39-7.65,22.96-23.36,22.96-10.56,0-18.21-4.36-19.93-12.27h-9.9c2.24,12.67,13.46,21.38,29.83,21.38,20.59,0,33.39-12.01,33.39-32.07v-68.62h-10.42ZM405.43,237.27c-4.36,5.15-10.03,7.66-17.29,7.66s-13.07-2.38-17.55-7.13c-4.35-4.88-6.6-11.35-6.6-19.4s2.24-14.25,6.6-19.14c4.49-5.01,10.3-7.52,17.29-7.52s12.8,2.38,17.29,7.26c4.62,4.75,6.86,11.21,6.86,19.4,0,7.52-2.24,13.73-6.6,18.87"></path>
           <path class="fill-[#000000] dark:fill-white" d="M444.62,156.38c4.35,0,7.65,3.3,7.65,7.52s-3.3,7.65-7.65,7.65-7.52-3.3-7.52-7.65,3.17-7.52,7.52-7.52M439.21,183.96h10.42v68.62h-10.42v-68.62Z"></path>
-          <path fill="#4a9ed5" d="M365.83,162.43c2.3-2.3,4.6-4.6,6.9-6.9,9.29,9.29,24.36,9.29,33.65,0,2.3,2.3,4.6,4.6,6.9,6.9-13.11,13.11-34.35,13.11-47.46,0"></path>
+          <path fill="#000000" d="M365.83,162.43c2.3-2.3,4.6-4.6,6.9-6.9,9.29,9.29,24.36,9.29,33.65,0,2.3,2.3,4.6,4.6,6.9,6.9-13.11,13.11-34.35,13.11-47.46,0"></path>
           <path class="fill-[#000000] dark:fill-white" d="M270.7,67.87c8.32-8.48,18.93-12.73,31.98-12.73,28.39,0,43.24,20.89,43.24,44.87l.04,5.4h-63c.82,11.1,8.47,20.71,20.22,20.71,9.63,0,16.47-3.28,19.08-9.15h22.6c-3.92,18.27-19.65,28.56-42.66,28.56-24.31.49-44.22-19.25-43.73-44.71,0-13.54,4.08-24.48,12.24-32.96M322.42,90.55c-.82-9.3-8.65-16.15-19.74-16.15-10.44,0-18.6,7.18-19.74,16.15h39.49Z"></path>
         </svg>
-
-        <!-- Daralınca Mavi Hilal İkonu -->
         <svg id="sidebarLogoMini" class="h-9 w-auto hidden" viewBox="500 0 326.5 313.95">
           <path fill="#4a9ed5" d="M533.25,264.5c10.43,1.76,21.09,2.84,31.94,3.18,136.68,4.36,248.51-106.49,245.41-243.21-.16-7.18-.64-14.29-1.43-21.3-.38-3.4,4.45-4.47,5.51-1.23,7.58,23.1,11.72,47.75,11.8,73.36.44,131.34-106.64,238.72-237.98,238.64-22.28-.01-43.84-3.09-64.29-8.84-8.96-2.52-15.12-10.74-15.12-20.05,0-12.83,11.5-22.7,24.15-20.56"></path>
         </svg>
       </div>
-      <button onclick="toggleSidebar()" class="lg:hidden text-slate-400 hover:text-slate-600 p-1.5">
-        <i class="fa-solid fa-xmark text-lg"></i>
-      </button>
+      <button onclick="toggleSidebar()" class="lg:hidden text-slate-400 hover:text-slate-600 p-1.5"><i class="fa-solid fa-xmark text-lg"></i></button>
     </div>
 
     <!-- Menü Başlıkları -->
     <div class="p-3 flex-1 overflow-y-auto custom-scroll space-y-1">
       <div class="sidebar-text px-3 pb-1 text-[10px] font-bold text-slate-400 tracking-wider uppercase">Genel</div>
-      <a href="#" class="flex items-center gap-3 px-3 py-2.5 rounded-xl bg-brand-50 dark:bg-brand-900/40 text-brand-700 dark:text-sky-300 font-semibold text-xs border border-brand-100 dark:border-brand-800">
+      
+      <!-- Ana Sayfa -->
+      <button onclick="loadModule('dashboard')" id="nav_dashboard" class="w-full flex items-center gap-3 px-3 py-2.5 rounded-xl bg-brand-50 dark:bg-brand-900/40 text-brand-700 dark:text-sky-300 font-semibold text-xs border border-brand-100 dark:border-brand-800 transition">
         <i class="fa-solid fa-chart-pie w-5 text-center text-brand-500 text-sm"></i>
         <span class="sidebar-text">Ana Sayfa</span>
-      </a>
+      </button>
 
       <div class="sidebar-text pt-3 px-3 pb-1 text-[10px] font-bold text-slate-400 tracking-wider uppercase">Modüller</div>
       <a href="#" class="flex items-center gap-3 px-3 py-2 rounded-xl text-slate-600 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-800 font-medium text-xs transition"><i class="fa-solid fa-users w-5 text-center text-slate-400"></i><span class="sidebar-text">1. Bağışçılar</span></a>
@@ -103,10 +101,15 @@
       <a href="#" class="flex items-center gap-3 px-3 py-2 rounded-xl text-slate-600 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-800 font-medium text-xs transition"><i class="fa-solid fa-file-pdf w-5 text-center text-rose-500"></i><span class="sidebar-text">10. PDF Oluşturma</span></a>
       
       <div class="sidebar-text pt-3 px-3 pb-1 text-[10px] font-bold text-slate-400 tracking-wider uppercase">Yönetim</div>
-      <a href="ayarlar.html" class="flex items-center gap-3 px-3 py-2 rounded-xl text-slate-600 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-800 font-medium text-xs transition"><i class="fa-solid fa-sliders w-5 text-center text-slate-400"></i><span class="sidebar-text">11. Ayarlar & Yetkiler</span></a>
+      
+      <!-- 11. Ayarlar & Yetkiler -->
+      <button onclick="loadModule('ayarlar')" id="nav_ayarlar" class="w-full flex items-center gap-3 px-3 py-2 rounded-xl text-slate-600 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-800 font-medium text-xs transition">
+        <i class="fa-solid fa-sliders w-5 text-center text-slate-400"></i>
+        <span class="sidebar-text">11. Ayarlar & Yetkiler</span>
+      </button>
     </div>
 
-    <!-- Alt Profil Özeti -->
+    <!-- Alt Profil -->
     <div class="p-3 border-t border-slate-100 dark:border-slate-800 bg-slate-50/50 dark:bg-slate-900/30 flex items-center justify-between shrink-0">
       <div class="flex items-center gap-2 overflow-hidden">
         <div class="w-8 h-8 rounded-full bg-brand-100 text-brand-800 dark:bg-brand-900 dark:text-brand-200 flex items-center justify-center font-bold text-xs shrink-0">M</div>
@@ -119,7 +122,7 @@
     </div>
   </aside>
 
-  <!-- ================= 3. SAĞ ALAN: HEADER + İÇERİK ================= -->
+  <!-- ================= SAĞ ALAN ================= -->
   <div id="mainWrapper" class="flex-1 flex flex-col h-screen overflow-hidden transition-all duration-300 lg:pl-64 w-full">
     
     <!-- Üst Bar (Header - SABİT) -->
@@ -151,25 +154,6 @@
             <i class="fa-regular fa-bell text-sm md:text-base"></i>
             <span class="absolute top-1.5 right-1.5 w-2 h-2 bg-rose-500 rounded-full ring-2 ring-white dark:ring-darkcard"></span>
           </button>
-
-          <div id="notifDropdown" class="hidden absolute right-0 mt-3 w-72 md:w-80 bg-white dark:bg-darkcard border border-slate-200 dark:border-slate-700 rounded-2xl shadow-2xl z-40 overflow-hidden">
-            <div class="p-3 bg-brand-900 text-white flex justify-between items-center">
-              <span class="text-xs font-bold">Yaklaşan Bildirimler</span>
-              <span class="text-[10px] bg-brand-700 px-2 py-0.5 rounded-full font-semibold">2 Yeni</span>
-            </div>
-            <div class="divide-y divide-slate-100 dark:divide-slate-800 max-h-72 overflow-y-auto text-xs">
-              <div class="p-3 hover:bg-slate-50 dark:hover:bg-slate-800/50 transition">
-                <span class="text-[10px] font-extrabold uppercase px-1.5 py-0.5 rounded bg-emerald-50 text-emerald-700 dark:bg-emerald-950 dark:text-emerald-300">Bugün</span>
-                <p class="font-bold text-slate-800 dark:text-slate-200 mt-1">Saha Ziyareti Raporu</p>
-                <p class="text-[11px] text-slate-500 dark:text-slate-400 mt-0.5">Üsküdar yetim burs görüşmesi saat 14:00'te tamamlanacak.</p>
-              </div>
-              <div class="p-3 hover:bg-slate-50 dark:hover:bg-slate-800/50 transition">
-                <span class="text-[10px] font-extrabold uppercase px-1.5 py-0.5 rounded bg-sky-50 text-sky-700 dark:bg-sky-950 dark:text-sky-300">Yarın</span>
-                <p class="font-bold text-slate-800 dark:text-slate-200 mt-1">Sosyal Medya Video Paylaşımı</p>
-                <p class="text-[11px] text-slate-500 dark:text-slate-400 mt-0.5">Reels içerik videosunun onayı bekleniyor (Saat 11:00).</p>
-              </div>
-            </div>
-          </div>
         </div>
 
         <div class="relative" id="profileDropdownContainer">
@@ -179,298 +163,73 @@
               <p id="profileDisplayName" class="text-xs font-bold text-slate-800 dark:text-slate-200 leading-tight">Mustafa Cengiz</p>
               <p class="text-[10px] font-semibold text-brand-600 dark:text-brand-400">Yönetici</p>
             </div>
-            <i class="fa-solid fa-chevron-down text-[10px] text-slate-400 hidden md:block"></i>
           </button>
-
-          <div id="profileMenu" class="hidden absolute right-0 mt-2 w-52 bg-white dark:bg-darkcard border border-slate-200 dark:border-slate-700 rounded-2xl shadow-xl z-40 py-2 text-xs">
-            <button onclick="openProfileModal()" class="w-full text-left px-4 py-2.5 text-slate-700 dark:text-slate-200 hover:bg-brand-50 dark:hover:bg-slate-800 hover:text-brand-700 font-semibold flex items-center gap-2.5 transition">
-              <i class="fa-solid fa-user-pen text-brand-500"></i><span>Profili Düzenle</span>
-            </button>
-            <button onclick="openWidgetModal()" class="w-full text-left px-4 py-2.5 text-slate-700 dark:text-slate-200 hover:bg-brand-50 dark:hover:bg-slate-800 hover:text-brand-700 font-semibold flex items-center gap-2.5 transition">
-              <i class="fa-solid fa-table-cells-large text-brand-500"></i><span>Widget'ları Düzenle</span>
-            </button>
-            <div class="border-t border-slate-100 dark:border-slate-800 my-1"></div>
-            <button onclick="handleLogout()" class="w-full text-left px-4 py-2.5 text-rose-600 hover:bg-rose-50 dark:hover:bg-rose-950/40 font-semibold flex items-center gap-2.5 transition">
-              <i class="fa-solid fa-arrow-right-from-bracket"></i><span>Çıkış Yap</span>
-            </button>
-          </div>
         </div>
       </div>
     </header>
 
-    <!-- Kaydırılabilir Ana Gövde -->
-    <main class="flex-1 overflow-y-auto custom-scroll p-4 md:p-6 lg:p-8 space-y-6">
-
-      <!-- Karşılama Banner -->
-      <div class="bg-gradient-to-r from-brand-950 via-brand-900 to-brand-800 rounded-3xl p-5 md:p-6 text-white shadow-xl shadow-brand-950/10 flex flex-col lg:flex-row lg:items-center lg:justify-between gap-4">
-        <div class="space-y-1">
-          <div class="inline-flex items-center gap-2 px-3 py-1 bg-white/10 backdrop-blur-md rounded-full text-[11px] font-semibold text-sky-200 border border-white/10 mb-1">
-            <i class="fa-solid fa-location-dot"></i> <span id="userLocationDisplay">İstanbul, Türkiye</span>
-          </div>
-          <h2 class="text-xl md:text-2xl font-black tracking-tight">Hayırlı Günler, <span id="welcomeBannerName">Mustafa Cengiz</span> 👋</h2>
-          <p class="text-xs text-sky-100 max-w-xl">Canlı API servisleri, dinamik namaz vakitleri, serbest piyasalar, 5 günlük hava tahmini ve Google Takvim aktif.</p>
-        </div>
-        <div class="flex flex-wrap gap-2 pt-2 lg:pt-0">
-          <button onclick="openModal('taskModal')" class="px-3.5 py-2 bg-brand-400 hover:bg-brand-500 text-white font-bold text-xs rounded-xl transition flex items-center gap-2 shadow"><i class="fa-solid fa-plus-circle"></i> Hızlı Görev Ekle</button>
-          <button onclick="openModal('visitModal')" class="px-3.5 py-2 bg-white/10 hover:bg-white/20 text-white font-semibold text-xs rounded-xl border border-white/20 transition flex items-center gap-2"><i class="fa-solid fa-car-side"></i> Ziyaret Ekle</button>
-          <button onclick="openModal('notifModal')" class="px-3.5 py-2 bg-white/10 hover:bg-white/20 text-white font-semibold text-xs rounded-xl border border-white/20 transition flex items-center gap-2"><i class="fa-regular fa-bell"></i> Hatırlatıcı Ekle</button>
-        </div>
-      </div>
-
-      <!-- BİLGİ ŞERİDİ -->
-      <div class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-4 md:gap-5">
-        
-        <!-- 1. Namaz Vakitleri -->
-        <div id="w_namaz" class="bg-white dark:bg-darkcard p-4 md:p-5 rounded-2xl border border-slate-200/80 dark:border-slate-800 shadow-sm space-y-3">
-          <div class="flex items-center justify-between border-b border-slate-100 dark:border-slate-800 pb-2">
-            <span class="text-xs font-bold text-brand-900 dark:text-sky-300 flex items-center gap-2">
-              <i class="fa-solid fa-mosque text-brand-500"></i> Namaz Vakitleri
-            </span>
-            <span id="prayer_city_label" class="text-[10px] text-slate-400 font-semibold">İstanbul</span>
-          </div>
-          <div class="grid grid-cols-3 gap-1.5 md:gap-2 text-center text-xs">
-            <div id="box_imsak" class="bg-slate-50 dark:bg-slate-800/50 p-1.5 rounded-lg border border-transparent transition-all"><span class="text-[9px] text-slate-400 block font-semibold">İmsak</span><span id="pray_imsak" class="font-bold text-slate-800 dark:text-white text-[11px]">--:--</span></div>
-            <div id="box_dhuhr" class="bg-slate-50 dark:bg-slate-800/50 p-1.5 rounded-lg border border-transparent transition-all"><span class="text-[9px] text-slate-400 block font-semibold">Öğle</span><span id="pray_dhuhr" class="font-bold text-slate-800 dark:text-white text-[11px]">--:--</span></div>
-            <div id="box_asr" class="bg-slate-50 dark:bg-slate-800/50 p-1.5 rounded-lg border border-transparent transition-all"><span class="text-[9px] text-slate-400 block font-semibold">İkindi</span><span id="pray_asr" class="font-bold text-slate-800 dark:text-white text-[11px]">--:--</span></div>
-            <div id="box_maghrib" class="bg-slate-50 dark:bg-slate-800/50 p-1.5 rounded-lg border border-transparent transition-all"><span class="text-[9px] text-slate-400 block font-semibold">Akşam</span><span id="pray_maghrib" class="font-bold text-slate-800 dark:text-white text-[11px]">--:--</span></div>
-            <div id="box_isha" class="bg-slate-50 dark:bg-slate-800/50 p-1.5 rounded-lg border border-transparent transition-all"><span class="text-[9px] text-slate-400 block font-semibold">Yatsı</span><span id="pray_isha" class="font-bold text-slate-800 dark:text-white text-[11px]">--:--</span></div>
-            <div id="box_sunrise" class="bg-slate-50 dark:bg-slate-800/50 p-1.5 rounded-lg border border-transparent transition-all"><span class="text-[9px] text-slate-400 block font-semibold">Güneş</span><span id="pray_sunrise" class="font-bold text-slate-800 dark:text-white text-[11px]">--:--</span></div>
-          </div>
-        </div>
-
-        <!-- 2. Döviz & Altın -->
-        <div id="w_piyasa" class="bg-white dark:bg-darkcard p-4 md:p-5 rounded-2xl border border-slate-200/80 dark:border-slate-800 shadow-sm space-y-3">
-          <div class="flex items-center justify-between border-b border-slate-100 dark:border-slate-800 pb-2">
-            <span class="text-xs font-bold text-brand-900 dark:text-sky-300 flex items-center gap-2">
-              <i class="fa-solid fa-coins text-amber-500"></i> Döviz & Altın
-            </span>
-            <span class="text-[10px] text-emerald-600 font-semibold flex items-center gap-1">
-              <span class="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse"></span> Anlık Piyasa
-            </span>
-          </div>
-          <div class="space-y-2 text-xs">
-            <div class="flex justify-between items-center"><span class="text-slate-500 dark:text-slate-400">Dolar (USD)</span><span id="curr_usd" class="font-bold text-slate-900 dark:text-white font-mono">₺--.--</span></div>
-            <div class="flex justify-between items-center"><span class="text-slate-500 dark:text-slate-400">Euro (EUR)</span><span id="curr_eur" class="font-bold text-slate-900 dark:text-white font-mono">₺--.--</span></div>
-            <div class="flex justify-between items-center"><span class="text-slate-500 dark:text-slate-400">Gram Altın</span><span id="curr_gold" class="font-bold text-amber-600 dark:text-amber-400 font-mono">₺--.--</span></div>
-          </div>
-        </div>
-
-        <!-- 3. Hava Durumu -->
-        <div id="w_hava" class="bg-white dark:bg-darkcard p-4 md:p-5 rounded-2xl border border-slate-200/80 dark:border-slate-800 shadow-sm space-y-2.5">
-          <div class="flex items-center justify-between border-b border-slate-100 dark:border-slate-800 pb-1.5">
-            <span class="text-xs font-bold text-brand-900 dark:text-sky-300 flex items-center gap-2">
-              <i class="fa-solid fa-cloud-sun text-brand-400"></i> Hava Durumu
-            </span>
-            <span id="weather_location_label" class="text-[10px] text-slate-400 font-semibold">İstanbul</span>
-          </div>
-          <div class="flex items-center justify-between">
-            <div>
-              <span id="weather_temp" class="text-2xl font-extrabold text-slate-900 dark:text-white">--°C</span>
-              <p id="weather_desc" class="text-[11px] text-slate-500 dark:text-slate-400">Yükleniyor...</p>
-            </div>
-            <i id="weather_icon" class="fa-solid fa-sun text-3xl text-amber-400"></i>
-          </div>
-          <div id="forecast_container" class="grid grid-cols-5 gap-1 pt-2 border-t border-slate-100 dark:border-slate-800 text-center"></div>
-        </div>
-
-        <!-- 4. Son Depremler -->
-        <div id="w_deprem" class="bg-white dark:bg-darkcard p-4 md:p-5 rounded-2xl border border-slate-200/80 dark:border-slate-800 shadow-sm space-y-2.5">
-          <div class="flex items-center justify-between border-b border-slate-100 dark:border-slate-800 pb-1.5">
-            <span class="text-xs font-bold text-brand-900 dark:text-sky-300 flex items-center gap-2">
-              <i class="fa-solid fa-triangle-exclamation text-rose-500"></i> Son Depremler (15)
-            </span>
-            <span class="text-[10px] text-slate-400 font-semibold">Kandilli</span>
-          </div>
-          <div id="earthquake_list" class="h-28 overflow-y-auto custom-scroll space-y-2 text-xs pr-1">
-            <p class="text-[11px] text-slate-400">Depremler sorgulanıyor...</p>
-          </div>
-        </div>
-
-      </div>
-
-      <!-- Ziyaretler & Görevler -->
-      <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
-        <div id="w_ziyaretler" class="bg-white dark:bg-darkcard p-5 md:p-6 rounded-2xl border border-slate-200/80 dark:border-slate-800 shadow-sm space-y-4">
-          <div class="flex items-center justify-between border-b border-slate-100 dark:border-slate-800 pb-3">
-            <div>
-              <h3 class="text-sm font-bold text-brand-900 dark:text-sky-300 flex items-center gap-2"><i class="fa-solid fa-map-location-dot text-brand-500"></i> Saha Ziyaretleri Takibi</h3>
-              <p class="text-xs text-slate-400">Planlanan kurum ve aile görüşmeleri</p>
-            </div>
-            <button onclick="openModal('visitModal')" class="px-3 py-1.5 bg-brand-50 dark:bg-slate-800 text-brand-700 dark:text-sky-300 rounded-xl text-xs font-bold hover:bg-brand-100 transition">+ Ziyaret Ekle</button>
-          </div>
-          <div class="space-y-3 text-xs">
-            <div class="p-3 bg-brand-50/50 dark:bg-slate-800/40 border border-brand-100 dark:border-slate-700/60 rounded-xl flex items-start gap-3">
-              <span class="px-2 py-0.5 rounded text-[10px] font-extrabold uppercase bg-brand-700 text-white shrink-0 mt-0.5">Bugün</span>
-              <div class="flex-1 min-w-0"><div class="flex justify-between items-center"><p class="font-bold text-slate-800 dark:text-slate-200 truncate">Hacı Mehmet Vakfı Ziyareti</p><span class="font-mono text-brand-700 dark:text-sky-300 font-bold">14:00</span></div><p class="text-[11px] text-slate-500 dark:text-slate-400">Üsküdar • Koordinasyon Görüşmesi</p></div>
-            </div>
-            <div class="p-3 bg-slate-50 dark:bg-slate-800/40 border border-slate-200/80 dark:border-slate-700/60 rounded-xl flex items-start gap-3">
-              <span class="px-2 py-0.5 rounded text-[10px] font-extrabold uppercase bg-sky-100 dark:bg-sky-950 text-sky-800 dark:text-sky-300 shrink-0 mt-0.5">Yarın</span>
-              <div class="flex-1 min-w-0"><div class="flex justify-between items-center"><p class="font-bold text-slate-800 dark:text-slate-200 truncate">Yetim Burs Ailesi Hane Tespiti</p><span class="font-mono text-slate-600 dark:text-slate-300 font-bold">11:30</span></div><p class="text-[11px] text-slate-500 dark:text-slate-400">Fatih Bölgesi • Saha İnceleme Heyeti</p></div>
-            </div>
-            <div class="p-3 bg-slate-50 dark:bg-slate-800/40 border border-slate-200/80 dark:border-slate-700/60 rounded-xl flex items-start gap-3">
-              <span class="px-2 py-0.5 rounded text-[10px] font-extrabold uppercase bg-slate-200 dark:bg-slate-700 text-slate-700 dark:text-slate-300 shrink-0 mt-0.5">Gelecek</span>
-              <div class="flex-1 min-w-0"><div class="flex justify-between items-center"><p class="font-bold text-slate-800 dark:text-slate-200 truncate">Pendik Lojistik Depo Teftişi</p><span class="font-mono text-slate-500 dark:text-slate-400 text-[11px]">30 Eyl, 10:00</span></div><p class="text-[11px] text-slate-500 dark:text-slate-400">Pendik Depo • Kışlık Sevkiyat Hazırlığı</p></div>
-            </div>
-          </div>
-        </div>
-
-        <div id="w_gorevler" class="bg-white dark:bg-darkcard p-5 md:p-6 rounded-2xl border border-slate-200/80 dark:border-slate-800 shadow-sm space-y-4">
-          <div class="flex items-center justify-between border-b border-slate-100 dark:border-slate-800 pb-3">
-            <div>
-              <h3 class="text-sm font-bold text-brand-900 dark:text-sky-300 flex items-center gap-2"><i class="fa-solid fa-list-check text-brand-500"></i> İş ve Görevler</h3>
-              <p class="text-xs text-slate-400">Tamamlanması gereken operasyonel adımlar</p>
-            </div>
-            <button onclick="openModal('taskModal')" class="px-3 py-1.5 bg-brand-50 dark:bg-slate-800 text-brand-700 dark:text-sky-300 rounded-xl text-xs font-bold hover:bg-brand-100 transition">+ Görev Ekle</button>
-          </div>
-          <div class="space-y-3 text-xs">
-            <span class="text-[10px] font-extrabold text-slate-400 uppercase tracking-wider block">Bugünkü Görevler</span>
-            <div class="p-3 rounded-xl bg-slate-50 dark:bg-slate-800/40 border border-slate-200/80 dark:border-slate-700/60 flex items-center justify-between">
-              <div class="flex items-center gap-2.5 truncate"><input type="checkbox" class="w-4 h-4 accent-brand-600 rounded"><span class="font-bold text-slate-800 dark:text-slate-200 truncate">Çad Su Kuyusu raporlarını bağışçıya ilet</span></div>
-              <span class="px-2 py-0.5 rounded text-[10px] font-bold bg-rose-50 dark:bg-rose-950/40 text-rose-600 dark:text-rose-400 shrink-0">Acil</span>
-            </div>
-            <div class="p-3 rounded-xl bg-slate-50 dark:bg-slate-800/40 border border-slate-200/80 dark:border-slate-700/60 flex items-center justify-between">
-              <div class="flex items-center gap-2.5 truncate"><input type="checkbox" class="w-4 h-4 accent-brand-600 rounded"><span class="font-bold text-slate-800 dark:text-slate-200 truncate">Haftalık web sitesi bülteni kontrolü</span></div>
-              <span class="px-2 py-0.5 rounded text-[10px] font-bold bg-amber-50 dark:bg-amber-950/40 text-amber-700 dark:text-amber-300 shrink-0">Normal</span>
-            </div>
-            <span class="text-[10px] font-extrabold text-slate-400 uppercase tracking-wider block pt-1 border-t border-slate-100 dark:border-slate-800">Gelecek Görevler</span>
-            <div class="p-3 rounded-xl bg-slate-50 dark:bg-slate-800/40 border border-slate-200/80 dark:border-slate-700/60 flex items-center justify-between">
-              <div class="flex items-center gap-2.5 truncate"><input type="checkbox" class="w-4 h-4 accent-brand-600 rounded"><span class="font-medium text-slate-700 dark:text-slate-300 truncate">Ekim ayı yetim burs listesi teyit mülakatları</span></div>
-              <span class="text-[11px] text-slate-400 font-mono shrink-0">02 Ekim</span>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- Hatırlatıcılar & Sosyal Medya -->
-      <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
-        <div id="w_hatirlaticilar" class="bg-white dark:bg-darkcard p-5 md:p-6 rounded-2xl border border-slate-200/80 dark:border-slate-800 shadow-sm space-y-4">
-          <div class="flex items-center justify-between border-b border-slate-100 dark:border-slate-800 pb-3">
-            <div>
-              <h3 class="text-sm font-bold text-brand-900 dark:text-sky-300 flex items-center gap-2"><i class="fa-solid fa-bell text-amber-500"></i> Hatırlatıcılar</h3>
-              <p class="text-xs text-slate-400">Sistem ve operasyon notları</p>
-            </div>
-            <button onclick="openModal('notifModal')" class="px-2.5 py-1 bg-amber-50 dark:bg-amber-950/40 text-amber-700 dark:text-amber-300 rounded-lg text-xs font-bold hover:bg-amber-100 transition">+ Ekle</button>
-          </div>
-          <div class="space-y-3 text-xs">
-            <div class="p-3 bg-amber-50/50 dark:bg-amber-950/20 border border-amber-200/60 dark:border-amber-900/40 rounded-xl space-y-1">
-              <div class="flex justify-between items-center"><span class="text-[10px] font-extrabold uppercase px-1.5 py-0.5 rounded bg-amber-200/70 text-amber-900 dark:bg-amber-900 dark:text-amber-200">Bugün</span><span class="text-[11px] font-mono text-slate-600 dark:text-slate-300 font-semibold">16:30</span></div>
-              <p class="font-bold text-slate-800 dark:text-slate-200">Yönetim Kurulu WhatsApp Özeti</p>
-              <p class="text-[11px] text-slate-600 dark:text-slate-400">Günlük saha istatistikleri ve bağış özeti gruba iletilecek.</p>
-            </div>
-            <div class="p-3 bg-slate-50 dark:bg-slate-800/40 border border-slate-200/80 dark:border-slate-700/60 rounded-xl space-y-1">
-              <div class="flex justify-between items-center"><span class="text-[10px] font-extrabold uppercase px-1.5 py-0.5 rounded bg-slate-200 dark:bg-slate-700 text-slate-700 dark:text-slate-300">Gelecek (Yarın)</span><span class="text-[11px] font-mono text-slate-600 dark:text-slate-300 font-semibold">10:00</span></div>
-              <p class="font-bold text-slate-800 dark:text-slate-200">Sunucu & Veritabanı Yedeği</p>
-              <p class="text-[11px] text-slate-500 dark:text-slate-400">Aylık sistem CRM ve dosya arşivleme kontrolü yapılacak.</p>
-            </div>
-          </div>
-        </div>
-
-        <div id="w_sosyal" class="lg:col-span-2 bg-white dark:bg-darkcard p-5 md:p-6 rounded-2xl border border-slate-200/80 dark:border-slate-800 shadow-sm space-y-4">
-          <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2 border-b border-slate-100 dark:border-slate-800 pb-3">
-            <div>
-              <h3 class="text-sm font-bold text-brand-900 dark:text-sky-300 flex items-center gap-2"><i class="fa-solid fa-calendar-days text-brand-500"></i> Sosyal Medya Paylaşım Akışı</h3>
-              <p class="text-xs text-slate-400">Önümüzdeki 3 günün planlanan dijital içerikleri</p>
-            </div>
-            <button class="px-3 py-1.5 bg-brand-50 dark:bg-slate-800 text-brand-700 dark:text-sky-300 rounded-xl text-xs font-bold hover:bg-brand-100 transition self-start sm:self-auto">+ Yeni İçerik Planla</button>
-          </div>
-          <div class="grid grid-cols-1 md:grid-cols-3 gap-3">
-            <div class="bg-brand-50/50 dark:bg-slate-800/40 border border-brand-100 dark:border-slate-700/60 p-3.5 rounded-xl space-y-2">
-              <div class="flex justify-between items-center"><span class="text-[10px] font-extrabold uppercase px-2 py-0.5 rounded-full bg-brand-700 text-white">BUGÜN</span><span class="text-[11px] text-slate-500 dark:text-slate-400 font-semibold">18:00</span></div>
-              <div><div class="flex items-center gap-1.5 text-pink-600 dark:text-pink-400 text-xs font-bold"><i class="fa-brands fa-instagram"></i> Instagram Reels</div><p class="text-xs font-bold text-slate-800 dark:text-slate-200 mt-1">Su Kuyusu Açılış Videosu</p><p class="text-[11px] text-slate-500 dark:text-slate-400">Çad bölgesi 3. etap su kuyusu teslim montajı.</p></div>
-              <span class="inline-block px-2 py-0.5 rounded text-[10px] font-bold bg-amber-50 dark:bg-amber-950/40 text-amber-700 dark:text-amber-300 border border-amber-200 dark:border-amber-800">Yayına Hazır</span>
-            </div>
-            <div class="bg-slate-50 dark:bg-slate-800/40 border border-slate-200/80 dark:border-slate-700/60 p-3.5 rounded-xl space-y-2">
-              <div class="flex justify-between items-center"><span class="text-[10px] font-extrabold uppercase px-2 py-0.5 rounded-full bg-slate-200 dark:bg-slate-700 text-slate-700 dark:text-slate-300">YARIN</span><span class="text-[11px] text-slate-500 dark:text-slate-400 font-semibold">12:30</span></div>
-              <div><div class="flex items-center gap-1.5 text-red-600 dark:text-red-400 text-xs font-bold"><i class="fa-brands fa-youtube"></i> YouTube Shorts</div><p class="text-xs font-bold text-slate-800 dark:text-slate-200 mt-1">Yetim Kırtasiye Dağıtımı</p><p class="text-[11px] text-slate-500 dark:text-slate-400">Saha ekibi çanta teslim anları kurgusu.</p></div>
-              <span class="inline-block px-2 py-0.5 rounded text-[10px] font-bold bg-sky-50 dark:bg-sky-950/40 text-sky-700 dark:text-sky-300 border border-sky-200 dark:border-sky-800">Kurguda</span>
-            </div>
-            <div class="bg-slate-50 dark:bg-slate-800/40 border border-slate-200/80 dark:border-slate-700/60 p-3.5 rounded-xl space-y-2">
-              <div class="flex justify-between items-center"><span class="text-[10px] font-extrabold uppercase px-2 py-0.5 rounded-full bg-slate-200 dark:bg-slate-700 text-slate-700 dark:text-slate-300">ÖBÜR GÜN</span><span class="text-[11px] text-slate-500 dark:text-slate-400 font-semibold">20:00</span></div>
-              <div><div class="flex items-center gap-1.5 text-slate-800 dark:text-slate-300 text-xs font-bold"><i class="fa-brands fa-x-twitter"></i> X / Twitter Post</div><p class="text-xs font-bold text-slate-800 dark:text-slate-200 mt-1">Haftalık Faaliyet Bülteni</p><p class="text-[11px] text-slate-500 dark:text-slate-400">Haftalık yardım istatistikleri infografiği.</p></div>
-              <span class="inline-block px-2 py-0.5 rounded text-[10px] font-bold bg-slate-200 dark:bg-slate-700 text-slate-600 dark:text-slate-300">Taslak Halinde</span>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- Google Takvim, Gemini AI & AA Canlı Haberler -->
-      <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 items-stretch">
-        
-        <!-- Google Takvim -->
-        <div id="w_takvim" class="bg-white dark:bg-darkcard p-5 md:p-6 rounded-2xl border border-slate-200/80 dark:border-slate-800 shadow-sm flex flex-col justify-between space-y-4">
-          <div class="flex items-center justify-between border-b border-slate-100 dark:border-slate-800 pb-3">
-            <h3 class="text-sm font-bold text-brand-900 dark:text-sky-300 flex items-center gap-2">
-              <i class="fa-solid fa-calendar-check text-brand-500"></i> Google Takvim
-            </h3>
-            <span class="text-[10px] font-semibold text-emerald-600 bg-emerald-50 dark:bg-emerald-950 px-2 py-0.5 rounded-full">Aylık Canlı</span>
-          </div>
-          <div class="w-full min-h-[460px] rounded-xl overflow-hidden border border-slate-200 dark:border-slate-700 bg-slate-50">
-            <iframe src="https://calendar.google.com/calendar/embed?src=e21473549ba5040db15893e785d0b7cfa98cb29ddf5e5ce1e773bdda724d4fce%40group.calendar.google.com&ctz=Europe%2FIstanbul&mode=MONTH&showTitle=0&showNav=1&showDate=1&showPrint=0&showTabs=0&showCalendars=0&showTz=0" style="border: 0" width="100%" height="100%" frameborder="0" scrolling="no"></iframe>
-          </div>
-        </div>
-
-        <!-- Yapay Zekaya Sor -->
-        <div id="w_ai" class="bg-white dark:bg-darkcard p-5 md:p-6 rounded-2xl border border-slate-200/80 dark:border-slate-800 shadow-sm flex flex-col justify-between space-y-4">
-          <div>
-            <div class="flex items-center justify-between border-b border-slate-100 dark:border-slate-800 pb-3">
-              <h3 class="text-sm font-bold text-brand-900 dark:text-sky-300 flex items-center gap-2">
-                <i class="fa-solid fa-robot text-purple-500"></i> Yapay Zekaya Sor
-              </h3>
-              <div class="flex items-center gap-2">
-                <button onclick="changeGeminiApiKey()" title="API Anahtarını Değiştir" class="text-[10px] text-slate-400 hover:text-purple-600"><i class="fa-solid fa-key"></i></button>
-                <span class="text-[10px] font-extrabold uppercase px-2 py-0.5 rounded-full bg-purple-100 dark:bg-purple-950 text-purple-700 dark:text-purple-300">Gemini</span>
-              </div>
-            </div>
-            <p class="text-xs text-slate-500 dark:text-slate-400 mt-2 mb-3">
-              Bağışçı teşekkür mektubu, basın bülteni veya metin taslaklarını doğrudan sorun:
-            </p>
-            <textarea id="aiPromptInput" rows="4" placeholder="ör. Yetim bursu dağıtımı için duygusal bir bağışçı teşekkür mesajı yaz..." class="w-full px-3 py-2 bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-xl text-xs focus:outline-none focus:border-purple-500 dark:text-white resize-none"></textarea>
-            
-            <div id="aiResponseContainer" class="hidden mt-3 p-3 bg-purple-50/60 dark:bg-slate-800/80 border border-purple-100 dark:border-purple-900/40 rounded-xl text-xs text-slate-700 dark:text-slate-200 max-h-56 overflow-y-auto custom-scroll leading-relaxed whitespace-pre-wrap"></div>
-          </div>
-          <div class="flex justify-end pt-2">
-            <button id="askAiBtn" onclick="askGeminiAi()" class="px-4 py-2 bg-purple-600 hover:bg-purple-700 text-white rounded-xl text-xs font-bold transition flex items-center gap-2 shadow-md shadow-purple-900/20">
-              <i class="fa-solid fa-paper-plane"></i> <span id="askAiBtnText">Gönder & Yanıtla</span>
-            </button>
-          </div>
-        </div>
-
-        <!-- AA Canlı Haberler -->
-        <div id="w_haber" class="bg-white dark:bg-darkcard p-5 md:p-6 rounded-2xl border border-slate-200/80 dark:border-slate-800 shadow-sm flex flex-col justify-between space-y-4">
-          <div>
-            <div class="flex items-center justify-between border-b border-slate-100 dark:border-slate-800 pb-3">
-              <h4 class="text-xs font-bold text-brand-900 dark:text-sky-300 flex items-center gap-2">
-                <i class="fa-regular fa-newspaper text-brand-500"></i> Güncel Gelişmeler & Bülten
-              </h4>
-              <button onclick="loadAaNews()" title="Yenile" class="text-[10px] text-brand-600 dark:text-sky-400 font-bold bg-brand-50 dark:bg-brand-950 px-2 py-0.5 rounded hover:bg-brand-100 transition flex items-center gap-1">
-                <i class="fa-solid fa-rotate-right text-[9px]"></i> Canlı Akış
-              </button>
-            </div>
-            <div id="aaNewsContainer" class="space-y-2 mt-3 text-xs max-h-[440px] overflow-y-auto custom-scroll pr-1">
-              <p class="text-[11px] text-slate-400">Anadolu Ajansı anlık haberleri yükleniyor...</p>
-            </div>
-          </div>
-          <p class="text-[10px] text-slate-400 text-right pt-2 border-t border-slate-100 dark:border-slate-800">Kaynak: Anadolu Ajansı Güncel Akışı</p>
-        </div>
-
-      </div>
-
+    <!-- Dinamik İçerik Alanı (Kaydırılabilir) -->
+    <main id="contentContainer" class="flex-1 overflow-y-auto custom-scroll p-4 md:p-6 lg:p-8 space-y-6">
+      <!-- Varsayılan: Ana Sayfa Dashboard HTML'i Buraya Otomatik Gelir -->
+      <div id="dashboardView"></div>
     </main>
-  </div>
 
-  <!-- Modallar -->
-  <div id="widgetModal" class="hidden fixed inset-0 z-50 flex items-center justify-center bg-slate-900/60 backdrop-blur-sm p-4"><div class="bg-white dark:bg-darkcard border border-slate-100 dark:border-slate-800 p-6 rounded-3xl w-full max-w-md shadow-2xl space-y-4 max-h-[90vh] overflow-y-auto custom-scroll"><div class="flex justify-between items-center border-b border-slate-100 dark:border-slate-800 pb-3"><h3 class="text-base font-bold text-brand-900 dark:text-white flex items-center gap-2"><i class="fa-solid fa-table-cells-large text-brand-500"></i> Widget'ları Düzenle</h3><button onclick="closeModal('widgetModal')" class="text-slate-400 hover:text-slate-600"><i class="fa-solid fa-xmark text-lg"></i></button></div><p class="text-xs text-slate-500 dark:text-slate-400">Ana sayfada görmek istediğiniz bileşenleri açıp kapatabilirsiniz:</p><div class="space-y-2 text-xs"><label class="flex items-center justify-between p-2.5 rounded-xl bg-slate-50 dark:bg-slate-800 cursor-pointer"><span class="font-semibold text-slate-800 dark:text-slate-200 flex items-center gap-2"><i class="fa-solid fa-mosque text-brand-500"></i> Namaz Vakitleri</span><input type="checkbox" id="toggle_namaz" onchange="toggleWidgetVisibility('namaz')" checked class="w-4 h-4 accent-brand-600"></label><label class="flex items-center justify-between p-2.5 rounded-xl bg-slate-50 dark:bg-slate-800 cursor-pointer"><span class="font-semibold text-slate-800 dark:text-slate-200 flex items-center gap-2"><i class="fa-solid fa-coins text-amber-500"></i> Döviz & Altın</span><input type="checkbox" id="toggle_piyasa" onchange="toggleWidgetVisibility('piyasa')" checked class="w-4 h-4 accent-brand-600"></label><label class="flex items-center justify-between p-2.5 rounded-xl bg-slate-50 dark:bg-slate-800 cursor-pointer"><span class="font-semibold text-slate-800 dark:text-slate-200 flex items-center gap-2"><i class="fa-solid fa-cloud-sun text-sky-500"></i> Hava Durumu</span><input type="checkbox" id="toggle_hava" onchange="toggleWidgetVisibility('hava')" checked class="w-4 h-4 accent-brand-600"></label><label class="flex items-center justify-between p-2.5 rounded-xl bg-slate-50 dark:bg-slate-800 cursor-pointer"><span class="font-semibold text-slate-800 dark:text-slate-200 flex items-center gap-2"><i class="fa-solid fa-triangle-exclamation text-rose-500"></i> Son Depremler</span><input type="checkbox" id="toggle_deprem" onchange="toggleWidgetVisibility('deprem')" checked class="w-4 h-4 accent-brand-600"></label><label class="flex items-center justify-between p-2.5 rounded-xl bg-slate-50 dark:bg-slate-800 cursor-pointer"><span class="font-semibold text-slate-800 dark:text-slate-200 flex items-center gap-2"><i class="fa-solid fa-map-location-dot text-brand-500"></i> Saha Ziyaretleri</span><input type="checkbox" id="toggle_ziyaretler" onchange="toggleWidgetVisibility('ziyaretler')" checked class="w-4 h-4 accent-brand-600"></label><label class="flex items-center justify-between p-2.5 rounded-xl bg-slate-50 dark:bg-slate-800 cursor-pointer"><span class="font-semibold text-slate-800 dark:text-slate-200 flex items-center gap-2"><i class="fa-solid fa-list-check text-brand-500"></i> İş ve Görevler</span><input type="checkbox" id="toggle_gorevler" onchange="toggleWidgetVisibility('gorevler')" checked class="w-4 h-4 accent-brand-600"></label><label class="flex items-center justify-between p-2.5 rounded-xl bg-slate-50 dark:bg-slate-800 cursor-pointer"><span class="font-semibold text-slate-800 dark:text-slate-200 flex items-center gap-2"><i class="fa-solid fa-bell text-amber-500"></i> Hatırlatıcılar</span><input type="checkbox" id="toggle_hatirlaticilar" onchange="toggleWidgetVisibility('hatirlaticilar')" checked class="w-4 h-4 accent-brand-600"></label><label class="flex items-center justify-between p-2.5 rounded-xl bg-slate-50 dark:bg-slate-800 cursor-pointer"><span class="font-semibold text-slate-800 dark:text-slate-200 flex items-center gap-2"><i class="fa-solid fa-calendar-days text-brand-500"></i> Sosyal Medya</span><input type="checkbox" id="toggle_sosyal" onchange="toggleWidgetVisibility('sosyal')" checked class="w-4 h-4 accent-brand-600"></label><label class="flex items-center justify-between p-2.5 rounded-xl bg-slate-50 dark:bg-slate-800 cursor-pointer"><span class="font-semibold text-slate-800 dark:text-slate-200 flex items-center gap-2"><i class="fa-solid fa-calendar-check text-brand-500"></i> Google Takvim</span><input type="checkbox" id="toggle_takvim" onchange="toggleWidgetVisibility('takvim')" checked class="w-4 h-4 accent-brand-600"></label><label class="flex items-center justify-between p-2.5 rounded-xl bg-slate-50 dark:bg-slate-800 cursor-pointer"><span class="font-semibold text-slate-800 dark:text-slate-200 flex items-center gap-2"><i class="fa-solid fa-robot text-purple-500"></i> Yapay Zekaya Sor</span><input type="checkbox" id="toggle_ai" onchange="toggleWidgetVisibility('ai')" checked class="w-4 h-4 accent-brand-600"></label><label class="flex items-center justify-between p-2.5 rounded-xl bg-slate-50 dark:bg-slate-800 cursor-pointer"><span class="font-semibold text-slate-800 dark:text-slate-200 flex items-center gap-2"><i class="fa-regular fa-newspaper text-emerald-500"></i> Güncel Bülten</span><input type="checkbox" id="toggle_haber" onchange="toggleWidgetVisibility('haber')" checked class="w-4 h-4 accent-brand-600"></label></div><div class="flex justify-end pt-2"><button onclick="closeModal('widgetModal')" class="px-5 py-2 bg-brand-700 text-white rounded-xl text-xs font-bold">Tamam</button></div></div></div>
-  <div id="taskModal" class="hidden fixed inset-0 z-50 flex items-center justify-center bg-slate-900/60 backdrop-blur-sm p-4"><div class="bg-white dark:bg-darkcard border border-slate-100 dark:border-slate-800 p-6 rounded-3xl w-full max-w-md shadow-2xl space-y-4"><div class="flex justify-between items-center border-b border-slate-100 dark:border-slate-800 pb-3"><h3 class="text-base font-bold text-brand-900 dark:text-white flex items-center gap-2"><i class="fa-solid fa-list-check text-brand-500"></i> Hızlı Görev</h3><button onclick="closeModal('taskModal')" class="text-slate-400 hover:text-slate-600"><i class="fa-solid fa-xmark text-lg"></i></button></div><form onsubmit="handleQuickAction(event, 'Görev eklendi!')" class="space-y-3"><div><label class="block text-xs font-semibold text-slate-600 dark:text-slate-400 mb-1">Başlık</label><input type="text" required class="w-full px-3 py-2 bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-xl text-xs"></div><div class="flex justify-end gap-2 pt-2"><button type="button" onclick="closeModal('taskModal')" class="px-4 py-2 bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 rounded-xl text-xs">İptal</button><button type="submit" class="px-5 py-2 bg-brand-700 text-white rounded-xl text-xs font-bold">Kaydet</button></div></form></div></div>
-  <div id="visitModal" class="hidden fixed inset-0 z-50 flex items-center justify-center bg-slate-900/60 backdrop-blur-sm p-4"><div class="bg-white dark:bg-darkcard border border-slate-100 dark:border-slate-800 p-6 rounded-3xl w-full max-w-md shadow-2xl space-y-4"><div class="flex justify-between items-center border-b border-slate-100 dark:border-slate-800 pb-3"><h3 class="text-base font-bold text-brand-900 dark:text-white flex items-center gap-2"><i class="fa-solid fa-car-side text-brand-500"></i> Hızlı Ziyaret</h3><button onclick="closeModal('visitModal')" class="text-slate-400 hover:text-slate-600"><i class="fa-solid fa-xmark text-lg"></i></button></div><form onsubmit="handleQuickAction(event, 'Ziyaret planlandı!')" class="space-y-3"><div><label class="block text-xs font-semibold text-slate-600 dark:text-slate-400 mb-1">Kurum / Kişi</label><input type="text" required class="w-full px-3 py-2 bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-xl text-xs"></div><div class="flex justify-end gap-2 pt-2"><button type="button" onclick="closeModal('visitModal')" class="px-4 py-2 bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 rounded-xl text-xs">İptal</button><button type="submit" class="px-5 py-2 bg-brand-700 text-white rounded-xl text-xs font-bold">Kaydet</button></div></form></div></div>
-  <div id="notifModal" class="hidden fixed inset-0 z-50 flex items-center justify-center bg-slate-900/60 backdrop-blur-sm p-4"><div class="bg-white dark:bg-darkcard border border-slate-100 dark:border-slate-800 p-6 rounded-3xl w-full max-w-md shadow-2xl space-y-4"><div class="flex justify-between items-center border-b border-slate-100 dark:border-slate-800 pb-3"><h3 class="text-base font-bold text-brand-900 dark:text-white flex items-center gap-2"><i class="fa-regular fa-bell text-amber-500"></i> Hatırlatıcı</h3><button onclick="closeModal('notifModal')" class="text-slate-400 hover:text-slate-600"><i class="fa-solid fa-xmark text-lg"></i></button></div><form onsubmit="handleQuickAction(event, 'Hatırlatıcı oluşturuldu!')" class="space-y-3"><div><label class="block text-xs font-semibold text-slate-600 dark:text-slate-400 mb-1">Not</label><textarea required rows="2" class="w-full px-3 py-2 bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-xl text-xs"></textarea></div><div class="flex justify-end gap-2 pt-2"><button type="button" onclick="closeModal('notifModal')" class="px-4 py-2 bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 rounded-xl text-xs">İptal</button><button type="submit" class="px-5 py-2 bg-brand-700 text-white rounded-xl text-xs font-bold">Kaydet</button></div></form></div></div>
-  <div id="profileModal" class="hidden fixed inset-0 z-50 flex items-center justify-center bg-slate-900/60 backdrop-blur-sm p-4"><div class="bg-white dark:bg-darkcard border border-slate-100 dark:border-slate-800 p-6 rounded-3xl w-full max-w-md shadow-2xl space-y-4"><div class="flex justify-between items-center border-b border-slate-100 dark:border-slate-800 pb-3"><h3 class="text-base font-bold text-brand-900 dark:text-white">Profili Düzenle</h3><button onclick="closeModal('profileModal')" class="text-slate-400 hover:text-slate-600"><i class="fa-solid fa-xmark text-lg"></i></button></div><form id="profileEditForm" onsubmit="saveProfileInfo(event)" class="space-y-3"><div><label class="block text-xs font-semibold text-slate-600 dark:text-slate-400 mb-1">Ad Soyad</label><input type="text" id="editFullName" required class="w-full px-3 py-2 bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-xl text-xs"></div><div><label class="block text-xs font-semibold text-slate-600 dark:text-slate-400 mb-1">Profil Fotoğrafı URL</label><input type="url" id="editAvatarUrl" class="w-full px-3 py-2 bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-xl text-xs"></div><div><label class="block text-xs font-semibold text-slate-600 dark:text-slate-400 mb-1">E-Posta</label><input type="email" id="editEmail" disabled class="w-full px-3 py-2 bg-slate-100 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl text-xs text-slate-400 cursor-not-allowed"></div><div class="flex justify-end gap-2 pt-2"><button type="button" onclick="closeModal('profileModal')" class="px-4 py-2 bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 rounded-xl text-xs">İptal</button><button type="submit" class="px-5 py-2 bg-brand-700 text-white rounded-xl text-xs font-bold">Kaydet</button></div></form></div></div>
+  </div>
 
   <script>
     const SUPABASE_URL = "https://hmlhyhisdulbttsyzsvp.supabase.co";
     const SUPABASE_ANON_KEY = "sb_publishable_NFS-iNYCga_9Nhc4yTElBA_9j7oU1An";
     const supabaseClient = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
 
-    // ================= 1. GÜVENLİK KONTROLÜ (GİRİŞ YOKSA LOGIN.HTML'E FIRLAT) =================
+    // ================= DİNAMİK MODÜL YÜKLEYİCİ (MODULAR SHELL) =================
+    let dashboardHtmlCache = "";
+
+    async function loadModule(moduleName) {
+      const container = document.getElementById('contentContainer');
+      const navBtns = ['nav_dashboard', 'nav_ayarlar'];
+
+      navBtns.forEach(id => {
+        const btn = document.getElementById(id);
+        if (btn) btn.className = "w-full flex items-center gap-3 px-3 py-2 rounded-xl text-slate-600 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-800 font-medium text-xs transition";
+      });
+
+      const activeNav = document.getElementById('nav_' + moduleName);
+      if (activeNav) {
+        activeNav.className = "w-full flex items-center gap-3 px-3 py-2.5 rounded-xl bg-brand-50 dark:bg-brand-900/40 text-brand-700 dark:text-sky-300 font-semibold text-xs border border-brand-100 dark:border-brand-800 transition";
+      }
+
+      if (moduleName === 'dashboard') {
+        container.innerHTML = dashboardHtmlCache;
+        // Dashboard servislerini tekrar canlandır
+        initUserLocation();
+        loadCurrencyAndGold();
+        loadEarthquakes();
+        loadAaNews();
+        return;
+      }
+
+      // moduller/ klasöründen saf içeriği çek
+      container.innerHTML = '<div class="py-12 text-center text-slate-400 text-xs"><i class="fa-solid fa-circle-notch fa-spin text-lg mb-2"></i><p>Modül yükleniyor...</p></div>';
+
+      try {
+        const res = await fetch(`moduller/${moduleName}.html`);
+        if (!res.ok) throw new Error("Modül bulunamadı");
+        const html = await res.text();
+        container.innerHTML = html;
+
+        // Modülün kendi scriptlerini çalıştır
+        const scripts = container.querySelectorAll("script");
+        scripts.forEach(s => {
+          const newScript = document.createElement("script");
+          newScript.textContent = s.textContent;
+          document.body.appendChild(newScript);
+        });
+      } catch (err) {
+        container.innerHTML = `<div class="p-6 bg-rose-50 text-rose-600 rounded-2xl text-xs font-semibold text-center">Modül yüklenirken hata oluştu: ${err.message}</div>`;
+      }
+    }
+
+    // ================= OTURUM KONTROLÜ =================
     async function enforceAuth() {
       const { data: { session } } = await supabaseClient.auth.getSession();
       if (!session) {
@@ -478,11 +237,7 @@
       } else {
         loadSavedProfile(session.user.email);
         initTheme();
-        initWidgets();
-        initUserLocation();
-        loadCurrencyAndGold();
-        loadEarthquakes();
-        loadAaNews();
+        cacheAndInitDashboard();
       }
     }
 
@@ -491,99 +246,184 @@
       window.location.replace("login.html");
     }
 
-    // ================= 2. KONUM BİLGİSİ =================
-    let userCoords = { lat: 41.0082, lon: 28.9784, city: "İstanbul" };
+    // Dashboard İlk Yükleme
+    function cacheAndInitDashboard() {
+      dashboardHtmlCache = `
+        <div class="space-y-6">
+          <div class="bg-gradient-to-r from-brand-950 via-brand-900 to-brand-800 rounded-3xl p-5 md:p-6 text-white shadow-xl shadow-brand-950/10 flex flex-col lg:flex-row lg:items-center lg:justify-between gap-4">
+            <div class="space-y-1">
+              <div class="inline-flex items-center gap-2 px-3 py-1 bg-white/10 backdrop-blur-md rounded-full text-[11px] font-semibold text-sky-200 border border-white/10 mb-1">
+                <i class="fa-solid fa-location-dot"></i> <span id="userLocationDisplay">İstanbul, Türkiye</span>
+              </div>
+              <h2 class="text-xl md:text-2xl font-black tracking-tight">Hayırlı Günler, <span id="welcomeBannerName">Mustafa Cengiz</span> 👋</h2>
+              <p class="text-xs text-sky-100 max-w-xl">Canlı API servisleri, dinamik namaz vakitleri, serbest piyasalar ve Google Takvim aktif.</p>
+            </div>
+            <div class="flex flex-wrap gap-2 pt-2 lg:pt-0">
+              <button onclick="openModal('taskModal')" class="px-3.5 py-2 bg-brand-400 hover:bg-brand-500 text-white font-bold text-xs rounded-xl transition flex items-center gap-2 shadow"><i class="fa-solid fa-plus-circle"></i> Hızlı Görev Ekle</button>
+              <button onclick="openModal('visitModal')" class="px-3.5 py-2 bg-white/10 hover:bg-white/20 text-white font-semibold text-xs rounded-xl border border-white/20 transition flex items-center gap-2"><i class="fa-solid fa-car-side"></i> Ziyaret Ekle</button>
+              <button onclick="openModal('notifModal')" class="px-3.5 py-2 bg-white/10 hover:bg-white/20 text-white font-semibold text-xs rounded-xl border border-white/20 transition flex items-center gap-2"><i class="fa-regular fa-bell"></i> Hatırlatıcı Ekle</button>
+            </div>
+          </div>
 
+          <div class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-4 md:gap-5">
+            <div id="w_namaz" class="bg-white dark:bg-darkcard p-4 md:p-5 rounded-2xl border border-slate-200/80 dark:border-slate-800 shadow-sm space-y-3">
+              <div class="flex items-center justify-between border-b border-slate-100 dark:border-slate-800 pb-2">
+                <span class="text-xs font-bold text-brand-900 dark:text-sky-300 flex items-center gap-2"><i class="fa-solid fa-mosque text-brand-500"></i> Namaz Vakitleri</span>
+                <span id="prayer_city_label" class="text-[10px] text-slate-400 font-semibold">İstanbul</span>
+              </div>
+              <div class="grid grid-cols-3 gap-1.5 md:gap-2 text-center text-xs">
+                <div id="box_imsak" class="bg-slate-50 dark:bg-slate-800/50 p-1.5 rounded-lg border border-transparent"><span class="text-[9px] text-slate-400 block font-semibold">İmsak</span><span id="pray_imsak" class="font-bold text-slate-800 dark:text-white text-[11px]">--:--</span></div>
+                <div id="box_dhuhr" class="bg-slate-50 dark:bg-slate-800/50 p-1.5 rounded-lg border border-transparent"><span class="text-[9px] text-slate-400 block font-semibold">Öğle</span><span id="pray_dhuhr" class="font-bold text-slate-800 dark:text-white text-[11px]">--:--</span></div>
+                <div id="box_asr" class="bg-slate-50 dark:bg-slate-800/50 p-1.5 rounded-lg border border-transparent"><span class="text-[9px] text-slate-400 block font-semibold">İkindi</span><span id="pray_asr" class="font-bold text-slate-800 dark:text-white text-[11px]">--:--</span></div>
+                <div id="box_maghrib" class="bg-slate-50 dark:bg-slate-800/50 p-1.5 rounded-lg border border-transparent"><span class="text-[9px] text-slate-400 block font-semibold">Akşam</span><span id="pray_maghrib" class="font-bold text-slate-800 dark:text-white text-[11px]">--:--</span></div>
+                <div id="box_isha" class="bg-slate-50 dark:bg-slate-800/50 p-1.5 rounded-lg border border-transparent"><span class="text-[9px] text-slate-400 block font-semibold">Yatsı</span><span id="pray_isha" class="font-bold text-slate-800 dark:text-white text-[11px]">--:--</span></div>
+                <div id="box_sunrise" class="bg-slate-50 dark:bg-slate-800/50 p-1.5 rounded-lg border border-transparent"><span class="text-[9px] text-slate-400 block font-semibold">Güneş</span><span id="pray_sunrise" class="font-bold text-slate-800 dark:text-white text-[11px]">--:--</span></div>
+              </div>
+            </div>
+
+            <div id="w_piyasa" class="bg-white dark:bg-darkcard p-4 md:p-5 rounded-2xl border border-slate-200/80 dark:border-slate-800 shadow-sm space-y-3">
+              <div class="flex items-center justify-between border-b border-slate-100 dark:border-slate-800 pb-2">
+                <span class="text-xs font-bold text-brand-900 dark:text-sky-300 flex items-center gap-2"><i class="fa-solid fa-coins text-amber-500"></i> Döviz & Altın</span>
+                <span class="text-[10px] text-emerald-600 font-semibold flex items-center gap-1"><span class="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse"></span> Anlık</span>
+              </div>
+              <div class="space-y-2 text-xs">
+                <div class="flex justify-between items-center"><span class="text-slate-500 dark:text-slate-400">Dolar (USD)</span><span id="curr_usd" class="font-bold text-slate-900 dark:text-white font-mono">₺--.--</span></div>
+                <div class="flex justify-between items-center"><span class="text-slate-500 dark:text-slate-400">Euro (EUR)</span><span id="curr_eur" class="font-bold text-slate-900 dark:text-white font-mono">₺--.--</span></div>
+                <div class="flex justify-between items-center"><span class="text-slate-500 dark:text-slate-400">Gram Altın</span><span id="curr_gold" class="font-bold text-amber-600 dark:text-amber-400 font-mono">₺--.--</span></div>
+              </div>
+            </div>
+
+            <div id="w_hava" class="bg-white dark:bg-darkcard p-4 md:p-5 rounded-2xl border border-slate-200/80 dark:border-slate-800 shadow-sm space-y-2.5">
+              <div class="flex items-center justify-between border-b border-slate-100 dark:border-slate-800 pb-1.5">
+                <span class="text-xs font-bold text-brand-900 dark:text-sky-300 flex items-center gap-2"><i class="fa-solid fa-cloud-sun text-brand-400"></i> Hava Durumu</span>
+                <span id="weather_location_label" class="text-[10px] text-slate-400 font-semibold">İstanbul</span>
+              </div>
+              <div class="flex items-center justify-between">
+                <div><span id="weather_temp" class="text-2xl font-extrabold text-slate-900 dark:text-white">--°C</span><p id="weather_desc" class="text-[11px] text-slate-500 dark:text-slate-400">Yükleniyor...</p></div>
+                <i id="weather_icon" class="fa-solid fa-sun text-3xl text-amber-400"></i>
+              </div>
+              <div id="forecast_container" class="grid grid-cols-5 gap-1 pt-2 border-t border-slate-100 dark:border-slate-800 text-center"></div>
+            </div>
+
+            <div id="w_deprem" class="bg-white dark:bg-darkcard p-4 md:p-5 rounded-2xl border border-slate-200/80 dark:border-slate-800 shadow-sm space-y-2.5">
+              <div class="flex items-center justify-between border-b border-slate-100 dark:border-slate-800 pb-1.5">
+                <span class="text-xs font-bold text-brand-900 dark:text-sky-300 flex items-center gap-2"><i class="fa-solid fa-triangle-exclamation text-rose-500"></i> Son Depremler</span>
+                <span class="text-[10px] text-slate-400 font-semibold">Kandilli</span>
+              </div>
+              <div id="earthquake_list" class="h-28 overflow-y-auto custom-scroll space-y-2 text-xs pr-1"></div>
+            </div>
+          </div>
+
+          <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 items-stretch">
+            <div id="w_takvim" class="bg-white dark:bg-darkcard p-5 md:p-6 rounded-2xl border border-slate-200/80 dark:border-slate-800 shadow-sm flex flex-col justify-between space-y-4">
+              <div class="flex items-center justify-between border-b border-slate-100 dark:border-slate-800 pb-3">
+                <h3 class="text-sm font-bold text-brand-900 dark:text-sky-300 flex items-center gap-2"><i class="fa-solid fa-calendar-check text-brand-500"></i> Google Takvim</h3>
+                <span class="text-[10px] font-semibold text-emerald-600 bg-emerald-50 dark:bg-emerald-950 px-2 py-0.5 rounded-full">Aylık Canlı</span>
+              </div>
+              <div class="w-full min-h-[460px] rounded-xl overflow-hidden border border-slate-200 dark:border-slate-700 bg-slate-50">
+                <iframe src="https://calendar.google.com/calendar/embed?src=e21473549ba5040db15893e785d0b7cfa98cb29ddf5e5ce1e773bdda724d4fce%40group.calendar.google.com&ctz=Europe%2FIstanbul&mode=MONTH&showTitle=0&showNav=1&showDate=1&showPrint=0&showTabs=0&showCalendars=0&showTz=0" style="border: 0" width="100%" height="100%" frameborder="0" scrolling="no"></iframe>
+              </div>
+            </div>
+
+            <div id="w_ai" class="bg-white dark:bg-darkcard p-5 md:p-6 rounded-2xl border border-slate-200/80 dark:border-slate-800 shadow-sm flex flex-col justify-between space-y-4">
+              <div>
+                <div class="flex items-center justify-between border-b border-slate-100 dark:border-slate-800 pb-3">
+                  <h3 class="text-sm font-bold text-brand-900 dark:text-sky-300 flex items-center gap-2"><i class="fa-solid fa-robot text-purple-500"></i> Yapay Zekaya Sor</h3>
+                  <span class="text-[10px] font-extrabold uppercase px-2 py-0.5 rounded-full bg-purple-100 dark:bg-purple-950 text-purple-700 dark:text-purple-300">Gemini</span>
+                </div>
+                <textarea id="aiPromptInput" rows="4" placeholder="Metin taslağı sor..." class="w-full mt-3 px-3 py-2 bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-xl text-xs focus:outline-none focus:border-purple-500 dark:text-white resize-none"></textarea>
+                <div id="aiResponseContainer" class="hidden mt-3 p-3 bg-purple-50/60 dark:bg-slate-800/80 border border-purple-100 dark:border-purple-900/40 rounded-xl text-xs text-slate-700 dark:text-slate-200 max-h-56 overflow-y-auto custom-scroll whitespace-pre-wrap"></div>
+              </div>
+              <div class="flex justify-end pt-2">
+                <button id="askAiBtn" onclick="askGeminiAi()" class="px-4 py-2 bg-purple-600 hover:bg-purple-700 text-white rounded-xl text-xs font-bold transition flex items-center gap-2"><i class="fa-solid fa-paper-plane"></i> Gönder & Yanıtla</button>
+              </div>
+            </div>
+
+            <div id="w_haber" class="bg-white dark:bg-darkcard p-5 md:p-6 rounded-2xl border border-slate-200/80 dark:border-slate-800 shadow-sm flex flex-col justify-between space-y-4">
+              <div>
+                <div class="flex items-center justify-between border-b border-slate-100 dark:border-slate-800 pb-3">
+                  <h4 class="text-xs font-bold text-brand-900 dark:text-sky-300 flex items-center gap-2"><i class="fa-regular fa-newspaper text-brand-500"></i> Güncel Gelişmeler & Bülten</h4>
+                  <button onclick="loadAaNews()" class="text-[10px] text-brand-600 dark:text-sky-400 font-bold bg-brand-50 dark:bg-brand-950 px-2 py-0.5 rounded"><i class="fa-solid fa-rotate-right text-[9px]"></i> Canlı</button>
+                </div>
+                <div id="aaNewsContainer" class="space-y-2 mt-3 text-xs max-h-[440px] overflow-y-auto custom-scroll pr-1"></div>
+              </div>
+              <p class="text-[10px] text-slate-400 text-right pt-2 border-t border-slate-100 dark:border-slate-800">Kaynak: AA Güncel Akışı</p>
+            </div>
+          </div>
+        </div>
+      `;
+      document.getElementById('contentContainer').innerHTML = dashboardHtmlCache;
+      initUserLocation();
+      loadCurrencyAndGold();
+      loadEarthquakes();
+      loadAaNews();
+    }
+
+    // ================= CANLI SERVİSLER =================
+    let userCoords = { lat: 41.0082, lon: 28.9784, city: "İstanbul" };
     function initUserLocation() {
       if ("geolocation" in navigator) {
         navigator.geolocation.getCurrentPosition(
-          async (position) => {
-            userCoords.lat = position.coords.latitude;
-            userCoords.lon = position.coords.longitude;
+          async (pos) => {
+            userCoords.lat = pos.coords.latitude;
+            userCoords.lon = pos.coords.longitude;
             try {
               const res = await fetch(`https://nominatim.openstreetmap.org/reverse?format=json&lat=${userCoords.lat}&lon=${userCoords.lon}`);
               const data = await res.json();
-              const district = data.address.province || data.address.city || data.address.town || "İstanbul";
+              const district = data.address.province || data.address.city || "İstanbul";
               userCoords.city = district;
-              document.getElementById('userLocationDisplay').innerText = district + ", Türkiye";
-              document.getElementById('weather_location_label').innerText = district;
-              document.getElementById('prayer_city_label').innerText = district;
+              if (document.getElementById('userLocationDisplay')) document.getElementById('userLocationDisplay').innerText = district + ", Türkiye";
             } catch(e) {}
             loadPrayerTimes();
             loadWeather();
           },
-          (err) => {
-            document.getElementById('userLocationDisplay').innerText = "İstanbul, Türkiye";
-            loadPrayerTimes();
-            loadWeather();
-          },
+          () => { loadPrayerTimes(); loadWeather(); },
           { timeout: 5000 }
         );
-      } else {
-        loadPrayerTimes();
-        loadWeather();
-      }
+      } else { loadPrayerTimes(); loadWeather(); }
     }
 
-    // ================= 3. CANLI NAMAZ VAKİTLERİ (Dinamik Seçili) =================
     async function loadPrayerTimes() {
       try {
         const res = await fetch(`https://api.aladhan.com/v1/timingsByCity?city=${encodeURIComponent(userCoords.city)}&country=Turkey&method=13`);
         const json = await res.json();
         if (json.data && json.data.timings) {
           const t = json.data.timings;
-          document.getElementById('pray_imsak').innerText = t.Imsak;
-          document.getElementById('pray_sunrise').innerText = t.Sunrise;
-          document.getElementById('pray_dhuhr').innerText = t.Dhuhr;
-          document.getElementById('pray_asr').innerText = t.Asr;
-          document.getElementById('pray_maghrib').innerText = t.Maghrib;
-          document.getElementById('pray_isha').innerText = t.Isha;
-
-          highlightCurrentPrayer(t);
+          if (document.getElementById('pray_imsak')) {
+            document.getElementById('pray_imsak').innerText = t.Imsak;
+            document.getElementById('pray_sunrise').innerText = t.Sunrise;
+            document.getElementById('pray_dhuhr').innerText = t.Dhuhr;
+            document.getElementById('pray_asr').innerText = t.Asr;
+            document.getElementById('pray_maghrib').innerText = t.Maghrib;
+            document.getElementById('pray_isha').innerText = t.Isha;
+            highlightCurrentPrayer(t);
+          }
         }
-      } catch (e) {
-        console.error("Namaz vakitleri alınamadı:", e);
-      }
+      } catch(e) {}
     }
 
-    function timeToMinutes(tStr) {
-      if (!tStr) return 0;
-      const [h, m] = tStr.split(':').map(Number);
-      return h * 60 + m;
-    }
-
+    function timeToMinutes(tStr) { const [h, m] = tStr.split(':').map(Number); return h * 60 + m; }
     function highlightCurrentPrayer(timings) {
       const now = new Date();
       const currentMin = now.getHours() * 60 + now.getMinutes();
-
-      const imsakMin = timeToMinutes(timings.Imsak);
-      const sunMin = timeToMinutes(timings.Sunrise);
-      const dhuhrMin = timeToMinutes(timings.Dhuhr);
-      const asrMin = timeToMinutes(timings.Asr);
-      const maghribMin = timeToMinutes(timings.Maghrib);
-      const ishaMin = timeToMinutes(timings.Isha);
+      const imsak = timeToMinutes(timings.Imsak);
+      const sun = timeToMinutes(timings.Sunrise);
+      const dhuhr = timeToMinutes(timings.Dhuhr);
+      const asr = timeToMinutes(timings.Asr);
+      const maghrib = timeToMinutes(timings.Maghrib);
+      const isha = timeToMinutes(timings.Isha);
 
       let activeId = "box_isha";
+      if (currentMin >= imsak && currentMin < sun) activeId = "box_imsak";
+      else if (currentMin >= sun && currentMin < dhuhr) activeId = "box_sunrise";
+      else if (currentMin >= dhuhr && currentMin < asr) activeId = "box_dhuhr";
+      else if (currentMin >= asr && currentMin < maghrib) activeId = "box_asr";
+      else if (currentMin >= maghrib && currentMin < isha) activeId = "box_maghrib";
 
-      if (currentMin >= imsakMin && currentMin < sunMin) {
-        activeId = "box_imsak";
-      } else if (currentMin >= sunMin && currentMin < dhuhrMin) {
-        activeId = "box_sunrise";
-      } else if (currentMin >= dhuhrMin && currentMin < asrMin) {
-        activeId = "box_dhuhr";
-      } else if (currentMin >= asrMin && currentMin < maghribMin) {
-        activeId = "box_asr";
-      } else if (currentMin >= maghribMin && currentMin < ishaMin) {
-        activeId = "box_maghrib";
-      } else {
-        activeId = "box_isha";
-      }
-
-      const boxes = ['box_imsak', 'box_sunrise', 'box_dhuhr', 'box_asr', 'box_maghrib', 'box_isha'];
-      boxes.forEach(bId => {
-        const el = document.getElementById(bId);
+      ['box_imsak', 'box_sunrise', 'box_dhuhr', 'box_asr', 'box_maghrib', 'box_isha'].forEach(b => {
+        const el = document.getElementById(b);
         if (el) {
-          if (bId === activeId) {
+          if (b === activeId) {
             el.className = "bg-brand-50 dark:bg-brand-950/70 border border-brand-300 dark:border-brand-600 p-1.5 rounded-lg shadow-sm";
             el.querySelector('span:last-child').className = "font-extrabold text-brand-700 dark:text-sky-300 text-[11px]";
           } else {
@@ -594,274 +434,97 @@
       });
     }
 
-    // ================= 4. DOĞRU SERBEST PİYASA DÖVİZ & ALTIN =================
     async function loadCurrencyAndGold() {
       try {
         const res = await fetch("https://open.er-api.com/v6/latest/USD");
         const json = await res.json();
-        if (json.rates && json.rates.TRY) {
+        if (json.rates && json.rates.TRY && document.getElementById('curr_usd')) {
           const usd = json.rates.TRY;
           const eur = usd / json.rates.EUR;
           document.getElementById('curr_usd').innerText = "₺" + usd.toFixed(2);
           document.getElementById('curr_eur').innerText = "₺" + eur.toFixed(2);
-          const gramAltin = ((2658 / 31.1034768) * usd).toFixed(0);
-          document.getElementById('curr_gold').innerText = "₺" + Number(gramAltin).toLocaleString('tr-TR');
+          document.getElementById('curr_gold').innerText = "₺" + Number(((2658 / 31.1034768) * usd).toFixed(0)).toLocaleString('tr-TR');
         }
-      } catch (e) {
-        console.error("Döviz kurları alınamadı:", e);
-      }
+      } catch(e) {}
     }
 
-    // ================= 5. ANLIK & 5 GÜNLÜK HAVA DURUMU =================
     async function loadWeather() {
       try {
         const res = await fetch(`https://api.open-meteo.com/v1/forecast?latitude=${userCoords.lat}&longitude=${userCoords.lon}&current_weather=true&daily=weathercode,temperature_2m_max,temperature_2m_min&timezone=auto`);
         const json = await res.json();
-        
-        if (json.current_weather) {
+        if (json.current_weather && document.getElementById('weather_temp')) {
           const cw = json.current_weather;
           document.getElementById('weather_temp').innerText = Math.round(cw.temperature) + "°C";
-          const code = cw.weathercode;
-          let desc = "Açık & Güneşli";
-          let icon = "fa-sun";
-          if (code >= 1 && code <= 3) { desc = "Parçalı Bulutlu"; icon = "fa-cloud-sun"; }
-          else if (code >= 45 && code <= 48) { desc = "Sisli"; icon = "fa-smog"; }
-          else if (code >= 51 && code <= 67) { desc = "Yağmurlu"; icon = "fa-cloud-rain"; }
-          else if (code >= 71) { desc = "Karlı"; icon = "fa-snowflake"; }
-          
-          document.getElementById('weather_desc').innerText = desc;
-          document.getElementById('weather_icon').className = `fa-solid ${icon} text-3xl text-amber-400`;
+          document.getElementById('weather_desc').innerText = cw.weathercode >= 51 ? "Yağmurlu" : "Açık & Güneşli";
         }
-
-        if (json.daily && json.daily.time) {
-          const forecastContainer = document.getElementById('forecast_container');
-          forecastContainer.innerHTML = '';
-          const daysMap = ['Paz', 'Pzt', 'Sal', 'Çar', 'Per', 'Cum', 'Cmt'];
-          
-          for (let i = 1; i <= 5; i++) {
-            if (!json.daily.time[i]) break;
-            const d = new Date(json.daily.time[i]);
-            const dayName = daysMap[d.getDay()];
-            const maxT = Math.round(json.daily.temperature_2m_max[i]);
-            const minT = Math.round(json.daily.temperature_2m_min[i]);
-            const wCode = json.daily.weathercode[i];
-
-            let miniIcon = "fa-sun text-amber-400";
-            if (wCode >= 1 && wCode <= 3) miniIcon = "fa-cloud-sun text-sky-400";
-            else if (wCode >= 51) miniIcon = "fa-cloud-rain text-blue-400";
-
-            const col = document.createElement('div');
-            col.className = "flex flex-col items-center";
-            col.innerHTML = `
-              <span class="text-[9px] font-bold text-slate-400">${dayName}</span>
-              <i class="fa-solid ${miniIcon} text-xs my-1"></i>
-              <span class="text-[10px] font-bold text-slate-800 dark:text-slate-200">${maxT}°</span>
-              <span class="text-[8px] text-slate-400">${minT}°</span>
-            `;
-            forecastContainer.appendChild(col);
-          }
-        }
-      } catch (e) {
-        console.error("Hava durumu tahmini alınamadı:", e);
-      }
+      } catch(e) {}
     }
 
-    // ================= 6. SON DEPREMLER =================
     async function loadEarthquakes() {
-      const list = document.getElementById('earthquake_list');
       try {
-        const res = await fetch("https://api.orhanaydogdu.com.tr/deprem/kandilli/live?limit=15");
+        const res = await fetch("https://api.orhanaydogdu.com.tr/deprem/kandilli/live?limit=10");
         const json = await res.json();
-        if (json.result && json.result.length > 0) {
+        const list = document.getElementById('earthquake_list');
+        if (json.result && list) {
           list.innerHTML = '';
           json.result.forEach(eq => {
-            const time = eq.date ? eq.date.split(' ')[1].slice(0, 5) : '';
             const div = document.createElement('div');
-            div.className = "flex justify-between items-center py-1 border-b border-slate-100 dark:border-slate-800/60 last:border-0";
-            const badgeColor = eq.mag >= 3.0 ? "bg-amber-50 dark:bg-amber-950/50 text-amber-700 dark:text-amber-300" : "bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300";
-            div.innerHTML = `
-              <div class="truncate max-w-[140px]">
-                <p class="text-slate-700 dark:text-slate-300 truncate font-medium text-[11px]">${eq.title}</p>
-                <span class="text-[9px] text-slate-400">${time}</span>
-              </div>
-              <span class="px-1.5 py-0.5 rounded font-bold text-[10px] ${badgeColor}">M ${eq.mag.toFixed(1)}</span>
-            `;
+            div.className = "flex justify-between items-center py-1 border-b border-slate-100 dark:border-slate-800/60";
+            div.innerHTML = `<span class="truncate max-w-[140px] text-slate-700 dark:text-slate-300">${eq.title}</span><span class="px-1.5 py-0.5 rounded font-bold text-[10px] bg-slate-100 dark:bg-slate-800">M ${eq.mag.toFixed(1)}</span>`;
             list.appendChild(div);
           });
         }
-      } catch (e) {
-        console.error("Deprem verisi alınamadı:", e);
-      }
+      } catch(e) {}
     }
 
-    // ================= 7. CANLI ANADOLU AJANSI HABERLERİ =================
     async function loadAaNews() {
-      const container = document.getElementById('aaNewsContainer');
-      container.innerHTML = '<p class="text-[11px] text-slate-400">Anadolu Ajansı haberleri yükleniyor...</p>';
-      
-      const targetUrl = 'https://www.aa.com.tr/tr/rss/default?cat=guncel';
-      
       try {
-        const res = await fetch(`https://api.rss2json.com/v1/api.json?rss_url=${encodeURIComponent(targetUrl)}`);
+        const res = await fetch(`https://api.rss2json.com/v1/api.json?rss_url=${encodeURIComponent('https://www.aa.com.tr/tr/rss/default?cat=guncel')}`);
         const data = await res.json();
-        if (data.status === 'ok' && data.items && data.items.length > 0) {
-          renderNewsItems(data.items);
-          return;
-        }
-      } catch (err) {}
-
-      try {
-        const proxyRes = await fetch(`https://api.allorigins.win/get?url=${encodeURIComponent(targetUrl)}`);
-        const proxyData = await proxyRes.json();
-        const parser = new DOMParser();
-        const xmlDoc = parser.parseFromString(proxyData.contents, "text/xml");
-        const items = xmlDoc.querySelectorAll("item");
-
-        if (items.length > 0) {
-          const parsedList = [];
-          items.forEach(item => {
-            parsedList.push({
-              title: item.querySelector("title")?.textContent || "",
-              link: item.querySelector("link")?.textContent || "#",
-              pubDate: item.querySelector("pubDate")?.textContent || ""
-            });
+        const container = document.getElementById('aaNewsContainer');
+        if (data.items && container) {
+          container.innerHTML = '';
+          data.items.slice(0, 15).forEach(item => {
+            const div = document.createElement('div');
+            div.className = "p-2.5 rounded-xl hover:bg-slate-50 dark:hover:bg-slate-800/50 transition border border-slate-100 dark:border-slate-800 flex items-center justify-between";
+            div.innerHTML = `<a href="${item.link}" target="_blank" class="truncate text-slate-800 dark:text-slate-200 font-semibold hover:text-brand-600">${item.title}</a>`;
+            container.appendChild(div);
           });
-          renderNewsItems(parsedList);
-          return;
         }
-      } catch (err) {}
-
-      container.innerHTML = '<p class="text-[11px] text-slate-400">Canlı haber akışı güncelleniyor, lütfen bekleyin...</p>';
-    }
-
-    function renderNewsItems(items) {
-      const container = document.getElementById('aaNewsContainer');
-      container.innerHTML = '';
-      items.slice(0, 15).forEach(item => {
-        const date = new Date(item.pubDate);
-        const timeStr = isNaN(date) ? '' : date.toLocaleTimeString('tr-TR', { hour: '2-digit', minute: '2-digit' });
-        const div = document.createElement('div');
-        div.className = "p-2.5 rounded-xl hover:bg-slate-50 dark:hover:bg-slate-800/50 transition border border-slate-100 dark:border-slate-800 flex items-center justify-between";
-        div.innerHTML = `
-          <div class="flex items-center gap-2.5 truncate">
-            <span class="w-2 h-2 rounded-full bg-brand-500 shrink-0"></span>
-            <a href="${item.link}" target="_blank" rel="noopener noreferrer" class="text-slate-800 dark:text-slate-200 font-semibold truncate hover:text-brand-600">${item.title}</a>
-          </div>
-          <span class="text-[10px] text-slate-400 font-mono shrink-0 ml-2">${timeStr}</span>
-        `;
-        container.appendChild(div);
-      });
-    }
-
-    // ================= 8. GEMINI AI =================
-    function getGeminiApiKey() {
-      let key = localStorage.getItem('tebessum_gemini_key');
-      if (!key) {
-        key = prompt("Yapay zekanın yanıt verebilmesi için lütfen Google Gemini API Anahtarınızı giriniz:\n(Tarayıcınızda güvenle saklanacak, GitHub'a yazılmayacaktır)");
-        if (key && key.trim()) {
-          localStorage.setItem('tebessum_gemini_key', key.trim());
-          return key.trim();
-        }
-      }
-      return key;
-    }
-
-    function changeGeminiApiKey() {
-      const current = localStorage.getItem('tebessum_gemini_key') || '';
-      const updated = prompt("Mevcut Gemini API Anahtarınızı güncelleyin:", current);
-      if (updated !== null && updated.trim()) {
-        localStorage.setItem('tebessum_gemini_key', updated.trim());
-        alert("API Anahtarı başarıyla güncellendi.");
-      }
+      } catch(e) {}
     }
 
     async function askGeminiAi() {
-      const input = document.getElementById('aiPromptInput');
-      const promptText = input.value.trim();
-      if (!promptText) return;
-
-      const apiKey = getGeminiApiKey();
-      if (!apiKey) {
-        alert("API anahtarı girilmediği için soru iletilemedi.");
-        return;
+      const prompt = document.getElementById('aiPromptInput').value.trim();
+      if (!prompt) return;
+      let key = localStorage.getItem('tebessum_gemini_key');
+      if (!key) {
+        key = prompt("Lütfen Gemini API anahtarınızı giriniz:");
+        if (key) localStorage.setItem('tebessum_gemini_key', key.trim());
       }
-
-      const btn = document.getElementById('askAiBtn');
-      const btnText = document.getElementById('askAiBtnText');
       const resContainer = document.getElementById('aiResponseContainer');
-
-      btn.disabled = true;
-      btnText.innerText = "Düşünüyor...";
       resContainer.classList.remove('hidden');
-      resContainer.innerText = "Yapay zeka yanıt hazırlıyor, lütfen bekleyin...";
-
+      resContainer.innerText = "Yapay zeka yanıt hazırlıyor...";
       try {
-        const response = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${apiKey}`, {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({
-            contents: [{ parts: [{ text: "Sen Tebessüm Derneği Yönetim Paneli asistanısın. Türkçe, kurumsal, nezaketli ve profesyonel cevap ver. Soru: " + promptText }] }]
-          })
+        const res = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${key}`, {
+          method: "POST", headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ contents: [{ parts: [{ text: "Tebessüm Derneği asistanı olarak cevapla: " + prompt }] }] })
         });
-
-        const data = await response.json();
-        if (data.candidates && data.candidates[0].content.parts[0].text) {
-          resContainer.innerText = data.candidates[0].content.parts[0].text;
-        } else {
-          resContainer.innerText = "Yanıt alınamadı. API anahtarınızı veya bağlantınızı kontrol edin.";
-        }
-      } catch (err) {
-        console.error("Gemini hatası:", err);
-        resContainer.innerText = "Yapay zeka servisine bağlanırken bir hata oluştu.";
-      } finally {
-        btn.disabled = false;
-        btnText.innerText = "Gönder & Yanıtla";
-      }
+        const data = await res.json();
+        resContainer.innerText = data.candidates[0].content.parts[0].text;
+      } catch(e) { resContainer.innerText = "Hata oluştu."; }
     }
 
-    // ================= TEMA, WIDGET, ÇEKMECE & SAAT =================
-    function initTheme() {
-      const savedTheme = localStorage.getItem('tebessum_theme') || 'light';
-      const html = document.documentElement;
-      const icon = document.getElementById('themeIcon');
-      if (savedTheme === 'dark') { html.classList.add('dark'); icon.classList.remove('fa-moon'); icon.classList.add('fa-sun'); }
-      else { html.classList.remove('dark'); icon.classList.remove('fa-sun'); icon.classList.add('fa-moon'); }
-    }
-
+    // ================= MENÜ & TEMA =================
+    function openModal(id) { document.getElementById(id).classList.remove('hidden'); }
+    function closeModal(id) { document.getElementById(id).classList.add('hidden'); }
     function toggleDarkMode() {
-      const html = document.documentElement;
-      const icon = document.getElementById('themeIcon');
-      if (html.classList.contains('dark')) {
-        html.classList.remove('dark'); icon.classList.remove('fa-sun'); icon.classList.add('fa-moon');
-        localStorage.setItem('tebessum_theme', 'light');
-      } else {
-        html.classList.add('dark'); icon.classList.remove('fa-moon'); icon.classList.add('fa-sun');
-        localStorage.setItem('tebessum_theme', 'dark');
-      }
+      document.documentElement.classList.toggle('dark');
+      localStorage.setItem('tebessum_theme', document.documentElement.classList.contains('dark') ? 'dark' : 'light');
     }
-
-    const WIDGETS = ['namaz', 'piyasa', 'hava', 'deprem', 'ziyaretler', 'gorevler', 'hatirlaticilar', 'sosyal', 'takvim', 'ai', 'haber'];
-    function initWidgets() {
-      const savedWidgets = JSON.parse(localStorage.getItem('tebessum_widgets')) || {};
-      WIDGETS.forEach(w => {
-        const isVisible = savedWidgets[w] !== false;
-        const el = document.getElementById('w_' + w);
-        const toggle = document.getElementById('toggle_' + w);
-        if (el) el.style.display = isVisible ? '' : 'none';
-        if (toggle) toggle.checked = isVisible;
-      });
+    function initTheme() {
+      if (localStorage.getItem('tebessum_theme') === 'dark') document.documentElement.classList.add('dark');
     }
-
-    function toggleWidgetVisibility(w) {
-      const toggle = document.getElementById('toggle_' + w);
-      const el = document.getElementById('w_' + w);
-      const savedWidgets = JSON.parse(localStorage.getItem('tebessum_widgets')) || {};
-      savedWidgets[w] = toggle.checked;
-      localStorage.setItem('tebessum_widgets', JSON.stringify(savedWidgets));
-      if (el) el.style.display = toggle.checked ? '' : 'none';
-    }
-
-    function openWidgetModal() { document.getElementById('profileMenu').classList.add('hidden'); openModal('widgetModal'); }
 
     let isSidebarCollapsed = false;
     function toggleSidebar() {
@@ -874,83 +537,34 @@
       const isMobile = window.innerWidth < 1024;
 
       if (isMobile) {
-        if (sidebar.classList.contains('-translate-x-full')) { 
-          sidebar.classList.remove('-translate-x-full'); 
-          backdrop.classList.remove('hidden'); 
-        } else { 
-          sidebar.classList.add('-translate-x-full'); 
-          backdrop.classList.add('hidden'); 
-        }
+        sidebar.classList.toggle('-translate-x-full');
+        backdrop.classList.toggle('hidden');
       } else {
         isSidebarCollapsed = !isSidebarCollapsed;
-        if (isSidebarCollapsed) {
-          sidebar.classList.remove('w-64');
-          sidebar.classList.add('w-20');
-          mainWrapper.classList.remove('lg:pl-64');
-          mainWrapper.classList.add('lg:pl-20');
-          logoFull.classList.add('hidden');
-          logoMini.classList.remove('hidden');
-          textElements.forEach(el => el.classList.add('hidden'));
-        } else {
-          sidebar.classList.remove('w-20');
-          sidebar.classList.add('w-64');
-          mainWrapper.classList.remove('lg:pl-20');
-          mainWrapper.classList.add('lg:pl-64');
-          logoFull.classList.remove('hidden');
-          logoMini.classList.add('hidden');
-          textElements.forEach(el => el.classList.remove('hidden'));
-        }
+        sidebar.classList.toggle('w-64', !isSidebarCollapsed);
+        sidebar.classList.toggle('w-20', isSidebarCollapsed);
+        mainWrapper.classList.toggle('lg:pl-64', !isSidebarCollapsed);
+        mainWrapper.classList.toggle('lg:pl-20', isSidebarCollapsed);
+        logoFull.classList.toggle('hidden', isSidebarCollapsed);
+        logoMini.classList.toggle('hidden', !isSidebarCollapsed);
+        textElements.forEach(el => el.classList.toggle('hidden', isSidebarCollapsed));
       }
     }
-
-    function openModal(id) { document.getElementById(id).classList.remove('hidden'); }
-    function closeModal(id) { document.getElementById(id).classList.add('hidden'); }
-    function handleQuickAction(e, msg) { e.preventDefault(); alert(msg); e.target.reset(); closeModal(e.target.closest('.fixed').id); }
 
     function updateClockAndDate() {
       const now = new Date();
       document.getElementById('realtimeClock').innerText = now.toLocaleTimeString('tr-TR');
-      const options = { day: 'numeric', month: 'short', year: 'numeric' };
-      document.getElementById('realtimeDate').innerText = now.toLocaleDateString('tr-TR', options);
+      document.getElementById('realtimeDate').innerText = now.toLocaleDateString('tr-TR', { day: 'numeric', month: 'short', year: 'numeric' });
     }
     setInterval(updateClockAndDate, 1000);
     updateClockAndDate();
 
     function loadSavedProfile(email) {
       const savedName = localStorage.getItem('tebessum_user_name') || 'Mustafa Cengiz';
-      const savedAvatar = localStorage.getItem('tebessum_user_avatar') || 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=100&auto=format&fit=crop&q=80';
       document.getElementById('profileDisplayName').innerText = savedName;
-      document.getElementById('welcomeBannerName').innerText = savedName;
       document.getElementById('userEmailShort').innerText = savedName;
-      document.getElementById('userAvatarImg').src = savedAvatar;
-      document.getElementById('editFullName').value = savedName;
-      document.getElementById('editAvatarUrl').value = savedAvatar;
-      document.getElementById('editEmail').value = email;
     }
 
-    function saveProfileInfo(e) {
-      e.preventDefault();
-      const newName = document.getElementById('editFullName').value.trim();
-      const newAvatar = document.getElementById('editAvatarUrl').value.trim();
-      if (newName) localStorage.setItem('tebessum_user_name', newName);
-      if (newAvatar) localStorage.setItem('tebessum_user_avatar', newAvatar);
-      loadSavedProfile(document.getElementById('editEmail').value);
-      closeModal('profileModal');
-    }
-
-    function openProfileModal() { document.getElementById('profileMenu').classList.add('hidden'); openModal('profileModal'); }
-    function toggleProfileMenu() { document.getElementById('profileMenu').classList.toggle('hidden'); document.getElementById('notifDropdown').classList.add('hidden'); }
-    function toggleNotifications() { document.getElementById('notifDropdown').classList.toggle('hidden'); document.getElementById('profileMenu').classList.add('hidden'); }
-
-    window.addEventListener('click', (e) => {
-      const profileContainer = document.getElementById('profileDropdownContainer');
-      const notifBtn = document.getElementById('notifBtn');
-      const notifDropdown = document.getElementById('notifDropdown');
-      if (!profileContainer.contains(e.target)) document.getElementById('profileMenu').classList.add('hidden');
-      if (!notifBtn.contains(e.target) && !notifDropdown.contains(e.target)) notifDropdown.classList.add('hidden');
-    });
-
-    // Oturum kontrolünü sayfa açılır açılmaz çalıştır
     window.addEventListener('DOMContentLoaded', enforceAuth);
   </script>
 </body>
