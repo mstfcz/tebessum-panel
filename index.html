@@ -94,7 +94,7 @@
   <!-- ================= 2. SOL DİKEY MENÜ (SIDEBAR) ================= -->
   <aside id="sidebar" class="fixed lg:static inset-y-0 left-0 z-40 bg-white dark:bg-darkcard border-r border-slate-200 dark:border-slate-800 flex flex-col shrink-0 min-h-screen transition-all duration-300 -translate-x-full lg:translate-x-0 w-64">
     
-    <!-- Logo Alanı (Büyütülmüş) -->
+    <!-- Logo Alanı -->
     <div class="px-5 py-4 flex items-center justify-between border-b border-slate-100 dark:border-slate-800/80 h-24">
       <div class="flex items-center w-full justify-center overflow-hidden">
         <svg id="sidebarLogo" class="h-14 w-auto max-w-[210px] transition-all" viewBox="0 0 826.5 313.95">
@@ -223,7 +223,7 @@
           <span id="realtimeClock" class="font-bold font-mono text-brand-700 dark:text-sky-400 text-[11px] md:text-xs">--:--:--</span>
         </div>
 
-        <!-- Gece Modu Butonu (Bildirimlerin Solunda) -->
+        <!-- Gece Modu Butonu -->
         <button id="themeToggleBtn" onclick="toggleDarkMode()" title="Gece / Gündüz Modu" class="p-2 md:p-2.5 text-slate-500 dark:text-amber-400 hover:text-brand-700 dark:hover:text-amber-300 hover:bg-slate-100 dark:hover:bg-slate-800 rounded-xl transition">
           <i id="themeIcon" class="fa-regular fa-moon text-sm md:text-base"></i>
         </button>
@@ -268,7 +268,7 @@
             <i class="fa-solid fa-chevron-down text-[10px] text-slate-400 hidden md:block"></i>
           </button>
 
-          <!-- Profil Menüsü (Widget Düzenleme Eklendi) -->
+          <!-- Profil Menüsü -->
           <div id="profileMenu" class="hidden absolute right-0 mt-2 w-52 bg-white dark:bg-darkcard border border-slate-200 dark:border-slate-700 rounded-2xl shadow-xl z-40 py-2 text-xs">
             <button onclick="openProfileModal()" class="w-full text-left px-4 py-2.5 text-slate-700 dark:text-slate-200 hover:bg-brand-50 dark:hover:bg-slate-800 hover:text-brand-700 font-semibold flex items-center gap-2.5 transition">
               <i class="fa-solid fa-user-pen text-brand-500"></i>
@@ -299,7 +299,7 @@
             <i class="fa-solid fa-location-dot"></i> İstanbul, Türkiye
           </div>
           <h2 class="text-xl md:text-2xl font-black tracking-tight">Hayırlı Günler, <span id="welcomeBannerName">Mustafa Cengiz</span> 👋</h2>
-          <p class="text-xs text-sky-100 max-w-xl">Bugün planlanan ziyaretler, yaklaşan takvim ve sosyal medya paylaşımları aşağıda listelenmiştir.</p>
+          <p class="text-xs text-sky-100 max-w-xl">Bugün dernek bünyesindeki operasyon akışı, ziyaretler, görevler ve hatırlatmalar aşağıda listelenmiştir.</p>
         </div>
         
         <!-- Hızlı İşlemler Butonları -->
@@ -311,12 +311,12 @@
             <i class="fa-solid fa-car-side"></i> Ziyaret Ekle
           </button>
           <button onclick="openModal('notifModal')" class="px-3.5 py-2 bg-white/10 hover:bg-white/20 text-white font-semibold text-xs rounded-xl border border-white/20 transition flex items-center gap-2">
-            <i class="fa-regular fa-bell"></i> Bildirim Ekle
+            <i class="fa-regular fa-bell"></i> Hatırlatıcı Ekle
           </button>
         </div>
       </div>
 
-      <!-- BİLGİ ŞERİDİ (Widget 1, 2, 3, 4) -->
+      <!-- BİLGİ ŞERİDİ (Namaz, Döviz, Hava, Deprem) -->
       <div class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-4 md:gap-5">
         
         <!-- Widget: Namaz Vakitleri -->
@@ -392,115 +392,235 @@
 
       </div>
 
-      <!-- ANA BLOKLAR (Sosyal Medya, Takvim, Bülten) -->
-      <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+      <!-- SATIR: ZİYARETLER (Bugün, Yarın, Gelecek) & GÖREVLER (Bugün, Gelecek) -->
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
         
-        <!-- Sol 2 Kolon: SOSYAL MEDYA TAKVİMİ & BÜLTEN -->
-        <div class="lg:col-span-2 space-y-6">
-          
-          <!-- Widget: Sosyal Medya -->
-          <div id="w_sosyal" class="bg-white dark:bg-darkcard p-5 md:p-6 rounded-2xl border border-slate-200/80 dark:border-slate-800 shadow-sm space-y-5">
-            <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2 border-b border-slate-100 dark:border-slate-800 pb-3">
-              <div>
-                <h3 class="text-sm font-bold text-brand-900 dark:text-sky-300 flex items-center gap-2">
-                  <i class="fa-solid fa-calendar-days text-brand-500"></i> Sosyal Medya Paylaşım Akışı
-                </h3>
-                <p class="text-xs text-slate-400">Önümüzdeki 3 günün planlanan dijital içerikleri</p>
+        <!-- WIDGET: ZİYARETLER (Bugün, Yarın, Gelecek) -->
+        <div id="w_ziyaretler" class="bg-white dark:bg-darkcard p-5 md:p-6 rounded-2xl border border-slate-200/80 dark:border-slate-800 shadow-sm space-y-4">
+          <div class="flex items-center justify-between border-b border-slate-100 dark:border-slate-800 pb-3">
+            <div>
+              <h3 class="text-sm font-bold text-brand-900 dark:text-sky-300 flex items-center gap-2">
+                <i class="fa-solid fa-map-location-dot text-brand-500"></i> Saha Ziyaretleri Takibi
+              </h3>
+              <p class="text-xs text-slate-400">Planlanan kurum ve aile görüşmeleri</p>
+            </div>
+            <button onclick="openModal('visitModal')" class="px-3 py-1.5 bg-brand-50 dark:bg-slate-800 text-brand-700 dark:text-sky-300 rounded-xl text-xs font-bold hover:bg-brand-100 transition">
+              + Ziyaret Ekle
+            </button>
+          </div>
+
+          <div class="space-y-3 text-xs">
+            <!-- BUGÜN -->
+            <div class="p-3 bg-brand-50/50 dark:bg-slate-800/40 border border-brand-100 dark:border-slate-700/60 rounded-xl flex items-start gap-3">
+              <span class="px-2 py-0.5 rounded text-[10px] font-extrabold uppercase bg-brand-700 text-white shrink-0 mt-0.5">Bugün</span>
+              <div class="flex-1 min-w-0">
+                <div class="flex justify-between items-center">
+                  <p class="font-bold text-slate-800 dark:text-slate-200 truncate">Hacı Mehmet Vakfı Ziyareti</p>
+                  <span class="font-mono text-brand-700 dark:text-sky-300 font-bold">14:00</span>
+                </div>
+                <p class="text-[11px] text-slate-500 dark:text-slate-400">Üsküdar • Sosyal Yardım Koordinasyon Görüşmesi</p>
               </div>
-              <button class="px-3 py-1.5 bg-brand-50 dark:bg-slate-800 text-brand-700 dark:text-sky-300 rounded-xl text-xs font-bold hover:bg-brand-100 dark:hover:bg-slate-700 transition self-start sm:self-auto">
-                + Yeni İçerik Planla
-              </button>
             </div>
 
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
-              <!-- BUGÜN -->
-              <div class="bg-brand-50/50 dark:bg-slate-800/40 border border-brand-100 dark:border-slate-700/60 p-4 rounded-xl space-y-3">
+            <!-- YARIN -->
+            <div class="p-3 bg-slate-50 dark:bg-slate-800/40 border border-slate-200/80 dark:border-slate-700/60 rounded-xl flex items-start gap-3">
+              <span class="px-2 py-0.5 rounded text-[10px] font-extrabold uppercase bg-sky-100 dark:bg-sky-950 text-sky-800 dark:text-sky-300 shrink-0 mt-0.5">Yarın</span>
+              <div class="flex-1 min-w-0">
                 <div class="flex justify-between items-center">
-                  <span class="text-[11px] font-extrabold uppercase px-2 py-0.5 rounded-full bg-brand-700 text-white">BUGÜN</span>
-                  <span class="text-[11px] text-slate-500 dark:text-slate-400 font-semibold">18:00</span>
+                  <p class="font-bold text-slate-800 dark:text-slate-200 truncate">Yetim Burs Ailesi Hane Tespiti</p>
+                  <span class="font-mono text-slate-600 dark:text-slate-300 font-bold">11:30</span>
                 </div>
-                <div class="space-y-1">
-                  <div class="flex items-center gap-1.5 text-pink-600 dark:text-pink-400 text-xs font-bold">
-                    <i class="fa-brands fa-instagram"></i> Instagram Reels
-                  </div>
-                  <p class="text-xs font-bold text-slate-800 dark:text-slate-200">Su Kuyusu Açılış Videosu</p>
-                  <p class="text-[11px] text-slate-500 dark:text-slate-400">Çad bölgesi 3. etap su kuyusu teslim montajı.</p>
-                </div>
-                <span class="inline-block px-2 py-0.5 rounded text-[10px] font-bold bg-amber-50 dark:bg-amber-950/40 text-amber-700 dark:text-amber-300 border border-amber-200 dark:border-amber-800">
-                  Yayına Hazır
-                </span>
+                <p class="text-[11px] text-slate-500 dark:text-slate-400">Fatih Bölgesi • Saha İnceleme Heyeti</p>
               </div>
+            </div>
 
-              <!-- YARIN -->
-              <div class="bg-slate-50 dark:bg-slate-800/40 border border-slate-200/80 dark:border-slate-700/60 p-4 rounded-xl space-y-3">
+            <!-- GELECEK -->
+            <div class="p-3 bg-slate-50 dark:bg-slate-800/40 border border-slate-200/80 dark:border-slate-700/60 rounded-xl flex items-start gap-3">
+              <span class="px-2 py-0.5 rounded text-[10px] font-extrabold uppercase bg-slate-200 dark:bg-slate-700 text-slate-700 dark:text-slate-300 shrink-0 mt-0.5">Gelecek</span>
+              <div class="flex-1 min-w-0">
                 <div class="flex justify-between items-center">
-                  <span class="text-[11px] font-extrabold uppercase px-2 py-0.5 rounded-full bg-slate-200 dark:bg-slate-700 text-slate-700 dark:text-slate-300">YARIN</span>
-                  <span class="text-[11px] text-slate-500 dark:text-slate-400 font-semibold">12:30</span>
+                  <p class="font-bold text-slate-800 dark:text-slate-200 truncate">Pendik Lojistik Depo Teftişi</p>
+                  <span class="font-mono text-slate-500 dark:text-slate-400 text-[11px]">30 Eyl, 10:00</span>
                 </div>
-                <div class="space-y-1">
-                  <div class="flex items-center gap-1.5 text-red-600 dark:text-red-400 text-xs font-bold">
-                    <i class="fa-brands fa-youtube"></i> YouTube Shorts
-                  </div>
-                  <p class="text-xs font-bold text-slate-800 dark:text-slate-200">Yetim Kırtasiye Dağıtımı</p>
-                  <p class="text-[11px] text-slate-500 dark:text-slate-400">Saha ekibi çanta teslim anları kurgusu.</p>
-                </div>
-                <span class="inline-block px-2 py-0.5 rounded text-[10px] font-bold bg-sky-50 dark:bg-sky-950/40 text-sky-700 dark:text-sky-300 border border-sky-200 dark:border-sky-800">
-                  Kurguda
-                </span>
-              </div>
-
-              <!-- ÖBÜR GÜN -->
-              <div class="bg-slate-50 dark:bg-slate-800/40 border border-slate-200/80 dark:border-slate-700/60 p-4 rounded-xl space-y-3">
-                <div class="flex justify-between items-center">
-                  <span class="text-[11px] font-extrabold uppercase px-2 py-0.5 rounded-full bg-slate-200 dark:bg-slate-700 text-slate-700 dark:text-slate-300">ÖBÜR GÜN</span>
-                  <span class="text-[11px] text-slate-500 dark:text-slate-400 font-semibold">20:00</span>
-                </div>
-                <div class="space-y-1">
-                  <div class="flex items-center gap-1.5 text-slate-800 dark:text-slate-300 text-xs font-bold">
-                    <i class="fa-brands fa-x-twitter"></i> X / Twitter Post
-                  </div>
-                  <p class="text-xs font-bold text-slate-800 dark:text-slate-200">Haftalık Faaliyet Bülteni</p>
-                  <p class="text-[11px] text-slate-500 dark:text-slate-400">Haftalık yardım istatistikleri infografiği.</p>
-                </div>
-                <span class="inline-block px-2 py-0.5 rounded text-[10px] font-bold bg-slate-200 dark:bg-slate-700 text-slate-600 dark:text-slate-300">
-                  Taslak Halinde
-                </span>
+                <p class="text-[11px] text-slate-500 dark:text-slate-400">Pendik Depo • Kışlık Sevkiyat Hazırlığı</p>
               </div>
             </div>
           </div>
-
-          <!-- Widget: Haberler / Bülten -->
-          <div id="w_haber" class="bg-white dark:bg-darkcard p-5 md:p-6 rounded-2xl border border-slate-200/80 dark:border-slate-800 shadow-sm space-y-3">
-            <h4 class="text-xs font-bold text-brand-900 dark:text-sky-300 flex items-center gap-2">
-              <i class="fa-regular fa-newspaper text-brand-500"></i> Güncel Gelişmeler & Bülten
-            </h4>
-            <div class="space-y-2 text-xs">
-              <div class="flex items-center justify-between p-2.5 rounded-xl hover:bg-slate-50 dark:hover:bg-slate-800/50 transition border border-slate-100 dark:border-slate-800">
-                <div class="flex items-center gap-2.5 truncate">
-                  <span class="w-2 h-2 rounded-full bg-brand-500 shrink-0"></span>
-                  <p class="text-slate-800 dark:text-slate-200 font-semibold truncate">Afrika Kış Yardımları ve Gıda Dağıtım Seferberliği Başladı</p>
-                </div>
-                <span class="text-[11px] text-slate-400 font-mono shrink-0 ml-2">Bugün</span>
-              </div>
-              <div class="flex items-center justify-between p-2.5 rounded-xl hover:bg-slate-50 dark:hover:bg-slate-800/50 transition border border-slate-100 dark:border-slate-800">
-                <div class="flex items-center gap-2.5 truncate">
-                  <span class="w-2 h-2 rounded-full bg-emerald-500 shrink-0"></span>
-                  <p class="text-slate-800 dark:text-slate-200 font-semibold truncate">İstanbul İçi Eğitim Destek Bursları Başvuruları İnceleniyor</p>
-                </div>
-                <span class="text-[11px] text-slate-400 font-mono shrink-0 ml-2">Dün</span>
-              </div>
-            </div>
-          </div>
-
         </div>
 
-        <!-- Sağ 1 Kolon: GOOGLE TAKVİM & AI -->
+        <!-- WIDGET: İŞ VE GÖREVLER (Bugün & Gelecek) -->
+        <div id="w_gorevler" class="bg-white dark:bg-darkcard p-5 md:p-6 rounded-2xl border border-slate-200/80 dark:border-slate-800 shadow-sm space-y-4">
+          <div class="flex items-center justify-between border-b border-slate-100 dark:border-slate-800 pb-3">
+            <div>
+              <h3 class="text-sm font-bold text-brand-900 dark:text-sky-300 flex items-center gap-2">
+                <i class="fa-solid fa-list-check text-brand-500"></i> İş ve Görevler
+              </h3>
+              <p class="text-xs text-slate-400">Tamamlanması gereken operasyonel adımlar</p>
+            </div>
+            <button onclick="openModal('taskModal')" class="px-3 py-1.5 bg-brand-50 dark:bg-slate-800 text-brand-700 dark:text-sky-300 rounded-xl text-xs font-bold hover:bg-brand-100 transition">
+              + Görev Ekle
+            </button>
+          </div>
+
+          <div class="space-y-3 text-xs">
+            <!-- BUGÜNKÜ GÖREVLER -->
+            <div class="space-y-2">
+              <span class="text-[10px] font-extrabold text-slate-400 uppercase tracking-wider block">Bugünkü Görevler</span>
+              <div class="p-3 rounded-xl bg-slate-50 dark:bg-slate-800/40 border border-slate-200/80 dark:border-slate-700/60 flex items-center justify-between">
+                <div class="flex items-center gap-2.5 truncate">
+                  <input type="checkbox" class="w-4 h-4 accent-brand-600 rounded">
+                  <span class="font-bold text-slate-800 dark:text-slate-200 truncate">Çad Su Kuyusu raporlarını bağışçıya ilet</span>
+                </div>
+                <span class="px-2 py-0.5 rounded text-[10px] font-bold bg-rose-50 dark:bg-rose-950/40 text-rose-600 dark:text-rose-400 shrink-0">Acil</span>
+              </div>
+              <div class="p-3 rounded-xl bg-slate-50 dark:bg-slate-800/40 border border-slate-200/80 dark:border-slate-700/60 flex items-center justify-between">
+                <div class="flex items-center gap-2.5 truncate">
+                  <input type="checkbox" class="w-4 h-4 accent-brand-600 rounded">
+                  <span class="font-bold text-slate-800 dark:text-slate-200 truncate">Haftalık web sitesi bülteni veri kontrolü</span>
+                </div>
+                <span class="px-2 py-0.5 rounded text-[10px] font-bold bg-amber-50 dark:bg-amber-950/40 text-amber-700 dark:text-amber-300 shrink-0">Normal</span>
+              </div>
+            </div>
+
+            <!-- GELECEK GÖREVLER -->
+            <div class="space-y-2 pt-1 border-t border-slate-100 dark:border-slate-800">
+              <span class="text-[10px] font-extrabold text-slate-400 uppercase tracking-wider block">Gelecek Görevler</span>
+              <div class="p-3 rounded-xl bg-slate-50 dark:bg-slate-800/40 border border-slate-200/80 dark:border-slate-700/60 flex items-center justify-between">
+                <div class="flex items-center gap-2.5 truncate">
+                  <input type="checkbox" class="w-4 h-4 accent-brand-600 rounded">
+                  <span class="font-medium text-slate-700 dark:text-slate-300 truncate">Ekim ayı yetim burs listesi teyit mülakatları</span>
+                </div>
+                <span class="text-[11px] text-slate-400 font-mono shrink-0">02 Ekim</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- SATIR: HATIRLATMALAR & SOSYAL MEDYA TAKVİMİ -->
+      <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+        
+        <!-- WIDGET: HATIRLATICILAR (Bugün & Gelecek) -->
+        <div id="w_hatirlaticilar" class="bg-white dark:bg-darkcard p-5 md:p-6 rounded-2xl border border-slate-200/80 dark:border-slate-800 shadow-sm space-y-4">
+          <div class="flex items-center justify-between border-b border-slate-100 dark:border-slate-800 pb-3">
+            <div>
+              <h3 class="text-sm font-bold text-brand-900 dark:text-sky-300 flex items-center gap-2">
+                <i class="fa-solid fa-bell text-amber-500"></i> Hatırlatıcılar
+              </h3>
+              <p class="text-xs text-slate-400">Sistem ve operasyon notları</p>
+            </div>
+            <button onclick="openModal('notifModal')" class="px-2.5 py-1 bg-amber-50 dark:bg-amber-950/40 text-amber-700 dark:text-amber-300 rounded-lg text-xs font-bold hover:bg-amber-100 transition">
+              + Ekle
+            </button>
+          </div>
+
+          <div class="space-y-3 text-xs">
+            <!-- BUGÜN -->
+            <div class="p-3 bg-amber-50/50 dark:bg-amber-950/20 border border-amber-200/60 dark:border-amber-900/40 rounded-xl space-y-1">
+              <div class="flex justify-between items-center">
+                <span class="text-[10px] font-extrabold uppercase px-1.5 py-0.5 rounded bg-amber-200/70 text-amber-900 dark:bg-amber-900 dark:text-amber-200">Bugün</span>
+                <span class="text-[11px] font-mono text-slate-500 dark:text-slate-400">16:30</span>
+              </div>
+              <p class="font-bold text-slate-800 dark:text-slate-200">Yönetim Kurulu WhatsApp Özeti</p>
+              <p class="text-[11px] text-slate-600 dark:text-slate-400">Günlük saha istatistikleri ve bağış özeti gruba iletilecek.</p>
+            </div>
+
+            <!-- GELECEK -->
+            <div class="p-3 bg-slate-50 dark:bg-slate-800/40 border border-slate-200/80 dark:border-slate-700/60 rounded-xl space-y-1">
+              <div class="flex justify-between items-center">
+                <span class="text-[10px] font-extrabold uppercase px-1.5 py-0.5 rounded bg-slate-200 dark:bg-slate-700 text-slate-700 dark:text-slate-300">Gelecek (Yarın)</span>
+                <span class="text-[11px] font-mono text-slate-400">10:00</span>
+              </div>
+              <p class="font-bold text-slate-800 dark:text-slate-200">Sunucu & Veritabanı Yedeği</p>
+              <p class="text-[11px] text-slate-500 dark:text-slate-400">Aylık sistem CRM ve dosya arşivleme kontrolü yapılacak.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- WIDGET: SOSYAL MEDYA TAKVİMİ (Bugün, Yarın, Öbür Gün) -->
+        <div id="w_sosyal" class="lg:col-span-2 bg-white dark:bg-darkcard p-5 md:p-6 rounded-2xl border border-slate-200/80 dark:border-slate-800 shadow-sm space-y-4">
+          <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2 border-b border-slate-100 dark:border-slate-800 pb-3">
+            <div>
+              <h3 class="text-sm font-bold text-brand-900 dark:text-sky-300 flex items-center gap-2">
+                <i class="fa-solid fa-calendar-days text-brand-500"></i> Sosyal Medya Paylaşım Akışı
+              </h3>
+              <p class="text-xs text-slate-400">Önümüzdeki 3 günün planlanan dijital içerikleri</p>
+            </div>
+            <button class="px-3 py-1.5 bg-brand-50 dark:bg-slate-800 text-brand-700 dark:text-sky-300 rounded-xl text-xs font-bold hover:bg-brand-100 transition self-start sm:self-auto">
+              + Yeni İçerik Planla
+            </button>
+          </div>
+
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-3">
+            <!-- BUGÜN -->
+            <div class="bg-brand-50/50 dark:bg-slate-800/40 border border-brand-100 dark:border-slate-700/60 p-3.5 rounded-xl space-y-2.5">
+              <div class="flex justify-between items-center">
+                <span class="text-[10px] font-extrabold uppercase px-2 py-0.5 rounded-full bg-brand-700 text-white">BUGÜN</span>
+                <span class="text-[11px] text-slate-500 dark:text-slate-400 font-semibold">18:00</span>
+              </div>
+              <div>
+                <div class="flex items-center gap-1.5 text-pink-600 dark:text-pink-400 text-xs font-bold">
+                  <i class="fa-brands fa-instagram"></i> Instagram Reels
+                </div>
+                <p class="text-xs font-bold text-slate-800 dark:text-slate-200 mt-1">Su Kuyusu Açılış Videosu</p>
+                <p class="text-[11px] text-slate-500 dark:text-slate-400">Çad bölgesi 3. etap su kuyusu teslim montajı.</p>
+              </div>
+              <span class="inline-block px-2 py-0.5 rounded text-[10px] font-bold bg-amber-50 dark:bg-amber-950/40 text-amber-700 dark:text-amber-300 border border-amber-200 dark:border-amber-800">
+                Yayına Hazır
+              </span>
+            </div>
+
+            <!-- YARIN -->
+            <div class="bg-slate-50 dark:bg-slate-800/40 border border-slate-200/80 dark:border-slate-700/60 p-3.5 rounded-xl space-y-2.5">
+              <div class="flex justify-between items-center">
+                <span class="text-[10px] font-extrabold uppercase px-2 py-0.5 rounded-full bg-slate-200 dark:bg-slate-700 text-slate-700 dark:text-slate-300">YARIN</span>
+                <span class="text-[11px] text-slate-500 dark:text-slate-400 font-semibold">12:30</span>
+              </div>
+              <div>
+                <div class="flex items-center gap-1.5 text-red-600 dark:text-red-400 text-xs font-bold">
+                  <i class="fa-brands fa-youtube"></i> YouTube Shorts
+                </div>
+                <p class="text-xs font-bold text-slate-800 dark:text-slate-200 mt-1">Yetim Kırtasiye Dağıtımı</p>
+                <p class="text-[11px] text-slate-500 dark:text-slate-400">Saha ekibi çanta teslim anları kurgusu.</p>
+              </div>
+              <span class="inline-block px-2 py-0.5 rounded text-[10px] font-bold bg-sky-50 dark:bg-sky-950/40 text-sky-700 dark:text-sky-300 border border-sky-200 dark:border-sky-800">
+                Kurguda
+              </span>
+            </div>
+
+            <!-- ÖBÜR GÜN -->
+            <div class="bg-slate-50 dark:bg-slate-800/40 border border-slate-200/80 dark:border-slate-700/60 p-3.5 rounded-xl space-y-2.5">
+              <div class="flex justify-between items-center">
+                <span class="text-[10px] font-extrabold uppercase px-2 py-0.5 rounded-full bg-slate-200 dark:bg-slate-700 text-slate-700 dark:text-slate-300">ÖBÜR GÜN</span>
+                <span class="text-[11px] text-slate-500 dark:text-slate-400 font-semibold">20:00</span>
+              </div>
+              <div>
+                <div class="flex items-center gap-1.5 text-slate-800 dark:text-slate-300 text-xs font-bold">
+                  <i class="fa-brands fa-x-twitter"></i> X / Twitter Post
+                </div>
+                <p class="text-xs font-bold text-slate-800 dark:text-slate-200 mt-1">Haftalık Faaliyet Bülteni</p>
+                <p class="text-[11px] text-slate-500 dark:text-slate-400">Haftalık yardım istatistikleri infografiği.</p>
+              </div>
+              <span class="inline-block px-2 py-0.5 rounded text-[10px] font-bold bg-slate-200 dark:bg-slate-700 text-slate-600 dark:text-slate-300">
+                Taslak Halinde
+              </span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- SATIR: GOOGLE TAKVİM & AYRI YAPAY ZEKA KARTI & BÜLTEN -->
+      <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+        
+        <!-- WIDGET: GOOGLE TAKVİM (BAĞIMSIZ KART) -->
         <div id="w_takvim" class="bg-white dark:bg-darkcard p-5 md:p-6 rounded-2xl border border-slate-200/80 dark:border-slate-800 shadow-sm space-y-4">
           <div class="flex items-center justify-between border-b border-slate-100 dark:border-slate-800 pb-3">
             <h3 class="text-sm font-bold text-brand-900 dark:text-sky-300 flex items-center gap-2">
               <i class="fa-solid fa-calendar-check text-brand-500"></i> Google Takvim
             </h3>
-            <span class="text-[11px] font-bold text-brand-600 dark:text-sky-400">Görüşmeler</span>
+            <span class="text-[11px] font-bold text-brand-600 dark:text-sky-400">Etkinlikler</span>
           </div>
 
           <div class="space-y-3">
@@ -523,20 +643,55 @@
               <p class="text-[11px] text-slate-500 dark:text-slate-400">Depo & Dağıtım Ekibi İle</p>
             </div>
           </div>
+        </div>
 
-          <!-- AI Soru Kutusu -->
-          <div class="pt-2 border-t border-slate-100 dark:border-slate-800">
-            <label class="block text-[11px] font-bold text-slate-700 dark:text-slate-300 uppercase tracking-wider mb-1.5 flex items-center gap-1.5">
-              <i class="fa-solid fa-robot text-brand-500"></i> Yapay Zekaya Sor
-            </label>
-            <div class="flex gap-2">
-              <input type="text" placeholder="Görev oluştur, bülten sor..." class="flex-1 px-3 py-2 bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-xl text-xs focus:outline-none focus:border-brand-400 dark:text-white">
-              <button class="px-3 py-2 bg-brand-700 hover:bg-brand-800 text-white rounded-xl text-xs transition">
-                <i class="fa-solid fa-paper-plane"></i>
+        <!-- WIDGET: YAPAY ZEKAYA SOR (AYRI BAĞIMSIZ KART) -->
+        <div id="w_ai" class="bg-white dark:bg-darkcard p-5 md:p-6 rounded-2xl border border-slate-200/80 dark:border-slate-800 shadow-sm space-y-4">
+          <div class="flex items-center justify-between border-b border-slate-100 dark:border-slate-800 pb-3">
+            <h3 class="text-sm font-bold text-brand-900 dark:text-sky-300 flex items-center gap-2">
+              <i class="fa-solid fa-robot text-purple-500"></i> Yapay Zekaya Sor
+            </h3>
+            <span class="text-[10px] font-extrabold uppercase px-2 py-0.5 rounded-full bg-purple-100 dark:bg-purple-950 text-purple-700 dark:text-purple-300">Asistan</span>
+          </div>
+
+          <p class="text-xs text-slate-500 dark:text-slate-400">
+            Bağışçı teşekkür mektubu, sosyal medya metni, basın bülteni veya görev taslaklarını doğrudan sorun:
+          </p>
+
+          <div class="space-y-3">
+            <textarea rows="3" placeholder="ör. Afrika su kuyusu açılışı için duygusal bir bağışçı teşekkür mesajı taslağı hazırla..." class="w-full px-3 py-2 bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-xl text-xs focus:outline-none focus:border-purple-500 dark:text-white resize-none"></textarea>
+            <div class="flex justify-end">
+              <button class="px-4 py-2 bg-purple-600 hover:bg-purple-700 text-white rounded-xl text-xs font-bold transition flex items-center gap-2 shadow-md shadow-purple-900/20">
+                <i class="fa-solid fa-paper-plane"></i> Gönder & Yanıtla
               </button>
             </div>
           </div>
+        </div>
 
+        <!-- WIDGET: GÜNCEL GELİŞMELER & BÜLTEN -->
+        <div id="w_haber" class="bg-white dark:bg-darkcard p-5 md:p-6 rounded-2xl border border-slate-200/80 dark:border-slate-800 shadow-sm space-y-3">
+          <div class="flex items-center justify-between border-b border-slate-100 dark:border-slate-800 pb-3">
+            <h4 class="text-xs font-bold text-brand-900 dark:text-sky-300 flex items-center gap-2">
+              <i class="fa-regular fa-newspaper text-brand-500"></i> Güncel Gelişmeler & Bülten
+            </h4>
+            <span class="text-[11px] text-brand-600 dark:text-sky-400 font-bold">Haberler</span>
+          </div>
+          <div class="space-y-2.5 text-xs">
+            <div class="p-2.5 rounded-xl hover:bg-slate-50 dark:hover:bg-slate-800/50 transition border border-slate-100 dark:border-slate-800 flex items-center justify-between">
+              <div class="flex items-center gap-2.5 truncate">
+                <span class="w-2 h-2 rounded-full bg-brand-500 shrink-0"></span>
+                <p class="text-slate-800 dark:text-slate-200 font-semibold truncate">Afrika Kış Yardımları ve Gıda Dağıtım Seferberliği Başladı</p>
+              </div>
+              <span class="text-[11px] text-slate-400 font-mono shrink-0 ml-2">Bugün</span>
+            </div>
+            <div class="p-2.5 rounded-xl hover:bg-slate-50 dark:hover:bg-slate-800/50 transition border border-slate-100 dark:border-slate-800 flex items-center justify-between">
+              <div class="flex items-center gap-2.5 truncate">
+                <span class="w-2 h-2 rounded-full bg-emerald-500 shrink-0"></span>
+                <p class="text-slate-800 dark:text-slate-200 font-semibold truncate">İstanbul İçi Eğitim Destek Bursları Başvuruları İnceleniyor</p>
+              </div>
+              <span class="text-[11px] text-slate-400 font-mono shrink-0 ml-2">Dün</span>
+            </div>
+          </div>
         </div>
 
       </div>
@@ -546,7 +701,7 @@
 
   <!-- ================= 4. WIDGET DÜZENLEME MODAL (AÇ/KAPA) ================= -->
   <div id="widgetModal" class="hidden fixed inset-0 z-50 flex items-center justify-center bg-slate-900/60 backdrop-blur-sm p-4">
-    <div class="bg-white dark:bg-darkcard border border-slate-100 dark:border-slate-800 p-6 rounded-3xl w-full max-w-md shadow-2xl space-y-4">
+    <div class="bg-white dark:bg-darkcard border border-slate-100 dark:border-slate-800 p-6 rounded-3xl w-full max-w-md shadow-2xl space-y-4 max-h-[90vh] overflow-y-auto custom-scroll">
       <div class="flex justify-between items-center border-b border-slate-100 dark:border-slate-800 pb-3">
         <h3 class="text-base font-bold text-brand-900 dark:text-white flex items-center gap-2">
           <i class="fa-solid fa-table-cells-large text-brand-500"></i> Widget'ları Düzenle
@@ -555,13 +710,13 @@
       </div>
       <p class="text-xs text-slate-500 dark:text-slate-400">Ana sayfada görmek istediğiniz bileşenleri açıp kapatabilirsiniz:</p>
 
-      <div class="space-y-2.5 text-xs">
+      <div class="space-y-2 text-xs">
         <label class="flex items-center justify-between p-2.5 rounded-xl bg-slate-50 dark:bg-slate-800 cursor-pointer">
           <span class="font-semibold text-slate-800 dark:text-slate-200 flex items-center gap-2"><i class="fa-solid fa-mosque text-brand-500"></i> Namaz Vakitleri</span>
           <input type="checkbox" id="toggle_namaz" onchange="toggleWidgetVisibility('namaz')" checked class="w-4 h-4 accent-brand-600">
         </label>
         <label class="flex items-center justify-between p-2.5 rounded-xl bg-slate-50 dark:bg-slate-800 cursor-pointer">
-          <span class="font-semibold text-slate-800 dark:text-slate-200 flex items-center gap-2"><i class="fa-solid fa-coins text-amber-500"></i> Döviz & Altın Piyasaları</span>
+          <span class="font-semibold text-slate-800 dark:text-slate-200 flex items-center gap-2"><i class="fa-solid fa-coins text-amber-500"></i> Döviz & Altın</span>
           <input type="checkbox" id="toggle_piyasa" onchange="toggleWidgetVisibility('piyasa')" checked class="w-4 h-4 accent-brand-600">
         </label>
         <label class="flex items-center justify-between p-2.5 rounded-xl bg-slate-50 dark:bg-slate-800 cursor-pointer">
@@ -573,16 +728,32 @@
           <input type="checkbox" id="toggle_deprem" onchange="toggleWidgetVisibility('deprem')" checked class="w-4 h-4 accent-brand-600">
         </label>
         <label class="flex items-center justify-between p-2.5 rounded-xl bg-slate-50 dark:bg-slate-800 cursor-pointer">
+          <span class="font-semibold text-slate-800 dark:text-slate-200 flex items-center gap-2"><i class="fa-solid fa-map-location-dot text-brand-500"></i> Saha Ziyaretleri Takibi</span>
+          <input type="checkbox" id="toggle_ziyaretler" onchange="toggleWidgetVisibility('ziyaretler')" checked class="w-4 h-4 accent-brand-600">
+        </label>
+        <label class="flex items-center justify-between p-2.5 rounded-xl bg-slate-50 dark:bg-slate-800 cursor-pointer">
+          <span class="font-semibold text-slate-800 dark:text-slate-200 flex items-center gap-2"><i class="fa-solid fa-list-check text-brand-500"></i> İş ve Görevler</span>
+          <input type="checkbox" id="toggle_gorevler" onchange="toggleWidgetVisibility('gorevler')" checked class="w-4 h-4 accent-brand-600">
+        </label>
+        <label class="flex items-center justify-between p-2.5 rounded-xl bg-slate-50 dark:bg-slate-800 cursor-pointer">
+          <span class="font-semibold text-slate-800 dark:text-slate-200 flex items-center gap-2"><i class="fa-solid fa-bell text-amber-500"></i> Hatırlatıcılar</span>
+          <input type="checkbox" id="toggle_hatirlaticilar" onchange="toggleWidgetVisibility('hatirlaticilar')" checked class="w-4 h-4 accent-brand-600">
+        </label>
+        <label class="flex items-center justify-between p-2.5 rounded-xl bg-slate-50 dark:bg-slate-800 cursor-pointer">
           <span class="font-semibold text-slate-800 dark:text-slate-200 flex items-center gap-2"><i class="fa-solid fa-calendar-days text-brand-500"></i> Sosyal Medya Paylaşım Akışı</span>
           <input type="checkbox" id="toggle_sosyal" onchange="toggleWidgetVisibility('sosyal')" checked class="w-4 h-4 accent-brand-600">
         </label>
         <label class="flex items-center justify-between p-2.5 rounded-xl bg-slate-50 dark:bg-slate-800 cursor-pointer">
-          <span class="font-semibold text-slate-800 dark:text-slate-200 flex items-center gap-2"><i class="fa-regular fa-newspaper text-emerald-500"></i> Güncel Gelişmeler & Bülten</span>
-          <input type="checkbox" id="toggle_haber" onchange="toggleWidgetVisibility('haber')" checked class="w-4 h-4 accent-brand-600">
+          <span class="font-semibold text-slate-800 dark:text-slate-200 flex items-center gap-2"><i class="fa-solid fa-calendar-check text-brand-500"></i> Google Takvim</span>
+          <input type="checkbox" id="toggle_takvim" onchange="toggleWidgetVisibility('takvim')" checked class="w-4 h-4 accent-brand-600">
         </label>
         <label class="flex items-center justify-between p-2.5 rounded-xl bg-slate-50 dark:bg-slate-800 cursor-pointer">
-          <span class="font-semibold text-slate-800 dark:text-slate-200 flex items-center gap-2"><i class="fa-solid fa-calendar-check text-brand-500"></i> Google Takvim & Yapay Zeka</span>
-          <input type="checkbox" id="toggle_takvim" onchange="toggleWidgetVisibility('takvim')" checked class="w-4 h-4 accent-brand-600">
+          <span class="font-semibold text-slate-800 dark:text-slate-200 flex items-center gap-2"><i class="fa-solid fa-robot text-purple-500"></i> Yapay Zekaya Sor</span>
+          <input type="checkbox" id="toggle_ai" onchange="toggleWidgetVisibility('ai')" checked class="w-4 h-4 accent-brand-600">
+        </label>
+        <label class="flex items-center justify-between p-2.5 rounded-xl bg-slate-50 dark:bg-slate-800 cursor-pointer">
+          <span class="font-semibold text-slate-800 dark:text-slate-200 flex items-center gap-2"><i class="fa-regular fa-newspaper text-emerald-500"></i> Güncel Gelişmeler & Bülten</span>
+          <input type="checkbox" id="toggle_haber" onchange="toggleWidgetVisibility('haber')" checked class="w-4 h-4 accent-brand-600">
         </label>
       </div>
 
@@ -592,7 +763,7 @@
     </div>
   </div>
 
-  <!-- ================= 5. DİĞER MODALLAR (Profil, Görev, Ziyaret, Bildirim) ================= -->
+  <!-- ================= 5. HIZLI İŞLEM MODALLARI ================= -->
   <!-- Hızlı Görev Modal -->
   <div id="taskModal" class="hidden fixed inset-0 z-50 flex items-center justify-center bg-slate-900/60 backdrop-blur-sm p-4">
     <div class="bg-white dark:bg-darkcard border border-slate-100 dark:border-slate-800 p-6 rounded-3xl w-full max-w-md shadow-2xl space-y-4">
@@ -606,8 +777,10 @@
           <input type="text" required placeholder="ör. Bağışçı teşekkür mektupları" class="w-full px-3 py-2 bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-xl text-xs">
         </div>
         <div>
-          <label class="block text-xs font-semibold text-slate-600 dark:text-slate-400 mb-1">Atanan Kişi / Birim</label>
-          <input type="text" required placeholder="ör. Emre Dereci (Medya)" class="w-full px-3 py-2 bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-xl text-xs">
+          <label class="block text-xs font-semibold text-slate-600 dark:text-slate-400 mb-1">Zamanlama</label>
+          <select class="w-full px-3 py-2 bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-xl text-xs">
+            <option>Bugün</option><option>Gelecek</option>
+          </select>
         </div>
         <div>
           <label class="block text-xs font-semibold text-slate-600 dark:text-slate-400 mb-1">Öncelik</label>
@@ -637,12 +810,14 @@
         </div>
         <div class="grid grid-cols-2 gap-2">
           <div>
-            <label class="block text-xs font-semibold text-slate-600 dark:text-slate-400 mb-1">Bölge / İlçe</label>
-            <input type="text" required placeholder="Üsküdar" class="w-full px-3 py-2 bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-xl text-xs">
+            <label class="block text-xs font-semibold text-slate-600 dark:text-slate-400 mb-1">Dönem</label>
+            <select class="w-full px-3 py-2 bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-xl text-xs">
+              <option>Bugün</option><option>Yarın</option><option>Gelecek</option>
+            </select>
           </div>
           <div>
-            <label class="block text-xs font-semibold text-slate-600 dark:text-slate-400 mb-1">Saat</label>
-            <input type="time" required value="14:00" class="w-full px-3 py-2 bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-xl text-xs">
+            <label class="block text-xs font-semibold text-slate-600 dark:text-slate-400 mb-1">Saat / Tarih</label>
+            <input type="text" required placeholder="14:00 veya 05 Ekim" class="w-full px-3 py-2 bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-xl text-xs">
           </div>
         </div>
         <div class="flex justify-end gap-2 pt-2">
@@ -653,17 +828,23 @@
     </div>
   </div>
 
-  <!-- Hızlı Bildirim Modal -->
+  <!-- Hızlı Hatırlatıcı Modal -->
   <div id="notifModal" class="hidden fixed inset-0 z-50 flex items-center justify-center bg-slate-900/60 backdrop-blur-sm p-4">
     <div class="bg-white dark:bg-darkcard border border-slate-100 dark:border-slate-800 p-6 rounded-3xl w-full max-w-md shadow-2xl space-y-4">
       <div class="flex justify-between items-center border-b border-slate-100 dark:border-slate-800 pb-3">
-        <h3 class="text-base font-bold text-brand-900 dark:text-white flex items-center gap-2"><i class="fa-regular fa-bell text-brand-500"></i> Hızlı Bildirim Ekle</h3>
+        <h3 class="text-base font-bold text-brand-900 dark:text-white flex items-center gap-2"><i class="fa-solid fa-bell text-amber-500"></i> Hızlı Hatırlatıcı Ekle</h3>
         <button onclick="closeModal('notifModal')" class="text-slate-400 hover:text-slate-600"><i class="fa-solid fa-xmark text-lg"></i></button>
       </div>
-      <form onsubmit="handleQuickAction(event, 'Bildirim oluşturuldu!')" class="space-y-3">
+      <form onsubmit="handleQuickAction(event, 'Hatırlatıcı oluşturuldu!')" class="space-y-3">
         <div>
-          <label class="block text-xs font-semibold text-slate-600 dark:text-slate-400 mb-1">Bildirim Metni</label>
-          <textarea required rows="2" placeholder="ör. Yarın bülten revizesi yapılacak." class="w-full px-3 py-2 bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-xl text-xs"></textarea>
+          <label class="block text-xs font-semibold text-slate-600 dark:text-slate-400 mb-1">Hatırlatma Notu</label>
+          <textarea required rows="2" placeholder="ör. Bağışçı teşekkür mektupları hazırlanacak." class="w-full px-3 py-2 bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-xl text-xs"></textarea>
+        </div>
+        <div>
+          <label class="block text-xs font-semibold text-slate-600 dark:text-slate-400 mb-1">Zaman</label>
+          <select class="w-full px-3 py-2 bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-xl text-xs">
+            <option>Bugün</option><option>Gelecek</option>
+          </select>
         </div>
         <div class="flex justify-end gap-2 pt-2">
           <button type="button" onclick="closeModal('notifModal')" class="px-4 py-2 bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 rounded-xl text-xs font-semibold">İptal</button>
@@ -740,7 +921,7 @@
     }
 
     // ================= WIDGET AÇ / KAPA =================
-    const WIDGETS = ['namaz', 'piyasa', 'hava', 'deprem', 'sosyal', 'haber', 'takvim'];
+    const WIDGETS = ['namaz', 'piyasa', 'hava', 'deprem', 'ziyaretler', 'gorevler', 'hatirlaticilar', 'sosyal', 'takvim', 'ai', 'haber'];
 
     function initWidgets() {
       const savedWidgets = JSON.parse(localStorage.getItem('tebessum_widgets')) || {};
@@ -867,7 +1048,7 @@
       if (!notifBtn.contains(e.target) && !notifDropdown.contains(e.target)) notifDropdown.classList.add('hidden');
     });
 
-    // Oturum
+    // Oturum Kontrolü
     async function checkSession() {
       const { data: { session } } = await supabaseClient.auth.getSession();
       const loginSection = document.getElementById('loginSection');
