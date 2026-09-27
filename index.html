@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Veri Yönetim Paneli</title>
+  <!-- Stil ve Grafik Kütüphaneleri -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body class="bg-slate-900 text-slate-100 min-h-screen p-6 font-sans">
+
+  <div class="max-w-6xl mx-auto space-y-6">
+    <!-- Başlık -->
+    <header class="flex justify-between items-center border-b border-slate-800 pb-4">
+      <div>
+        <h1 class="text-2xl font-bold text-white tracking-wide">Performans ve Veri Paneli</h1>
+        <p class="text-sm text-slate-400">Canlı Sistem Özeti</p>
+      </div>
+      <span class="px-3 py-1 bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 rounded-full text-xs font-semibold">
+        Aktif
+      </span>
+    </header>
+
+    <!-- Özet Bilgi Kartları (KPI) -->
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+      <div class="bg-slate-800/80 p-5 rounded-xl border border-slate-700">
+        <p class="text-xs font-medium text-slate-400 uppercase tracking-wider">Toplam Kayıt</p>
+        <p class="text-3xl font-extrabold text-white mt-2">1,248</p>
+        <p class="text-xs text-emerald-400 mt-2">↑ Geçen aya göre %12 artış</p>
+      </div>
+      <div class="bg-slate-800/80 p-5 rounded-xl border border-slate-700">
+        <p class="text-xs font-medium text-slate-400 uppercase tracking-wider">Tamamlanan İşlem</p>
+        <p class="text-3xl font-extrabold text-white mt-2">982</p>
+        <p class="text-xs text-emerald-400 mt-2">↑ %78 başarı oranı</p>
+      </div>
+      <div class="bg-slate-800/80 p-5 rounded-xl border border-slate-700">
+        <p class="text-xs font-medium text-slate-400 uppercase tracking-wider">Bekleyen Görevler</p>
+        <p class="text-3xl font-extrabold text-amber-400 mt-2">26</p>
+        <p class="text-xs text-slate-400 mt-2">Son 24 saat içinde</p>
+      </div>
+    </div>
+
+    <!-- Grafik Alanı -->
+    <div class="bg-slate-800/80 p-6 rounded-xl border border-slate-700">
+      <h2 class="text-base font-semibold text-white mb-4">Aylık İşlem Hacmi</h2>
+      <div class="relative h-72">
+        <canvas id="veriGrafigi"></canvas>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // Grafik Çizimi (Chart.js)
+    const ctx = document.getElementById('veriGrafigi').getContext('2d');
+    new Chart(ctx, {
+      type: 'line',
+      data: {
+        labels: ['Ocak', 'Şubat', 'Mart', 'Nisan', 'Mayıs', 'Haziran'],
+        datasets: [{
+          label: 'Aylık Veri Akışı',
+          data: [65, 85, 120, 110, 150, 195],
+          borderColor: '#38bdf8',
+          backgroundColor: 'rgba(56, 189, 248, 0.15)',
+          fill: true,
+          tension: 0.35,
+          borderWidth: 2
+        }]
+      },
+      options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        plugins: {
+          legend: { labels: { color: '#94a3b8' } }
+        },
+        scales: {
+          x: { ticks: { color: '#94a3b8' }, grid: { color: '#334155' } },
+          y: { ticks: { color: '#94a3b8' }, grid: { color: '#334155' } }
+        }
+      }
+    });
+  </script>
+</body>
+</html>
