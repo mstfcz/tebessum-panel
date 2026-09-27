@@ -4,11 +4,30 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Tebessüm Derneği — Yönetim Paneli</title>
-  <!-- Tailwind CSS & İkonlar & Grafikler -->
+  <!-- Tailwind CSS & İkonlar & Supabase -->
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              50: '#eff6ff',
+              100: '#dbeafe',
+              200: '#bfdbfe',
+              500: '#1d4ed8',
+              600: '#1e40af',
+              700: '#1d3557',
+              800: '#0f2744',
+              900: '#0a192f'
+            }
+          }
+        }
+      }
+    }
+  </script>
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap');
     body { font-family: 'Plus Jakarta Sans', sans-serif; }
@@ -16,16 +35,18 @@
     .custom-scroll::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 4px; }
   </style>
 </head>
-<body class="bg-[#F8FAFC] text-slate-800 antialiased min-h-screen flex">
+<body class="bg-[#F4F7FB] text-slate-800 antialiased min-h-screen flex">
 
   <!-- ================= 1. GİRİŞ EKRANI ================= -->
   <div id="loginSection" class="fixed inset-0 z-50 flex items-center justify-center bg-slate-900/60 backdrop-blur-sm p-4">
     <div class="bg-white border border-slate-100 p-8 rounded-3xl w-full max-w-md shadow-2xl space-y-6">
       <div class="text-center">
-        <div class="w-16 h-16 bg-indigo-50 text-indigo-600 rounded-2xl flex items-center justify-center mx-auto mb-3 shadow-inner">
-          <i class="fa-solid fa-hand-holding-heart text-2xl"></i>
+        <div class="h-14 flex items-center justify-center mb-3">
+          <img src="https://lh3.googleusercontent.com/d/1Xl5Zz7V_eG8wM3bA0aQp0Xk8h9vK3k8l=w400" 
+               onerror="this.src='https://placehold.co/180x60/0f2744/ffffff?text=TEBESSUM'" 
+               alt="Tebessüm Logo" class="h-12 object-contain mx-auto">
         </div>
-        <h2 class="text-2xl font-bold text-slate-900 tracking-tight">Tebessüm Derneği</h2>
+        <h2 class="text-xl font-bold text-brand-900 tracking-tight">Tebessüm Derneği</h2>
         <p class="text-xs text-slate-500 mt-1">Yönetim ve Operasyon Portalı</p>
       </div>
 
@@ -34,13 +55,13 @@
       <form id="loginForm" class="space-y-4" onsubmit="handleLogin(event)">
         <div>
           <label class="block text-xs font-semibold uppercase text-slate-600 mb-1">E-Posta</label>
-          <input type="email" id="emailInput" required placeholder="ad.soyad@tebessum.org.tr" class="w-full px-4 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-sm focus:outline-none focus:border-indigo-500 focus:bg-white transition">
+          <input type="email" id="emailInput" required placeholder="ad.soyad@tebessum.org.tr" class="w-full px-4 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-sm focus:outline-none focus:border-brand-500 focus:bg-white transition">
         </div>
         <div>
           <label class="block text-xs font-semibold uppercase text-slate-600 mb-1">Şifre</label>
-          <input type="password" id="passwordInput" required placeholder="••••••••" class="w-full px-4 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-sm focus:outline-none focus:border-indigo-500 focus:bg-white transition">
+          <input type="password" id="passwordInput" required placeholder="••••••••" class="w-full px-4 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-sm focus:outline-none focus:border-brand-500 focus:bg-white transition">
         </div>
-        <button id="loginBtn" type="submit" class="w-full py-3 bg-indigo-600 hover:bg-indigo-700 text-white font-semibold rounded-xl transition shadow-lg shadow-indigo-200 text-sm">
+        <button id="loginBtn" type="submit" class="w-full py-3 bg-brand-700 hover:bg-brand-800 text-white font-semibold rounded-xl transition shadow-lg shadow-brand-700/20 text-sm">
           Giriş Yap
         </button>
       </form>
@@ -49,22 +70,24 @@
 
   <!-- ================= 2. SOL DİKEY MENÜ (SIDEBAR) ================= -->
   <aside class="w-64 bg-white border-r border-slate-200 flex flex-col shrink-0 min-h-screen">
-    <!-- Logo Alanı -->
-    <div class="p-6 flex items-center gap-3 border-b border-slate-100">
-      <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-indigo-600 to-violet-500 text-white flex items-center justify-center font-extrabold text-lg shadow-md shadow-indigo-100">
-        T
-      </div>
-      <div>
-        <h1 class="text-sm font-bold text-slate-900 leading-tight">TEBESSÜM</h1>
-        <p class="text-[10px] font-semibold text-slate-400 tracking-wider uppercase">Derneği Portalı</p>
+    <!-- Kurumsal Logo Alanı -->
+    <div class="p-5 flex items-center justify-center border-b border-slate-100 h-20">
+      <div class="flex items-center gap-3">
+        <div class="w-10 h-10 rounded-xl bg-brand-800 text-white flex items-center justify-center font-black text-lg shadow-md shadow-brand-900/10">
+          <i class="fa-solid fa-hand-holding-heart text-sky-400"></i>
+        </div>
+        <div>
+          <h1 class="text-sm font-extrabold text-brand-900 tracking-wider">TEBESSÜM</h1>
+          <p class="text-[10px] font-bold text-sky-600 uppercase tracking-widest">Derneği</p>
+        </div>
       </div>
     </div>
 
     <!-- Menü Başlıkları -->
     <div class="p-4 flex-1 overflow-y-auto custom-scroll space-y-1">
       <div class="px-3 pb-2 text-[10px] font-bold text-slate-400 tracking-wider uppercase">Genel</div>
-      <a href="#" class="flex items-center gap-3 px-3.5 py-2.5 rounded-xl bg-indigo-50 text-indigo-700 font-semibold text-xs transition">
-        <i class="fa-solid fa-chart-pie w-4 text-center"></i>
+      <a href="#" class="flex items-center gap-3 px-3.5 py-2.5 rounded-xl bg-brand-50 text-brand-700 font-semibold text-xs border border-brand-100">
+        <i class="fa-solid fa-chart-pie w-4 text-center text-brand-600"></i>
         <span>Ana Sayfa</span>
       </a>
 
@@ -86,8 +109,8 @@
         <span>4. Bağışçı Arama</span>
       </a>
       <a href="#" class="flex items-center gap-3 px-3.5 py-2 rounded-xl text-slate-600 hover:bg-slate-50 hover:text-slate-900 font-medium text-xs transition">
-        <i class="fa-solid fa-calendar-days w-4 text-center text-slate-400"></i>
-        <span>5. Sosyal Medya Takvimi</span>
+        <i class="fa-solid fa-calendar-days w-4 text-center text-brand-600"></i>
+        <span class="font-semibold text-brand-900">5. Sosyal Medya</span>
       </a>
       <a href="#" class="flex items-center gap-3 px-3.5 py-2 rounded-xl text-slate-600 hover:bg-slate-50 hover:text-slate-900 font-medium text-xs transition">
         <i class="fa-solid fa-seedling w-4 text-center text-slate-400"></i>
@@ -116,271 +139,369 @@
         <span>11. Ayarlar & Yetkiler</span>
       </a>
     </div>
-
-    <!-- Alt Profil Özeti & Çıkış -->
-    <div class="p-4 border-t border-slate-100 bg-slate-50/50 flex items-center justify-between">
-      <div class="flex items-center gap-2 overflow-hidden">
-        <div class="w-8 h-8 rounded-full bg-indigo-100 text-indigo-700 flex items-center justify-center font-bold text-xs shrink-0">
-          U
-        </div>
-        <div class="truncate">
-          <p id="userEmailShort" class="text-xs font-bold text-slate-800 truncate">...</p>
-          <span class="text-[10px] text-emerald-600 font-semibold">Aktif</span>
-        </div>
-      </div>
-      <button onclick="handleLogout()" title="Çıkış Yap" class="text-slate-400 hover:text-rose-600 text-xs p-1.5 transition">
-        <i class="fa-solid fa-right-from-bracket"></i>
-      </button>
-    </div>
   </aside>
 
   <!-- ================= 3. ANA İÇERİK ALANI ================= -->
   <main class="flex-1 flex flex-col min-w-0 overflow-y-auto custom-scroll">
     
-    <!-- Üst Başlık Çubuğu (Top Bar) -->
-    <header class="h-16 bg-white border-b border-slate-200 px-8 flex items-center justify-between shrink-0 sticky top-0 z-20">
-      <div class="flex items-center gap-4">
-        <div class="relative w-72">
-          <i class="fa-solid fa-magnifying-glass absolute left-3.5 top-3 text-slate-400 text-xs"></i>
-          <input type="text" placeholder="Bağışçı, makbuz veya görev ara..." class="w-full pl-9 pr-4 py-1.5 bg-slate-50 border border-slate-200 rounded-full text-xs text-slate-700 focus:outline-none focus:border-indigo-500 focus:bg-white transition">
-        </div>
+    <!-- Üst Bar (Header) -->
+    <header class="h-20 bg-white border-b border-slate-200 px-8 flex items-center justify-between shrink-0 sticky top-0 z-30">
+      
+      <!-- Arama Kutusu -->
+      <div class="relative w-80">
+        <i class="fa-solid fa-magnifying-glass absolute left-3.5 top-3 text-slate-400 text-xs"></i>
+        <input type="text" placeholder="Görev, ziyaret veya içerik ara..." class="w-full pl-9 pr-4 py-2 bg-slate-50 border border-slate-200 rounded-full text-xs text-slate-700 focus:outline-none focus:border-brand-500 focus:bg-white transition">
       </div>
-      <div class="flex items-center gap-4 text-slate-500 text-sm">
-        <div id="realtimeClock" class="text-xs font-bold text-slate-700 bg-slate-100 px-3 py-1.5 rounded-lg border border-slate-200">
-          --:--:--
+
+      <!-- Sağ Bölüm: Tarih/Saat, Bildirimler ve Profil Dropdown -->
+      <div class="flex items-center gap-5">
+        
+        <!-- Canlı Tarih & Gün & Saat -->
+        <div class="flex items-center gap-2 bg-brand-50/70 border border-brand-100 px-3.5 py-2 rounded-xl text-brand-900">
+          <i class="fa-regular fa-calendar-days text-brand-600 text-xs"></i>
+          <span id="realtimeDate" class="text-xs font-bold font-mono">-- ... ----, ------</span>
+          <span class="text-slate-300">|</span>
+          <span id="realtimeClock" class="text-xs font-extrabold font-mono text-brand-700">--:--:--</span>
         </div>
-        <button class="relative p-2 text-slate-400 hover:text-slate-600 transition">
-          <i class="fa-regular fa-bell"></i>
-          <span class="absolute top-1 right-1 w-2 h-2 bg-indigo-600 rounded-full"></span>
-        </button>
+
+        <!-- Bildirim Çanı & Popover -->
+        <div class="relative">
+          <button id="notifBtn" onclick="toggleNotifications()" class="relative p-2.5 text-slate-500 hover:text-brand-700 hover:bg-slate-100 rounded-xl transition">
+            <i class="fa-regular fa-bell text-base"></i>
+            <span class="absolute top-1.5 right-1.5 w-2 h-2 bg-rose-500 rounded-full ring-2 ring-white"></span>
+          </button>
+
+          <!-- Bildirim Popover Kutusu -->
+          <div id="notifDropdown" class="hidden absolute right-0 mt-3 w-80 bg-white border border-slate-200 rounded-2xl shadow-2xl z-40 overflow-hidden">
+            <div class="p-3.5 bg-brand-800 text-white flex justify-between items-center">
+              <span class="text-xs font-bold tracking-wide">Bildirimler</span>
+              <span class="text-[10px] bg-brand-700 px-2 py-0.5 rounded-full font-semibold">2 Yeni</span>
+            </div>
+            <div class="divide-y divide-slate-100 max-h-72 overflow-y-auto text-xs">
+              <!-- Bugün -->
+              <div class="p-3 hover:bg-slate-50 transition">
+                <span class="text-[10px] font-extrabold uppercase px-1.5 py-0.5 rounded bg-emerald-50 text-emerald-700">Bugün</span>
+                <p class="font-bold text-slate-800 mt-1">Saha Ziyareti Raporu</p>
+                <p class="text-[11px] text-slate-500 mt-0.5">Üsküdar yetim burs görüşmesi saat 14:00'te tamamlanacak.</p>
+              </div>
+              <!-- Yarın -->
+              <div class="p-3 hover:bg-slate-50 transition">
+                <span class="text-[10px] font-extrabold uppercase px-1.5 py-0.5 rounded bg-sky-50 text-sky-700">Yarın</span>
+                <p class="font-bold text-slate-800 mt-1">Sosyal Medya Video Paylaşımı</p>
+                <p class="text-[11px] text-slate-500 mt-0.5">Reels içerik videosunun onayı bekleniyor (Saat 11:00).</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Profil Alanı (Üzerine Gelince / Tıklayınca Açılır) -->
+        <div class="relative" id="profileDropdownContainer">
+          <button onclick="toggleProfileMenu()" class="flex items-center gap-3 p-1.5 pr-3 rounded-full hover:bg-slate-100 transition border border-transparent hover:border-slate-200">
+            <img id="userAvatarImg" src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=100&auto=format&fit=crop&q=80" 
+                 alt="Profil" class="w-9 h-9 rounded-full object-cover ring-2 ring-brand-500">
+            <div class="text-left hidden md:block">
+              <p id="profileDisplayName" class="text-xs font-bold text-slate-800 leading-tight">Mustafa Cengiz</p>
+              <p class="text-[10px] font-semibold text-brand-600">Yönetici</p>
+            </div>
+            <i class="fa-solid fa-chevron-down text-[10px] text-slate-400"></i>
+          </button>
+
+          <!-- Profil Dropdown Menü -->
+          <div id="profileMenu" class="hidden absolute right-0 mt-2 w-48 bg-white border border-slate-200 rounded-2xl shadow-xl z-40 py-2 text-xs">
+            <button onclick="openProfileModal()" class="w-full text-left px-4 py-2.5 text-slate-700 hover:bg-brand-50 hover:text-brand-700 font-semibold flex items-center gap-2.5 transition">
+              <i class="fa-solid fa-user-pen text-brand-600"></i>
+              <span>Profili Düzenle</span>
+            </button>
+            <div class="border-t border-slate-100 my-1"></div>
+            <button onclick="handleLogout()" class="w-full text-left px-4 py-2.5 text-rose-600 hover:bg-rose-50 font-semibold flex items-center gap-2.5 transition">
+              <i class="fa-solid fa-arrow-right-from-bracket"></i>
+              <span>Çıkış Yap</span>
+            </button>
+          </div>
+        </div>
+
       </div>
     </header>
 
     <!-- Dashboard Gövdesi -->
     <div class="p-8 space-y-6">
 
-      <!-- Karşılama Alanı (Banner) -->
-      <div class="bg-gradient-to-r from-indigo-900 via-indigo-800 to-slate-900 rounded-3xl p-6 text-white shadow-xl relative overflow-hidden flex flex-col md:flex-row md:items-center md:justify-between gap-4">
-        <div class="space-y-1 z-10">
-          <div class="inline-flex items-center gap-2 px-3 py-1 bg-white/10 backdrop-blur-md rounded-full text-[11px] font-medium text-indigo-200 border border-white/10 mb-1">
+      <!-- Karşılama Banner -->
+      <div class="bg-gradient-to-r from-brand-900 via-brand-800 to-brand-700 rounded-3xl p-6 text-white shadow-xl shadow-brand-900/10 flex flex-col md:flex-row md:items-center md:justify-between gap-4">
+        <div class="space-y-1">
+          <div class="inline-flex items-center gap-2 px-3 py-1 bg-white/10 backdrop-blur-md rounded-full text-[11px] font-semibold text-sky-200 border border-white/10 mb-1">
             <i class="fa-solid fa-location-dot"></i> İstanbul, Türkiye
           </div>
-          <h2 class="text-2xl font-extrabold tracking-tight">Hayırlı Günler, <span id="welcomeUserName">Mustafa Bey</span> 👋</h2>
-          <p class="text-xs text-indigo-200 max-w-xl">Bugün dernek bünyesinde planlanan saha ziyaretleri, bekleyen görevler ve canlı operasyon durumu aşağıda özetlenmiştir.</p>
+          <h2 class="text-2xl font-black tracking-tight">Hayırlı Günler, <span id="welcomeBannerName">Mustafa Bey</span> 👋</h2>
+          <p class="text-xs text-sky-100 max-w-xl">Bugün dernek bünyesindeki sosyal medya akışı, yaklaşan toplantılar ve güncel servisler hazır.</p>
         </div>
-        <div class="z-10 flex gap-2">
-          <button class="px-4 py-2.5 bg-white text-indigo-900 hover:bg-indigo-50 font-bold text-xs rounded-xl transition shadow">
-            + Hızlı İşlem Ekle
-          </button>
-          <button class="px-4 py-2.5 bg-white/10 hover:bg-white/20 text-white font-medium text-xs rounded-xl border border-white/20 transition">
-            Widget'ları Düzenle
+        <div class="flex gap-2">
+          <button class="px-4 py-2.5 bg-sky-500 hover:bg-sky-400 text-brand-900 font-bold text-xs rounded-xl transition shadow">
+            + Hızlı Not Ekle
           </button>
         </div>
       </div>
 
-      <!-- WIDGET SATIRI 1: Günlük Canlı Bilgiler (Namaz, Döviz, Hava, Deprem) -->
+      <!-- BİLGİ ŞERİDİ: Namaz, Hava Durumu, Döviz, Deprem -->
       <div class="grid grid-cols-1 md:grid-cols-4 gap-5">
         
-        <!-- Widget: Namaz Vakitleri -->
+        <!-- Namaz Vakitleri -->
         <div class="bg-white p-5 rounded-2xl border border-slate-200/80 shadow-sm space-y-3">
           <div class="flex items-center justify-between border-b border-slate-100 pb-2">
-            <span class="text-xs font-bold text-slate-700 flex items-center gap-2">
-              <i class="fa-solid fa-mosque text-indigo-600"></i> Namaz Vakitleri
+            <span class="text-xs font-bold text-brand-900 flex items-center gap-2">
+              <i class="fa-solid fa-mosque text-brand-600"></i> Namaz Vakitleri
             </span>
             <span class="text-[10px] text-slate-400 font-semibold">İstanbul</span>
           </div>
           <div class="grid grid-cols-3 gap-2 text-center text-xs">
-            <div class="bg-slate-50 p-2 rounded-xl">
-              <span class="text-[10px] text-slate-400 block font-semibold">İmsak</span>
-              <span class="font-bold text-slate-800">05:24</span>
-            </div>
-            <div class="bg-slate-50 p-2 rounded-xl">
-              <span class="text-[10px] text-slate-400 block font-semibold">Öğle</span>
-              <span class="font-bold text-slate-800">13:08</span>
-            </div>
-            <div class="bg-indigo-50/60 border border-indigo-100 p-2 rounded-xl">
-              <span class="text-[10px] text-indigo-600 block font-semibold">İkindi</span>
-              <span class="font-bold text-indigo-950">16:42</span>
-            </div>
-            <div class="bg-slate-50 p-2 rounded-xl">
-              <span class="text-[10px] text-slate-400 block font-semibold">Akşam</span>
-              <span class="font-bold text-slate-800">19:15</span>
-            </div>
-            <div class="bg-slate-50 p-2 rounded-xl">
-              <span class="text-[10px] text-slate-400 block font-semibold">Yatsı</span>
-              <span class="font-bold text-slate-800">20:34</span>
-            </div>
-            <div class="bg-slate-50 p-2 rounded-xl">
-              <span class="text-[10px] text-slate-400 block font-semibold">Güneş</span>
-              <span class="font-bold text-slate-800">06:48</span>
-            </div>
+            <div class="bg-slate-50 p-1.5 rounded-lg"><span class="text-[10px] text-slate-400 block font-semibold">İmsak</span><span class="font-bold text-slate-800">05:24</span></div>
+            <div class="bg-slate-50 p-1.5 rounded-lg"><span class="text-[10px] text-slate-400 block font-semibold">Öğle</span><span class="font-bold text-slate-800">13:08</span></div>
+            <div class="bg-brand-50 border border-brand-100 p-1.5 rounded-lg"><span class="text-[10px] text-brand-600 block font-semibold">İkindi</span><span class="font-bold text-brand-900">16:42</span></div>
+            <div class="bg-slate-50 p-1.5 rounded-lg"><span class="text-[10px] text-slate-400 block font-semibold">Akşam</span><span class="font-bold text-slate-800">19:15</span></div>
+            <div class="bg-slate-50 p-1.5 rounded-lg"><span class="text-[10px] text-slate-400 block font-semibold">Yatsı</span><span class="font-bold text-slate-800">20:34</span></div>
+            <div class="bg-slate-50 p-1.5 rounded-lg"><span class="text-[10px] text-slate-400 block font-semibold">Güneş</span><span class="font-bold text-slate-800">06:48</span></div>
           </div>
         </div>
 
-        <!-- Widget: Canlı Piyasalar (Döviz & Altın) -->
+        <!-- Canlı Piyasalar -->
         <div class="bg-white p-5 rounded-2xl border border-slate-200/80 shadow-sm space-y-3">
           <div class="flex items-center justify-between border-b border-slate-100 pb-2">
-            <span class="text-xs font-bold text-slate-700 flex items-center gap-2">
+            <span class="text-xs font-bold text-brand-900 flex items-center gap-2">
               <i class="fa-solid fa-coins text-amber-500"></i> Döviz & Altın
             </span>
             <span class="text-[10px] text-emerald-600 font-semibold">Canlı</span>
           </div>
-          <div class="space-y-2">
-            <div class="flex justify-between items-center text-xs">
-              <span class="text-slate-500 font-medium">Dolar (USD)</span>
-              <span class="font-extrabold text-slate-800 font-mono">₺34.82</span>
-            </div>
-            <div class="flex justify-between items-center text-xs">
-              <span class="text-slate-500 font-medium">Euro (EUR)</span>
-              <span class="font-extrabold text-slate-800 font-mono">₺37.60</span>
-            </div>
-            <div class="flex justify-between items-center text-xs">
-              <span class="text-slate-500 font-medium">Gram Altın</span>
-              <span class="font-extrabold text-amber-600 font-mono">₺2,940</span>
-            </div>
+          <div class="space-y-2 text-xs">
+            <div class="flex justify-between items-center"><span class="text-slate-500">Dolar (USD)</span><span class="font-bold text-slate-900 font-mono">₺34.85</span></div>
+            <div class="flex justify-between items-center"><span class="text-slate-500">Euro (EUR)</span><span class="font-bold text-slate-900 font-mono">₺37.65</span></div>
+            <div class="flex justify-between items-center"><span class="text-slate-500">Gram Altın</span><span class="font-bold text-amber-600 font-mono">₺2,945</span></div>
           </div>
         </div>
 
-        <!-- Widget: Hava Durumu -->
+        <!-- Hava Durumu -->
         <div class="bg-white p-5 rounded-2xl border border-slate-200/80 shadow-sm space-y-3">
           <div class="flex items-center justify-between border-b border-slate-100 pb-2">
-            <span class="text-xs font-bold text-slate-700 flex items-center gap-2">
+            <span class="text-xs font-bold text-brand-900 flex items-center gap-2">
               <i class="fa-solid fa-cloud-sun text-sky-500"></i> Hava Durumu
             </span>
             <span class="text-[10px] text-slate-400 font-semibold">İstanbul</span>
           </div>
           <div class="flex items-center justify-between pt-1">
             <div>
-              <span class="text-3xl font-extrabold text-slate-800 tracking-tight">21°C</span>
-              <p class="text-xs text-slate-500 font-medium">Parçalı Bulutlu</p>
+              <span class="text-2xl font-extrabold text-slate-900">22°C</span>
+              <p class="text-xs text-slate-500">Açık & Güneşli</p>
             </div>
-            <i class="fa-solid fa-cloud-sun text-4xl text-amber-400/80"></i>
+            <i class="fa-solid fa-sun text-3xl text-amber-400"></i>
           </div>
-          <p class="text-[10px] text-slate-400">Nem: %58 • Rüzgar: 14 km/s</p>
+          <p class="text-[10px] text-slate-400">Nem: %52 • Rüzgar: 12 km/s</p>
         </div>
 
-        <!-- Widget: Son Depremler -->
+        <!-- Son Depremler -->
         <div class="bg-white p-5 rounded-2xl border border-slate-200/80 shadow-sm space-y-3">
           <div class="flex items-center justify-between border-b border-slate-100 pb-2">
-            <span class="text-xs font-bold text-slate-700 flex items-center gap-2">
+            <span class="text-xs font-bold text-brand-900 flex items-center gap-2">
               <i class="fa-solid fa-triangle-exclamation text-rose-500"></i> Son Depremler
             </span>
-            <span class="text-[10px] text-slate-400 font-semibold">AFAD/Kandilli</span>
+            <span class="text-[10px] text-slate-400 font-semibold">Kandilli</span>
           </div>
           <div class="space-y-2 text-xs">
             <div class="flex justify-between items-center">
               <span class="text-slate-600 truncate max-w-[130px]">Marmara Denizi</span>
-              <span class="px-1.5 py-0.5 rounded font-bold text-[10px] bg-slate-100 text-slate-700">M 2.4</span>
+              <span class="px-1.5 py-0.5 rounded font-bold text-[10px] bg-slate-100 text-slate-700">M 2.3</span>
             </div>
             <div class="flex justify-between items-center">
-              <span class="text-slate-600 truncate max-w-[130px]">Malatya, Pütürge</span>
-              <span class="px-1.5 py-0.5 rounded font-bold text-[10px] bg-amber-50 text-amber-700">M 3.1</span>
+              <span class="text-slate-600 truncate max-w-[130px]">Ege Denizi</span>
+              <span class="px-1.5 py-0.5 rounded font-bold text-[10px] bg-amber-50 text-amber-700">M 3.0</span>
             </div>
           </div>
         </div>
 
       </div>
 
-      <!-- WIDGET SATIRI 2: Operasyon & Grafikler (Görsel Tasarımı) -->
+      <!-- ANA İÇERİK BLOKLARI: Sosyal Medya Takvimi + Google Takvim + Haberler -->
       <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
         
-        <!-- Sol 2 Kolon: Aylık Bağış & Faaliyet Analizi Grafiği -->
-        <div class="lg:col-span-2 bg-white p-6 rounded-2xl border border-slate-200/80 shadow-sm space-y-4">
-          <div class="flex items-center justify-between">
+        <!-- Sol 2 Kolon: SOSYAL MEDYA TAKVİMİ (Bugün, Yarın, Öbür Gün) -->
+        <div class="lg:col-span-2 bg-white p-6 rounded-2xl border border-slate-200/80 shadow-sm space-y-5">
+          <div class="flex items-center justify-between border-b border-slate-100 pb-3">
             <div>
-              <h3 class="text-sm font-bold text-slate-800">Bağış & Fon Dağılım Grafiği</h3>
-              <p class="text-xs text-slate-400">Aylık periyot bazında genel akış</p>
+              <h3 class="text-sm font-bold text-brand-900 flex items-center gap-2">
+                <i class="fa-solid fa-calendar-days text-brand-600"></i> Sosyal Medya Paylaşım Akışı
+              </h3>
+              <p class="text-xs text-slate-400">Önümüzdeki 3 günün planlanan dijital içerikleri</p>
             </div>
-            <div class="flex gap-2">
-              <span class="px-2.5 py-1 bg-indigo-50 text-indigo-700 rounded-lg text-xs font-bold">Aylık</span>
-              <span class="px-2.5 py-1 text-slate-400 text-xs">Yıllık</span>
+            <button class="px-3 py-1.5 bg-brand-50 text-brand-700 rounded-xl text-xs font-bold hover:bg-brand-100 transition">
+              + Yeni İçerik Planla
+            </button>
+          </div>
+
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+            
+            <!-- BUGÜN -->
+            <div class="bg-brand-50/50 border border-brand-100 p-4 rounded-xl space-y-3">
+              <div class="flex justify-between items-center">
+                <span class="text-[11px] font-extrabold uppercase px-2 py-0.5 rounded-full bg-brand-700 text-white">BUGÜN</span>
+                <span class="text-[11px] text-slate-500 font-semibold">18:00</span>
+              </div>
+              <div class="space-y-1.5">
+                <div class="flex items-center gap-1.5 text-pink-600 text-xs font-bold">
+                  <i class="fa-brands fa-instagram"></i> Instagram Reels
+                </div>
+                <p class="text-xs font-bold text-slate-800">Su Kuyusu Açılış Videosu</p>
+                <p class="text-[11px] text-slate-500">Çad bölgesi 3. etap su kuyusu teslim görüntüleri montajı.</p>
+              </div>
+              <span class="inline-block px-2 py-0.5 rounded text-[10px] font-bold bg-amber-50 text-amber-700 border border-amber-200">
+                Yayına Hazır
+              </span>
+            </div>
+
+            <!-- YARIN -->
+            <div class="bg-slate-50 border border-slate-200/80 p-4 rounded-xl space-y-3">
+              <div class="flex justify-between items-center">
+                <span class="text-[11px] font-extrabold uppercase px-2 py-0.5 rounded-full bg-slate-200 text-slate-700">YARIN</span>
+                <span class="text-[11px] text-slate-500 font-semibold">12:30</span>
+              </div>
+              <div class="space-y-1.5">
+                <div class="flex items-center gap-1.5 text-red-600 text-xs font-bold">
+                  <i class="fa-brands fa-youtube"></i> YouTube Shorts
+                </div>
+                <p class="text-xs font-bold text-slate-800">Yetim Kırtasiye Dağıtımı</p>
+                <p class="text-[11px] text-slate-500">Saha ekibinin çocuklara çanta dağıtım anları kurgusu.</p>
+              </div>
+              <span class="inline-block px-2 py-0.5 rounded text-[10px] font-bold bg-sky-50 text-sky-700 border border-sky-200">
+                Kurguda
+              </span>
+            </div>
+
+            <!-- ÖBÜR GÜN -->
+            <div class="bg-slate-50 border border-slate-200/80 p-4 rounded-xl space-y-3">
+              <div class="flex justify-between items-center">
+                <span class="text-[11px] font-extrabold uppercase px-2 py-0.5 rounded-full bg-slate-200 text-slate-700">ÖBÜR GÜN</span>
+                <span class="text-[11px] text-slate-500 font-semibold">20:00</span>
+              </div>
+              <div class="space-y-1.5">
+                <div class="flex items-center gap-1.5 text-slate-800 text-xs font-bold">
+                  <i class="fa-brands fa-x-twitter"></i> X / Twitter Post
+                </div>
+                <p class="text-xs font-bold text-slate-800">Haftalık Faaliyet Bülteni</p>
+                <p class="text-[11px] text-slate-500">Grafik görsel eşliğinde haftalık yardım istatistikleri paylaşımı.</p>
+              </div>
+              <span class="inline-block px-2 py-0.5 rounded text-[10px] font-bold bg-slate-200 text-slate-600">
+                Taslak Halinde
+              </span>
+            </div>
+
+          </div>
+
+          <!-- GÜNCEL HABERLER ŞERİDİ -->
+          <div class="pt-2 border-t border-slate-100">
+            <h4 class="text-xs font-bold text-brand-900 mb-3 flex items-center gap-2">
+              <i class="fa-regular fa-newspaper text-brand-600"></i> Güncel Gelişmeler & Bülten
+            </h4>
+            <div class="space-y-2 text-xs">
+              <div class="flex items-center justify-between p-2.5 rounded-xl hover:bg-slate-50 transition border border-slate-100">
+                <div class="flex items-center gap-2.5 truncate">
+                  <span class="w-2 h-2 rounded-full bg-brand-500 shrink-0"></span>
+                  <p class="text-slate-800 font-semibold truncate">Afrika Kış Yardımları ve Gıda Dağıtım Seferberliği Başladı</p>
+                </div>
+                <span class="text-[11px] text-slate-400 font-mono shrink-0 ml-3">Bugün</span>
+              </div>
+              <div class="flex items-center justify-between p-2.5 rounded-xl hover:bg-slate-50 transition border border-slate-100">
+                <div class="flex items-center gap-2.5 truncate">
+                  <span class="w-2 h-2 rounded-full bg-emerald-500 shrink-0"></span>
+                  <p class="text-slate-800 font-semibold truncate">İstanbul İçi Eğitim Destek Bursları Başvuruları İnceleniyor</p>
+                </div>
+                <span class="text-[11px] text-slate-400 font-mono shrink-0 ml-3">Dün</span>
+              </div>
             </div>
           </div>
-          <div class="h-64 relative">
-            <canvas id="donationChart"></canvas>
-          </div>
+
         </div>
 
-        <!-- Sağ 1 Kolon: Bugünkü Ziyaretler & Takvim -->
+        <!-- Sağ 1 Kolon: GOOGLE TAKVİM & ETKİNLİKLER -->
         <div class="bg-white p-6 rounded-2xl border border-slate-200/80 shadow-sm space-y-4">
           <div class="flex items-center justify-between border-b border-slate-100 pb-3">
-            <h3 class="text-sm font-bold text-slate-800 flex items-center gap-2">
-              <i class="fa-solid fa-car-side text-indigo-600"></i> Bugünkü Ziyaretler
+            <h3 class="text-sm font-bold text-brand-900 flex items-center gap-2">
+              <i class="fa-solid fa-calendar-check text-brand-600"></i> Google Takvim
             </h3>
-            <span class="text-[11px] font-bold text-indigo-600 cursor-pointer hover:underline">Tümü</span>
+            <span class="text-[11px] font-bold text-brand-600">Görüşmeler</span>
           </div>
+
           <div class="space-y-3">
-            <div class="p-3 bg-slate-50 border border-slate-100 rounded-xl flex items-start gap-3">
-              <div class="w-8 h-8 rounded-lg bg-indigo-100 text-indigo-600 flex items-center justify-center font-bold text-xs shrink-0 mt-0.5">
-                11:30
+            <div class="p-3 bg-brand-50/60 border border-brand-100 rounded-xl space-y-1">
+              <div class="flex justify-between items-center">
+                <span class="text-xs font-bold text-brand-900">Yönetim Kurulu İstişaresi</span>
+                <span class="text-[11px] font-extrabold text-brand-700 bg-white px-2 py-0.5 rounded border border-brand-200">11:00</span>
               </div>
-              <div class="flex-1 min-w-0">
-                <p class="text-xs font-bold text-slate-800 truncate">Hacı Mehmet Vakfı Ziyareti</p>
-                <p class="text-[11px] text-slate-500">Üsküdar • Sosyal Yardım Koordinasyonu</p>
+              <p class="text-[11px] text-slate-500">Merkez Ofis Toplantı Salonu</p>
+              <div class="pt-1 flex items-center gap-1.5 text-[10px] text-emerald-600 font-semibold">
+                <i class="fa-solid fa-video"></i> Google Meet Bağlantısı Hazır
               </div>
             </div>
-            <div class="p-3 bg-slate-50 border border-slate-100 rounded-xl flex items-start gap-3">
-              <div class="w-8 h-8 rounded-lg bg-emerald-100 text-emerald-700 flex items-center justify-center font-bold text-xs shrink-0 mt-0.5">
-                15:00
+
+            <div class="p-3 bg-slate-50 border border-slate-200/80 rounded-xl space-y-1">
+              <div class="flex justify-between items-center">
+                <span class="text-xs font-bold text-slate-800">Saha Lojistik Koordinasyonu</span>
+                <span class="text-[11px] font-extrabold text-slate-700 bg-white px-2 py-0.5 rounded border border-slate-200">15:30</span>
               </div>
-              <div class="flex-1 min-w-0">
-                <p class="text-xs font-bold text-slate-800 truncate">Yetim Burs Aile Mülakatı</p>
-                <p class="text-[11px] text-slate-500">Fatih Temsilciliği</p>
-              </div>
+              <p class="text-[11px] text-slate-500">Depo & Dağıtım Ekibi İle</p>
             </div>
           </div>
 
-          <!-- Hızlı Yapay Zekaya Sor Kutusu -->
-          <div class="pt-2">
+          <!-- Hızlı AI Kutusu -->
+          <div class="pt-2 border-t border-slate-100">
             <label class="block text-[11px] font-bold text-slate-700 uppercase tracking-wider mb-1.5 flex items-center gap-1.5">
-              <i class="fa-solid fa-robot text-purple-600"></i> Yapay Zekaya Sor
+              <i class="fa-solid fa-robot text-brand-600"></i> Yapay Zekaya Sor
             </label>
             <div class="flex gap-2">
-              <input type="text" placeholder="Bağışçı taslağı hazırla, metin öner..." class="flex-1 px-3 py-2 bg-slate-50 border border-slate-200 rounded-xl text-xs focus:outline-none focus:border-purple-500">
-              <button class="px-3 py-2 bg-purple-600 hover:bg-purple-700 text-white rounded-xl text-xs">
+              <input type="text" placeholder="Görev metni oluştur, bülten taslağı sor..." class="flex-1 px-3 py-2 bg-slate-50 border border-slate-200 rounded-xl text-xs focus:outline-none focus:border-brand-500">
+              <button class="px-3 py-2 bg-brand-700 hover:bg-brand-800 text-white rounded-xl text-xs transition">
                 <i class="fa-solid fa-paper-plane"></i>
               </button>
             </div>
           </div>
+
         </div>
 
-      </div>
-
-      <!-- WIDGET SATIRI 3: Son Bağışçılar & Görevler Tablosu (Görsel Örnek Eşleşmesi) -->
-      <div class="bg-white p-6 rounded-2xl border border-slate-200/80 shadow-sm space-y-4">
-        <div class="flex items-center justify-between">
-          <div>
-            <h3 class="text-sm font-bold text-slate-800">Son Bağış ve Destek Kayıtları</h3>
-            <p class="text-xs text-slate-400">Doğrudan Supabase Veritabanı ile Eşzamanlı</p>
-          </div>
-          <button class="px-3.5 py-1.5 bg-indigo-50 text-indigo-700 font-bold text-xs rounded-xl hover:bg-indigo-100 transition">
-            + Yeni Bağışçı Ekle
-          </button>
-        </div>
-
-        <div class="overflow-x-auto">
-          <table class="w-full text-left border-collapse text-xs">
-            <thead>
-              <tr class="border-b border-slate-100 text-slate-400 uppercase text-[10px] tracking-wider font-bold">
-                <th class="py-3 px-4">Bağışçı / Kurum</th>
-                <th class="py-3 px-4">Proje / Kategori</th>
-                <th class="py-3 px-4">Tutar</th>
-                <th class="py-3 px-4">Durum</th>
-                <th class="py-3 px-4">Tarih</th>
-                <th class="py-3 px-4 text-right">İşlem</th>
-              </tr>
-            </thead>
-            <tbody id="donationsTableBody" class="divide-y divide-slate-100 text-slate-700">
-              <tr>
-                <td colspan="6" class="py-4 text-center text-slate-400">Veritabanından yükleniyor...</td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
       </div>
 
     </div>
   </main>
+
+  <!-- ================= 4. PROFİL DÜZENLEME MODAL (POP-UP) ================= -->
+  <div id="profileModal" class="hidden fixed inset-0 z-50 flex items-center justify-center bg-slate-900/60 backdrop-blur-sm p-4">
+    <div class="bg-white border border-slate-100 p-6 rounded-3xl w-full max-w-md shadow-2xl space-y-5">
+      <div class="flex justify-between items-center border-b border-slate-100 pb-3">
+        <h3 class="text-base font-bold text-brand-900">Profil Bilgilerini Düzenle</h3>
+        <button onclick="closeProfileModal()" class="text-slate-400 hover:text-slate-600">
+          <i class="fa-solid fa-xmark text-lg"></i>
+        </button>
+      </div>
+
+      <form id="profileEditForm" onsubmit="saveProfileInfo(event)" class="space-y-4">
+        <div>
+          <label class="block text-xs font-semibold text-slate-600 mb-1">Ad Soyad</label>
+          <input type="text" id="editFullName" required class="w-full px-3.5 py-2 bg-slate-50 border border-slate-200 rounded-xl text-xs focus:outline-none focus:border-brand-500">
+        </div>
+        <div>
+          <label class="block text-xs font-semibold text-slate-600 mb-1">Profil Fotoğrafı URL</label>
+          <input type="url" id="editAvatarUrl" placeholder="https://..." class="w-full px-3.5 py-2 bg-slate-50 border border-slate-200 rounded-xl text-xs focus:outline-none focus:border-brand-500">
+        </div>
+        <div>
+          <label class="block text-xs font-semibold text-slate-600 mb-1">E-Posta (Salt Okunur)</label>
+          <input type="email" id="editEmail" disabled class="w-full px-3.5 py-2 bg-slate-100 border border-slate-200 rounded-xl text-xs text-slate-500 cursor-not-allowed">
+        </div>
+        <div class="flex justify-end gap-2 pt-2">
+          <button type="button" onclick="closeProfileModal()" class="px-4 py-2 bg-slate-100 text-slate-700 rounded-xl text-xs font-semibold hover:bg-slate-200">
+            İptal
+          </button>
+          <button type="submit" class="px-5 py-2 bg-brand-700 hover:bg-brand-800 text-white rounded-xl text-xs font-bold transition shadow-md">
+            Kaydet & Güncelle
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
 
   <script>
     // Supabase Bağlantısı
@@ -388,13 +509,80 @@
     const SUPABASE_ANON_KEY = "sb_publishable_NFS-iNYCga_9Nhc4yTElBA_9j7oU1An";
     const supabaseClient = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
 
-    // Canlı Saat
-    function updateClock() {
+    // Canlı Tarih, Gün ve Saat
+    function updateClockAndDate() {
       const now = new Date();
+      
+      // Saat
       document.getElementById('realtimeClock').innerText = now.toLocaleTimeString('tr-TR');
+
+      // Tarih ve Gün
+      const options = { day: 'numeric', month: 'long', year: 'numeric', weekday: 'long' };
+      document.getElementById('realtimeDate').innerText = now.toLocaleDateString('tr-TR', options);
     }
-    setInterval(updateClock, 1000);
-    updateClock();
+    setInterval(updateClockAndDate, 1000);
+    updateClockAndDate();
+
+    // Profil Bilgilerini Yerel Depolamadan Çekme
+    function loadSavedProfile(email) {
+      const savedName = localStorage.getItem('tebessum_user_name') || 'Mustafa Cengiz';
+      const savedAvatar = localStorage.getItem('tebessum_user_avatar') || 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=100&auto=format&fit=crop&q=80';
+
+      document.getElementById('profileDisplayName').innerText = savedName;
+      document.getElementById('welcomeBannerName').innerText = savedName;
+      document.getElementById('userAvatarImg').src = savedAvatar;
+      document.getElementById('editFullName').value = savedName;
+      document.getElementById('editAvatarUrl').value = savedAvatar;
+      document.getElementById('editEmail').value = email;
+    }
+
+    // Profil Kaydetme Pop-up'ı
+    function saveProfileInfo(e) {
+      e.preventDefault();
+      const newName = document.getElementById('editFullName').value.trim();
+      const newAvatar = document.getElementById('editAvatarUrl').value.trim();
+
+      if (newName) localStorage.setItem('tebessum_user_name', newName);
+      if (newAvatar) localStorage.setItem('tebessum_user_avatar', newAvatar);
+
+      const email = document.getElementById('editEmail').value;
+      loadSavedProfile(email);
+      closeProfileModal();
+    }
+
+    function openProfileModal() {
+      document.getElementById('profileMenu').classList.add('hidden');
+      document.getElementById('profileModal').classList.remove('hidden');
+    }
+
+    function closeProfileModal() {
+      document.getElementById('profileModal').classList.add('hidden');
+    }
+
+    // Dropdown / Popover Kontrolleri
+    function toggleProfileMenu() {
+      document.getElementById('profileMenu').classList.toggle('hidden');
+      document.getElementById('notifDropdown').classList.add('hidden');
+    }
+
+    function toggleNotifications() {
+      document.getElementById('notifDropdown').classList.toggle('hidden');
+      document.getElementById('profileMenu').classList.add('hidden');
+    }
+
+    // Dışarı tıklandığında menüleri kapat
+    window.addEventListener('click', (e) => {
+      const profileContainer = document.getElementById('profileDropdownContainer');
+      const notifBtn = document.getElementById('notifBtn');
+      const notifDropdown = document.getElementById('notifDropdown');
+
+      if (!profileContainer.contains(e.target)) {
+        document.getElementById('profileMenu').classList.add('hidden');
+      }
+      if (!notifBtn.contains(e.target) && !notifDropdown.contains(e.target)) {
+        notifDropdown.classList.add('hidden');
+      }
+    });
 
     // Oturum Kontrolü
     async function checkSession() {
@@ -403,9 +591,7 @@
 
       if (session) {
         loginSection.classList.add('hidden');
-        document.getElementById('userEmailShort').innerText = session.user.email;
-        loadDonations();
-        renderChart();
+        loadSavedProfile(session.user.email);
       } else {
         loginSection.classList.remove('hidden');
       }
@@ -439,73 +625,6 @@
     async function handleLogout() {
       await supabaseClient.auth.signOut();
       checkSession();
-    }
-
-    // Supabase'den Verileri Listele
-    async function loadDonations() {
-      const tbody = document.getElementById('donationsTableBody');
-      const { data: records, error } = await supabaseClient
-        .from('kayitlar')
-        .select('*')
-        .order('id', { ascending: false });
-
-      if (error || !records || records.length === 0) {
-        tbody.innerHTML = '<tr><td colspan="6" class="py-4 text-center text-slate-400">Henüz kayıtlı bağış bulunmamaktadır.</td></tr>';
-        return;
-      }
-
-      tbody.innerHTML = '';
-      records.forEach(item => {
-        const date = new Date(item.created_at).toLocaleDateString('tr-TR');
-        const tr = document.createElement('tr');
-        tr.className = "hover:bg-slate-50/70 transition";
-        tr.innerHTML = `
-          <td class="py-3 px-4 font-bold text-slate-900">${item.baslik}</td>
-          <td class="py-3 px-4 text-slate-500">${item.kategori}</td>
-          <td class="py-3 px-4 font-extrabold text-indigo-600 font-mono">₺${Number(item.tutar).toLocaleString('tr-TR')}</td>
-          <td class="py-3 px-4">
-            <span class="px-2.5 py-0.5 rounded-full text-[10px] font-bold ${item.durum === 'Tamamlandı' ? 'bg-emerald-50 text-emerald-600' : 'bg-amber-50 text-amber-600'}">
-              ${item.durum}
-            </span>
-          </td>
-          <td class="py-3 px-4 text-slate-400">${date}</td>
-          <td class="py-3 px-4 text-right">
-            <button class="text-slate-400 hover:text-slate-700 font-bold px-2 py-1"><i class="fa-solid fa-ellipsis-vertical"></i></button>
-          </td>
-        `;
-        tbody.appendChild(tr);
-      });
-    }
-
-    // Örnek Grafik Çizimi
-    function renderChart() {
-      const ctx = document.getElementById('donationChart').getContext('2d');
-      new Chart(ctx, {
-        type: 'bar',
-        data: {
-          labels: ['Oca', 'Şub', 'Mar', 'Nis', 'May', 'Haz', 'Tem', 'Ağu', 'Eyl', 'Eki', 'Kas', 'Ara'],
-          datasets: [{
-            label: 'Genel Bağış',
-            data: [45, 60, 80, 75, 110, 140, 125, 170, 160, 210, 195, 260],
-            backgroundColor: '#6366f1',
-            borderRadius: 6
-          }, {
-            label: 'Yetim / Eğitim',
-            data: [30, 45, 55, 60, 75, 90, 85, 115, 105, 130, 140, 180],
-            backgroundColor: '#cbd5e1',
-            borderRadius: 6
-          }]
-        },
-        options: {
-          responsive: true,
-          maintainAspectRatio: false,
-          plugins: { legend: { position: 'bottom', labels: { boxWidth: 12, font: { size: 11 } } } },
-          scales: {
-            x: { grid: { display: false } },
-            y: { grid: { color: '#f1f5f9' } }
-          }
-        }
-      });
     }
 
     window.addEventListener('DOMContentLoaded', checkSession);
