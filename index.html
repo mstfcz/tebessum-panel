@@ -3,17 +3,16 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Güvenli Veri & Yönetim Paneli</title>
+  <title>Veri Yönetim & Takip Paneli</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-  <!-- Supabase Kütüphanesi -->
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 </head>
-<body class="bg-slate-900 text-slate-100 min-h-screen font-sans">
+<body class="bg-slate-950 text-slate-100 min-h-screen font-sans">
 
   <!-- ================= GİRİŞ EKRANI ================= -->
   <div id="loginSection" class="min-h-screen flex items-center justify-center p-4">
-    <div class="bg-slate-800 border border-slate-700 p-8 rounded-2xl w-full max-w-md shadow-2xl space-y-6">
+    <div class="bg-slate-900 border border-slate-800 p-8 rounded-2xl w-full max-w-md shadow-2xl space-y-6">
       <div class="text-center">
         <div class="w-12 h-12 bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 rounded-xl flex items-center justify-center mx-auto mb-3 text-xl font-bold">
           🔒
@@ -27,11 +26,11 @@
       <form id="loginForm" class="space-y-4" onsubmit="handleLogin(event)">
         <div>
           <label class="block text-xs font-semibold uppercase tracking-wider text-slate-400 mb-1">E-Posta Adresi</label>
-          <input type="email" id="emailInput" required placeholder="ornek@panel.com" class="w-full px-4 py-2.5 bg-slate-900 border border-slate-700 rounded-lg text-white focus:outline-none focus:border-emerald-500">
+          <input type="email" id="emailInput" required placeholder="ornek@panel.com" class="w-full px-4 py-2.5 bg-slate-950 border border-slate-800 rounded-lg text-white focus:outline-none focus:border-emerald-500">
         </div>
         <div>
           <label class="block text-xs font-semibold uppercase tracking-wider text-slate-400 mb-1">Şifre</label>
-          <input type="password" id="passwordInput" required placeholder="••••••••" class="w-full px-4 py-2.5 bg-slate-900 border border-slate-700 rounded-lg text-white focus:outline-none focus:border-emerald-500">
+          <input type="password" id="passwordInput" required placeholder="••••••••" class="w-full px-4 py-2.5 bg-slate-950 border border-slate-800 rounded-lg text-white focus:outline-none focus:border-emerald-500">
         </div>
         <button id="loginBtn" type="submit" class="w-full py-2.5 bg-emerald-600 hover:bg-emerald-500 text-white font-medium rounded-lg transition duration-150 shadow-lg shadow-emerald-900/30">
           Giriş Yap
@@ -47,7 +46,7 @@
       <!-- Üst Bar -->
       <header class="flex flex-col md:flex-row md:items-center md:justify-between pb-4 border-b border-slate-800 gap-4">
         <div>
-          <h1 class="text-2xl font-bold text-white tracking-wide">Yönetim ve Operasyon Paneli</h1>
+          <h1 class="text-2xl font-bold text-white tracking-wide">Operasyon & Veri Paneli</h1>
           <p class="text-sm text-slate-400">
             Aktif Oturum: <span id="currentUserDisplay" class="font-semibold text-emerald-400"></span>
           </p>
@@ -61,38 +60,91 @@
 
       <!-- KPI Kartları -->
       <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-        <div class="bg-slate-800 p-5 rounded-xl border border-slate-700">
-          <p class="text-xs font-semibold text-slate-400 uppercase tracking-wider">Veritabanı Motoru</p>
-          <p class="text-2xl font-extrabold text-emerald-400 mt-2">PostgreSQL</p>
-          <p class="text-xs text-slate-400 mt-2">Supabase Bulut Servisi</p>
+        <div class="bg-slate-900 p-5 rounded-xl border border-slate-800">
+          <p class="text-xs font-semibold text-slate-400 uppercase tracking-wider">Toplam Kayıt</p>
+          <p id="totalRecordsCount" class="text-3xl font-extrabold text-white mt-2">0</p>
+          <p class="text-xs text-emerald-400 mt-2">Veritabanında kayıtlı işlem</p>
         </div>
-        <div class="bg-slate-800 p-5 rounded-xl border border-slate-700">
-          <p class="text-xs font-semibold text-slate-400 uppercase tracking-wider">Güvenlik Durumu</p>
-          <p class="text-2xl font-extrabold text-white mt-2">JWT Şifreli</p>
-          <p class="text-xs text-emerald-400 mt-2">Kriptolu Kimlik Doğrulama</p>
+        <div class="bg-slate-900 p-5 rounded-xl border border-slate-800">
+          <p class="text-xs font-semibold text-slate-400 uppercase tracking-wider">Toplam Hacim / Tutar</p>
+          <p id="totalAmountSum" class="text-3xl font-extrabold text-indigo-400 mt-2">0 ₺</p>
+          <p class="text-xs text-slate-400 mt-2">Kümülatif mali veri</p>
         </div>
-        <div class="bg-slate-800 p-5 rounded-xl border border-slate-700">
-          <p class="text-xs font-semibold text-slate-400 uppercase tracking-wider">Veri Kapasitesi</p>
-          <p class="text-2xl font-extrabold text-white mt-2">500 MB</p>
-          <p class="text-xs text-slate-400 mt-2">Ücretsiz & Güvenli Depolama</p>
+        <div class="bg-slate-900 p-5 rounded-xl border border-slate-800">
+          <p class="text-xs font-semibold text-slate-400 uppercase tracking-wider">Bekleyen İşlemler</p>
+          <p id="pendingCount" class="text-3xl font-extrabold text-amber-400 mt-2">0</p>
+          <p class="text-xs text-slate-400 mt-2">Aksiyon bekleyen kayıtlar</p>
         </div>
       </div>
 
-      <!-- Veri Alanı -->
-      <div class="bg-slate-800 p-6 rounded-xl border border-slate-700 space-y-3">
-        <h2 class="text-lg font-bold text-white">Canlı Veri Alanı</h2>
-        <p class="text-sm text-slate-400">Bağlantınız başarıyla kuruldu. İhtiyacınıza göre buraya eklemek istediğiniz tabloları ve veri sütunlarını oluşturmaya hazırız.</p>
+      <!-- Veri Ekleme Formu -->
+      <div class="bg-slate-900 p-6 rounded-xl border border-slate-800 space-y-4">
+        <h2 class="text-base font-bold text-white">Yeni Kayıt Ekle</h2>
+        <form id="recordForm" onsubmit="handleAddRecord(event)" class="grid grid-cols-1 md:grid-cols-5 gap-4">
+          <div class="md:col-span-2">
+            <label class="block text-xs font-medium text-slate-400 mb-1">İşlem / Kayıt Başlığı</label>
+            <input type="text" id="recordTitle" required placeholder="ör. Proje Lojistik Sevkiyatı" class="w-full px-3 py-2 bg-slate-950 border border-slate-800 rounded-lg text-sm text-white focus:outline-none focus:border-emerald-500">
+          </div>
+          <div>
+            <label class="block text-xs font-medium text-slate-400 mb-1">Kategori</label>
+            <select id="recordCategory" class="w-full px-3 py-2 bg-slate-950 border border-slate-800 rounded-lg text-sm text-white focus:outline-none focus:border-emerald-500">
+              <option value="Operasyon">Operasyon</option>
+              <option value="Teknik">Teknik</option>
+              <option value="Lojistik">Lojistik</option>
+              <option value="Genel">Genel</option>
+            </select>
+          </div>
+          <div>
+            <label class="block text-xs font-medium text-slate-400 mb-1">Tutar (₺)</label>
+            <input type="number" id="recordAmount" required placeholder="0" class="w-full px-3 py-2 bg-slate-950 border border-slate-800 rounded-lg text-sm text-white focus:outline-none focus:border-emerald-500">
+          </div>
+          <div>
+            <label class="block text-xs font-medium text-slate-400 mb-1">Durum</label>
+            <select id="recordStatus" class="w-full px-3 py-2 bg-slate-950 border border-slate-800 rounded-lg text-sm text-white focus:outline-none focus:border-emerald-500">
+              <option value="Bekliyor">Bekliyor</option>
+              <option value="Devam Ediyor">Devam Ediyor</option>
+              <option value="Tamamlandı">Tamamlandı</option>
+            </select>
+          </div>
+          <div class="md:col-span-5 flex justify-end">
+            <button id="submitRecordBtn" type="submit" class="px-5 py-2.5 bg-emerald-600 hover:bg-emerald-500 text-white text-sm font-semibold rounded-lg transition duration-150 shadow-md">
+              + Veritabanına Kaydet
+            </button>
+          </div>
+        </form>
+      </div>
+
+      <!-- Veri Tablosu -->
+      <div class="bg-slate-900 p-6 rounded-xl border border-slate-800 space-y-4">
+        <h2 class="text-base font-bold text-white">Canlı Veri Listesi</h2>
+        <div class="overflow-x-auto">
+          <table class="w-full text-left border-collapse text-sm">
+            <thead>
+              <tr class="border-b border-slate-800 text-slate-400 uppercase text-xs">
+                <th class="py-3 px-4">Başlık</th>
+                <th class="py-3 px-4">Kategori</th>
+                <th class="py-3 px-4">Tutar</th>
+                <th class="py-3 px-4">Durum</th>
+                <th class="py-3 px-4">Tarih</th>
+                <th class="py-3 px-4 text-right">İşlem</th>
+              </tr>
+            </thead>
+            <tbody id="recordsTableBody" class="divide-y divide-slate-800/60 text-slate-200">
+              <tr><td colspan="6" class="py-4 text-center text-slate-500">Veritabanından yükleniyor...</td></tr>
+            </tbody>
+          </table>
+        </div>
       </div>
 
     </div>
   </div>
 
   <script>
-    // Supabase Bağlantısı
     const SUPABASE_URL = "https://hmlhyhisdulbttsyzsvp.supabase.co";
     const SUPABASE_ANON_KEY = "sb_publishable_NFS-iNYCga_9Nhc4yTElBA_9j7oU1An";
-
     const supabaseClient = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+
+    let activeUser = null;
 
     // Oturum Kontrolü
     async function checkSession() {
@@ -101,16 +153,19 @@
       const dashboardSection = document.getElementById('dashboardSection');
 
       if (session) {
+        activeUser = session.user;
         loginSection.classList.add('hidden');
         dashboardSection.classList.remove('hidden');
-        document.getElementById('currentUserDisplay').innerText = session.user.email;
+        document.getElementById('currentUserDisplay').innerText = activeUser.email;
+        loadRecords();
       } else {
+        activeUser = null;
         loginSection.classList.remove('hidden');
         dashboardSection.classList.add('hidden');
       }
     }
 
-    // Giriş Fonksiyonu
+    // Giriş
     async function handleLogin(e) {
       e.preventDefault();
       const email = document.getElementById('emailInput').value.trim();
@@ -121,11 +176,7 @@
       btn.innerText = "Doğrulanıyor...";
       btn.disabled = true;
 
-      const { data, error } = await supabaseClient.auth.signInWithPassword({
-        email: email,
-        password: password
-      });
-
+      const { data, error } = await supabaseClient.auth.signInWithPassword({ email, password });
       btn.innerText = "Giriş Yap";
       btn.disabled = false;
 
@@ -139,10 +190,106 @@
       }
     }
 
-    // Çıkış Fonksiyonu
+    // Çıkış
     async function handleLogout() {
       await supabaseClient.auth.signOut();
       checkSession();
+    }
+
+    // Kayıtları Getir
+    async function loadRecords() {
+      const tbody = document.getElementById('recordsTableBody');
+      const { data: records, error } = await supabaseClient
+        .from('kayitlar')
+        .select('*')
+        .order('id', { ascending: false });
+
+      if (error) {
+        console.error("Veri çekme hatası:", error);
+        return;
+      }
+
+      // Kart İstatistiklerini Hesapla
+      document.getElementById('totalRecordsCount').innerText = records.length;
+      const totalAmount = records.reduce((sum, item) => sum + Number(item.tutar || 0), 0);
+      document.getElementById('totalAmountSum').innerText = totalAmount.toLocaleString('tr-TR') + ' ₺';
+      const pendingCount = records.filter(item => item.durum === 'Bekliyor').length;
+      document.getElementById('pendingCount').innerText = pendingCount;
+
+      tbody.innerHTML = '';
+      if (records.length === 0) {
+        tbody.innerHTML = '<tr><td colspan="6" class="py-4 text-center text-slate-500">Henüz kayıt bulunmuyor.</td></tr>';
+        return;
+      }
+
+      records.forEach(item => {
+        const dateStr = new Date(item.created_at).toLocaleDateString('tr-TR');
+        let statusBadge = "bg-amber-500/10 text-amber-400 border border-amber-500/20";
+        if (item.durum === 'Tamamlandı') statusBadge = "bg-emerald-500/10 text-emerald-400 border border-emerald-500/20";
+        if (item.durum === 'Devam Ediyor') statusBadge = "bg-indigo-500/10 text-indigo-400 border border-indigo-500/20";
+
+        const tr = document.createElement('tr');
+        tr.innerHTML = `
+          <td class="py-3 px-4 font-semibold text-white">${item.baslik}</td>
+          <td class="py-3 px-4 text-slate-400">${item.kategori}</td>
+          <td class="py-3 px-4 font-mono font-medium text-emerald-400">${Number(item.tutar).toLocaleString('tr-TR')} ₺</td>
+          <td class="py-3 px-4">
+            <span class="px-2 py-0.5 text-xs rounded-full font-medium ${statusBadge}">
+              ${item.durum}
+            </span>
+          </td>
+          <td class="py-3 px-4 text-slate-400 text-xs">${dateStr}</td>
+          <td class="py-3 px-4 text-right">
+            <button onclick="deleteRecord(${item.id})" class="text-rose-400 hover:text-rose-300 text-xs font-semibold px-2.5 py-1 rounded bg-rose-500/10 hover:bg-rose-500/20 transition">
+              Sil
+            </button>
+          </td>
+        `;
+        tbody.appendChild(tr);
+      });
+    }
+
+    // Yeni Kayıt Ekle
+    async function handleAddRecord(e) {
+      e.preventDefault();
+      const baslik = document.getElementById('recordTitle').value.trim();
+      const kategori = document.getElementById('recordCategory').value;
+      const tutar = parseFloat(document.getElementById('recordAmount').value) || 0;
+      const durum = document.getElementById('recordStatus').value;
+      const btn = document.getElementById('submitRecordBtn');
+
+      btn.innerText = "Kaydediliyor...";
+      btn.disabled = true;
+
+      const { error } = await supabaseClient.from('kayitlar').insert([{
+        baslik,
+        kategori,
+        tutar,
+        durum,
+        ekleyen_email: activeUser ? activeUser.email : null
+      }]);
+
+      btn.innerText = "+ Veritabanına Kaydet";
+      btn.disabled = false;
+
+      if (error) {
+        alert("Kayıt eklenirken hata oluştu: " + error.message);
+      } else {
+        document.getElementById('recordForm').reset();
+        loadRecords();
+      }
+    }
+
+    // Kayıt Sil
+    async function deleteRecord(id) {
+      if (!confirm("Bu kaydı silmek istediğinize emin misiniz?")) return;
+
+      const { error } = await supabaseClient.from('kayitlar').delete().eq('id', id);
+      if (error) {
+        alert("Silinemedi: " + error.message);
+      } else {
+        loadRecords();
+      }
     }
 
     window.addEventListener('DOMContentLoaded', checkSession);
