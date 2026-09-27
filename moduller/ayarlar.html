@@ -1,0 +1,261 @@
+<!-- ================= MODÜL: 11. AYARLAR & YETKİLER ================= -->
+<div class="space-y-6">
+  
+  <!-- Banner -->
+  <div class="bg-gradient-to-r from-brand-950 via-brand-900 to-brand-800 rounded-3xl p-6 text-white shadow-xl flex flex-col md:flex-row md:items-center md:justify-between gap-4">
+    <div>
+      <span class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/10 text-[11px] font-semibold text-sky-200 mb-2">
+        <i class="fa-solid fa-shield-halved"></i> Modüler Yetki Matrisi (RBAC)
+      </span>
+      <h1 class="text-xl md:text-2xl font-black">Kullanıcı Rolleri ve Yetkilendirme</h1>
+      <p class="text-xs text-sky-100 mt-1 max-w-xl">
+        Personelinizin görme, ekleme, düzenleme ve silme izinlerini modül bazlı yönetebilirsiniz.
+      </p>
+    </div>
+    <button onclick="openModal('newUserModal')" class="px-4 py-2.5 bg-brand-400 hover:bg-brand-500 text-white font-bold text-xs rounded-xl transition shadow flex items-center gap-2">
+      <i class="fa-solid fa-user-plus"></i> Yeni Personel Ekle
+    </button>
+  </div>
+
+  <!-- Personel Listesi Tablosu -->
+  <div class="bg-white dark:bg-darkcard rounded-2xl border border-slate-200/80 dark:border-slate-800 shadow-sm overflow-hidden">
+    <div class="p-5 border-b border-slate-100 dark:border-slate-800 flex justify-between items-center">
+      <div>
+        <h3 class="text-sm font-bold text-brand-900 dark:text-white">Tanımlı Personeller ve İzin Durumu</h3>
+        <p class="text-xs text-slate-400 mt-0.5">Her kullanıcının modül bazlı yetkilerini pop-up üzerinden ayrıntılı belirleyebilirsiniz.</p>
+      </div>
+      <button onclick="loadUsers()" title="Yenile" class="p-2 text-slate-400 hover:text-brand-600 transition"><i class="fa-solid fa-rotate-right"></i></button>
+    </div>
+
+    <div class="overflow-x-auto">
+      <table class="w-full text-left border-collapse text-xs">
+        <thead>
+          <tr class="bg-slate-50 dark:bg-slate-800/40 text-slate-400 uppercase text-[10px] tracking-wider font-bold border-b border-slate-100 dark:border-slate-800">
+            <th class="py-3 px-6">Ad Soyad</th>
+            <th class="py-3 px-6">E-Posta</th>
+            <th class="py-3 px-6">Rolü</th>
+            <th class="py-3 px-6 text-center">Modül Yetkileri</th>
+            <th class="py-3 px-6 text-right">İşlem</th>
+          </tr>
+        </thead>
+        <tbody id="userTableBody" class="divide-y divide-slate-100 dark:divide-slate-800/60 text-slate-700 dark:text-slate-300">
+          <tr><td colspan="5" class="py-6 text-center text-slate-400">Yetkiler yükleniyor...</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+</div>
+
+<!-- MODAL: YETKİLERİ DÜZENLE POP-UP -->
+<div id="permissionsModal" class="hidden fixed inset-0 z-50 flex items-center justify-center bg-slate-900/60 backdrop-blur-sm p-4">
+  <div class="bg-white dark:bg-darkcard border border-slate-100 dark:border-slate-800 p-6 rounded-3xl w-full max-w-2xl shadow-2xl space-y-4 max-h-[90vh] overflow-y-auto custom-scroll">
+    <div class="flex justify-between items-center border-b border-slate-100 dark:border-slate-800 pb-3">
+      <div>
+        <h3 class="text-base font-bold text-brand-900 dark:text-white flex items-center gap-2">
+          <i class="fa-solid fa-user-shield text-brand-500"></i> Modül İzinlerini Düzenle
+        </h3>
+        <p id="permModalUserSubtitle" class="text-xs text-slate-400 mt-0.5">...</p>
+      </div>
+      <button onclick="closeModal('permissionsModal')" class="text-slate-400 hover:text-slate-600"><i class="fa-solid fa-xmark text-lg"></i></button>
+    </div>
+
+    <div class="overflow-x-auto border border-slate-200 dark:border-slate-800 rounded-2xl">
+      <table class="w-full text-left text-xs">
+        <thead>
+          <tr class="bg-slate-50 dark:bg-slate-800/60 text-slate-500 dark:text-slate-400 uppercase text-[10px] font-bold border-b border-slate-200 dark:border-slate-800">
+            <th class="py-2.5 px-4">Modül Adı</th>
+            <th class="py-2.5 px-3 text-center">Görme</th>
+            <th class="py-2.5 px-3 text-center">Ekleme</th>
+            <th class="py-2.5 px-3 text-center">Düzenleme</th>
+            <th class="py-2.5 px-3 text-center text-rose-500">Silme</th>
+          </tr>
+        </thead>
+        <tbody id="permissionMatrixBody" class="divide-y divide-slate-100 dark:divide-slate-800"></tbody>
+      </table>
+    </div>
+
+    <div class="flex justify-end gap-2 pt-2">
+      <button type="button" onclick="closeModal('permissionsModal')" class="px-4 py-2 bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 rounded-xl text-xs font-semibold">Vazgeç</button>
+      <button type="button" onclick="saveUserPermissions()" id="savePermBtn" class="px-5 py-2 bg-brand-700 hover:bg-brand-800 text-white rounded-xl text-xs font-bold shadow">Değişiklikleri Kaydet</button>
+    </div>
+  </div>
+</div>
+
+<!-- MODAL: YENİ PERSONEL -->
+<div id="newUserModal" class="hidden fixed inset-0 z-50 flex items-center justify-center bg-slate-900/60 backdrop-blur-sm p-4">
+  <div class="bg-white dark:bg-darkcard border border-slate-100 dark:border-slate-800 p-6 rounded-3xl w-full max-w-md shadow-2xl space-y-4">
+    <div class="flex justify-between items-center border-b border-slate-100 dark:border-slate-800 pb-3">
+      <h3 class="text-base font-bold text-brand-900 dark:text-white flex items-center gap-2"><i class="fa-solid fa-user-plus text-brand-500"></i> Yeni Personel Ekle</h3>
+      <button onclick="closeModal('newUserModal')" class="text-slate-400 hover:text-slate-600"><i class="fa-solid fa-xmark text-lg"></i></button>
+    </div>
+    <form onsubmit="handleCreateUser(event)" class="space-y-3">
+      <div>
+        <label class="block text-xs font-semibold text-slate-600 dark:text-slate-400 mb-1">Ad Soyad</label>
+        <input type="text" id="newUserName" required placeholder="ör. Emre Dereci" class="w-full px-3 py-2 bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-xl text-xs">
+      </div>
+      <div>
+        <label class="block text-xs font-semibold text-slate-600 dark:text-slate-400 mb-1">E-Posta</label>
+        <input type="email" id="newUserEmail" required placeholder="ad.soyad@tebessum.org.tr" class="w-full px-3 py-2 bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-xl text-xs">
+      </div>
+      <div>
+        <label class="block text-xs font-semibold text-slate-600 dark:text-slate-400 mb-1">Rol</label>
+        <select id="newUserRole" class="w-full px-3 py-2 bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-xl text-xs">
+          <option value="Personel">Personel</option>
+          <option value="Müdür">Müdür</option>
+          <option value="Admin">Admin</option>
+        </select>
+      </div>
+      <div class="flex justify-end gap-2 pt-2">
+        <button type="button" onclick="closeModal('newUserModal')" class="px-4 py-2 bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 rounded-xl text-xs font-semibold">İptal</button>
+        <button type="submit" class="px-5 py-2 bg-brand-700 text-white rounded-xl text-xs font-bold">Kaydet</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<script>
+  // 11 Modül Listesi (Gelecekte yeni modül geldikçe buraya tek satır eklenir)
+  window.ALL_MODULES = [
+    { key: "bagiscilar", name: "1. Bağışçılar Modülü" },
+    { key: "bagislar", name: "2. Bağışlar Modülü" },
+    { key: "ziyaret", name: "3. Ziyaret Takibi" },
+    { key: "arama", name: "4. Bağışçı Arama" },
+    { key: "medya", name: "5. Sosyal Medya Takvimi" },
+    { key: "uzun_bagis", name: "6. Uzun Soluklu Bağış" },
+    { key: "gorevler", name: "7. İş ve Görevler" },
+    { key: "whatsapp", name: "8. WhatsApp Hatırlatıcı" },
+    { key: "hafiza", name: "9. Hafıza" },
+    { key: "pdf", name: "10. PDF Oluşturma" },
+    { key: "ayarlar", name: "11. Ayarlar & Yetkiler" }
+  ];
+
+  window.currentEditingUserId = null;
+
+  async function loadUsers() {
+    const tbody = document.getElementById('userTableBody');
+    if (!tbody) return;
+
+    const { data: users, error } = await supabaseClient
+      .from('kullanici_rolleri')
+      .select('*')
+      .order('id', { ascending: true });
+
+    if (error || !users || users.length === 0) {
+      tbody.innerHTML = '<tr><td colspan="5" class="py-6 text-center text-slate-400">Henüz personel bulunmuyor.</td></tr>';
+      return;
+    }
+
+    tbody.innerHTML = '';
+    users.forEach(u => {
+      const tr = document.createElement('tr');
+      tr.className = "hover:bg-slate-50/70 dark:hover:bg-slate-800/40 transition";
+      tr.innerHTML = `
+        <td class="py-3 px-6 font-bold text-slate-900 dark:text-white">${u.ad_soyad}</td>
+        <td class="py-3 px-6 text-slate-500 dark:text-slate-400">${u.email}</td>
+        <td class="py-3 px-6">
+          <select onchange="updateUserRole(${u.id}, this.value)" class="px-2 py-1 bg-slate-100 dark:bg-slate-800 rounded-lg text-xs font-bold text-brand-700 dark:text-sky-300">
+            <option value="Admin" ${u.rol === 'Admin' ? 'selected' : ''}>Admin</option>
+            <option value="Müdür" ${u.rol === 'Müdür' ? 'selected' : ''}>Müdür</option>
+            <option value="Personel" ${u.rol === 'Personel' ? 'selected' : ''}>Personel</option>
+          </select>
+        </td>
+        <td class="py-3 px-6 text-center">
+          <button onclick="openPermissionsModal(${u.id}, '${u.ad_soyad}', '${u.rol}', ${JSON.stringify(u.moduller_yetki || {}).replace(/"/g, '&quot;')})" 
+                  class="px-3 py-1.5 bg-brand-50 hover:bg-brand-100 dark:bg-brand-950/60 dark:hover:bg-brand-900 text-brand-700 dark:text-sky-300 font-bold rounded-xl border border-brand-200 dark:border-brand-800 transition inline-flex items-center gap-1.5 shadow-sm">
+            <i class="fa-solid fa-sliders text-[11px]"></i> Yetkileri Düzenle
+          </button>
+        </td>
+        <td class="py-3 px-6 text-right">
+          <button onclick="deleteUser(${u.id})" class="text-slate-400 hover:text-rose-600 p-1.5 transition"><i class="fa-solid fa-trash-can"></i></button>
+        </td>
+      `;
+      tbody.appendChild(tr);
+    });
+  }
+
+  function openPermissionsModal(userId, userName, userRole, permissions) {
+    window.currentEditingUserId = userId;
+    document.getElementById('permModalUserSubtitle').innerText = `${userName} (${userRole})`;
+
+    const tbody = document.getElementById('permissionMatrixBody');
+    tbody.innerHTML = '';
+
+    window.ALL_MODULES.forEach(mod => {
+      const modPerm = permissions[mod.key] || { gor: true, ekle: false, duzenle: false, sil: false };
+      const tr = document.createElement('tr');
+      tr.className = "hover:bg-slate-50 dark:hover:bg-slate-800/40 transition";
+      tr.innerHTML = `
+        <td class="py-2.5 px-4 font-semibold text-slate-800 dark:text-slate-200">${mod.name}</td>
+        <td class="py-2.5 px-3 text-center"><input type="checkbox" id="perm_${mod.key}_gor" ${modPerm.gor ? 'checked' : ''} class="w-4 h-4 accent-brand-600"></td>
+        <td class="py-2.5 px-3 text-center"><input type="checkbox" id="perm_${mod.key}_ekle" ${modPerm.ekle ? 'checked' : ''} class="w-4 h-4 accent-brand-600"></td>
+        <td class="py-2.5 px-3 text-center"><input type="checkbox" id="perm_${mod.key}_duzenle" ${modPerm.duzenle ? 'checked' : ''} class="w-4 h-4 accent-brand-600"></td>
+        <td class="py-2.5 px-3 text-center"><input type="checkbox" id="perm_${mod.key}_sil" ${modPerm.sil ? 'checked' : ''} class="w-4 h-4 accent-rose-600"></td>
+      `;
+      tbody.appendChild(tr);
+    });
+
+    openModal('permissionsModal');
+  }
+
+  async function saveUserPermissions() {
+    if (!window.currentEditingUserId) return;
+    const btn = document.getElementById('savePermBtn');
+    btn.innerText = "Kaydediliyor...";
+    btn.disabled = true;
+
+    const newPerms = {};
+    window.ALL_MODULES.forEach(mod => {
+      newPerms[mod.key] = {
+        gor: document.getElementById(`perm_${mod.key}_gor`).checked,
+        ekle: document.getElementById(`perm_${mod.key}_ekle`).checked,
+        duzenle: document.getElementById(`perm_${mod.key}_duzenle`).checked,
+        sil: document.getElementById(`perm_${mod.key}_sil`).checked
+      };
+    });
+
+    const { error } = await supabaseClient
+      .from('kullanici_rolleri')
+      .update({ moduller_yetki: newPerms })
+      .eq('id', window.currentEditingUserId);
+
+    btn.innerText = "Değişiklikleri Kaydet";
+    btn.disabled = false;
+
+    if (error) {
+      alert("Yetkiler kaydedilemedi: " + error.message);
+    } else {
+      closeModal('permissionsModal');
+      loadUsers();
+    }
+  }
+
+  async function updateUserRole(id, rol) {
+    await supabaseClient.from('kullanici_rolleri').update({ rol }).eq('id', id);
+  }
+
+  async function handleCreateUser(e) {
+    e.preventDefault();
+    const ad_soyad = document.getElementById('newUserName').value.trim();
+    const email = document.getElementById('newUserEmail').value.trim();
+    const rol = document.getElementById('newUserRole').value;
+
+    const { error } = await supabaseClient.from('kullanici_rolleri').insert([{ ad_soyad, email, rol }]);
+    if (error) alert("Eklenemedi: " + error.message);
+    else {
+      closeModal('newUserModal');
+      e.target.reset();
+      loadUsers();
+    }
+  }
+
+  async function deleteUser(id) {
+    if (confirm("Bu kullanıcıyı silmek istediğinize emin misiniz?")) {
+      await supabaseClient.from('kullanici_rolleri').delete().eq('id', id);
+      loadUsers();
+    }
+  }
+
+  // Modül yüklendiğinde kullanıcı listesini doldur
+  loadUsers();
+</script>
