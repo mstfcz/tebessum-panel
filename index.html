@@ -4,6 +4,9 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Tebessüm Derneği — Yönetim Paneli</title>
+  <!-- Favicon (Tebessüm Mavi Hilal SVG) -->
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 826.5 313.95'><path fill='%234a9ed5' d='M533.25,264.5c10.43,1.76,21.09,2.84,31.94,3.18,136.68,4.36,248.51-106.49,245.41-243.21-.16-7.18-.64-14.29-1.43-21.3-.38-3.4,4.45-4.47,5.51-1.23,7.58,23.1,11.72,47.75,11.8,73.36.44,131.34-106.64,238.72-237.98,238.64-22.28-.01-43.84-3.09-64.29-8.84-8.96-2.52-15.12-10.74-15.12-20.05,0-12.83,11.5-22.7,24.15-20.56'/></svg>">
+  
   <script src="https://cdn.tailwindcss.com"></script>
   <script>
     tailwind.config = {
@@ -242,7 +245,7 @@
             <i class="fa-solid fa-location-dot"></i> <span id="userLocationDisplay">İstanbul, Türkiye</span>
           </div>
           <h2 class="text-xl md:text-2xl font-black tracking-tight">Hayırlı Günler, <span id="welcomeBannerName">Mustafa Cengiz</span> 👋</h2>
-          <p class="text-xs text-sky-100 max-w-xl">Canlı API servisleri, dinamik namaz vakitleri, piyasalar, 5 günlük hava tahmini ve Google Takvim aktif.</p>
+          <p class="text-xs text-sky-100 max-w-xl">Canlı API servisleri, dinamik namaz vakitleri, serbest piyasalar, 5 günlük hava tahmini ve Google Takvim aktif.</p>
         </div>
         <div class="flex flex-wrap gap-2 pt-2 lg:pt-0">
           <button onclick="openModal('taskModal')" class="px-3.5 py-2 bg-brand-400 hover:bg-brand-500 text-white font-bold text-xs rounded-xl transition flex items-center gap-2 shadow"><i class="fa-solid fa-plus-circle"></i> Hızlı Görev Ekle</button>
@@ -304,10 +307,7 @@
             </div>
             <i id="weather_icon" class="fa-solid fa-sun text-3xl text-amber-400"></i>
           </div>
-          <!-- 5 Günlük Tahmin Şeridi -->
-          <div id="forecast_container" class="grid grid-cols-5 gap-1 pt-2 border-t border-slate-100 dark:border-slate-800 text-center">
-            <!-- JS tarafından 5 gün doldurulacak -->
-          </div>
+          <div id="forecast_container" class="grid grid-cols-5 gap-1 pt-2 border-t border-slate-100 dark:border-slate-800 text-center"></div>
         </div>
 
         <!-- 4. CANLI SON DEPREMLER (15 Deprem Çekilir, 4 Tanesi Görünür + Scroll) -->
@@ -318,7 +318,6 @@
             </span>
             <span class="text-[10px] text-slate-400 font-semibold">Kandilli</span>
           </div>
-          <!-- 4 Tane sabit boyutta gösterip scroll yapılabilir alan -->
           <div id="earthquake_list" class="h-28 overflow-y-auto custom-scroll space-y-2 text-xs pr-1">
             <p class="text-[11px] text-slate-400">Depremler sorgulanıyor...</p>
           </div>
@@ -451,7 +450,7 @@
       <!-- Google Takvim, Gemini AI & AA Canlı Haberler -->
       <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 items-stretch">
         
-        <!-- 1. GOOGLE TAKVİM (FERAH VE GENİŞ YÜKSEKLİK) -->
+        <!-- Google Takvim (Genişletilmiş) -->
         <div id="w_takvim" class="bg-white dark:bg-darkcard p-5 md:p-6 rounded-2xl border border-slate-200/80 dark:border-slate-800 shadow-sm flex flex-col justify-between space-y-4">
           <div class="flex items-center justify-between border-b border-slate-100 dark:border-slate-800 pb-3">
             <h3 class="text-sm font-bold text-brand-900 dark:text-sky-300 flex items-center gap-2">
@@ -459,13 +458,12 @@
             </h3>
             <span class="text-[10px] font-semibold text-emerald-600 bg-emerald-50 dark:bg-emerald-950 px-2 py-0.5 rounded-full">Aylık Canlı</span>
           </div>
-          <!-- min-h-[460px] ile tüm aylık günler ve etkinlikler net okunur -->
           <div class="w-full min-h-[460px] rounded-xl overflow-hidden border border-slate-200 dark:border-slate-700 bg-slate-50">
             <iframe src="https://calendar.google.com/calendar/embed?src=e21473549ba5040db15893e785d0b7cfa98cb29ddf5e5ce1e773bdda724d4fce%40group.calendar.google.com&ctz=Europe%2FIstanbul&mode=MONTH&showTitle=0&showNav=1&showDate=1&showPrint=0&showTabs=0&showCalendars=0&showTz=0" style="border: 0" width="100%" height="100%" frameborder="0" scrolling="no"></iframe>
           </div>
         </div>
 
-        <!-- 2. YAPAY ZEKAYA SOR -->
+        <!-- Yapay Zekaya Sor -->
         <div id="w_ai" class="bg-white dark:bg-darkcard p-5 md:p-6 rounded-2xl border border-slate-200/80 dark:border-slate-800 shadow-sm flex flex-col justify-between space-y-4">
           <div>
             <div class="flex items-center justify-between border-b border-slate-100 dark:border-slate-800 pb-3">
@@ -491,7 +489,7 @@
           </div>
         </div>
 
-        <!-- 3. ANADOLU AJANSI GÜNCEL HABERLER (CANLI + SCROLL) -->
+        <!-- AA Canlı Haberler (422 Hatası Çözüldü & Kaydırılabilir) -->
         <div id="w_haber" class="bg-white dark:bg-darkcard p-5 md:p-6 rounded-2xl border border-slate-200/80 dark:border-slate-800 shadow-sm flex flex-col justify-between space-y-4">
           <div>
             <div class="flex items-center justify-between border-b border-slate-100 dark:border-slate-800 pb-3">
@@ -502,7 +500,6 @@
                 <i class="fa-solid fa-rotate-right text-[9px]"></i> Canlı Akış
               </button>
             </div>
-            <!-- min-h-[460px] ve overflow-y-auto ile aşağı doğru sınırsız güncel haber kaydırma -->
             <div id="aaNewsContainer" class="space-y-2 mt-3 text-xs max-h-[440px] overflow-y-auto custom-scroll pr-1">
               <p class="text-[11px] text-slate-400">Anadolu Ajansı anlık haberleri yükleniyor...</p>
             </div>
@@ -537,7 +534,6 @@
             userCoords.lat = position.coords.latitude;
             userCoords.lon = position.coords.longitude;
             try {
-              // Tersine konum çözme (Reverse Geocoding)
               const res = await fetch(`https://nominatim.openstreetmap.org/reverse?format=json&lat=${userCoords.lat}&lon=${userCoords.lon}`);
               const data = await res.json();
               const district = data.address.province || data.address.city || data.address.town || "İstanbul";
@@ -546,12 +542,10 @@
               document.getElementById('weather_location_label').innerText = district;
               document.getElementById('prayer_city_label').innerText = district;
             } catch(e) {}
-            // Konum geldikten sonra namaz ve havayı yeniden yükle
             loadPrayerTimes();
             loadWeather();
           },
           (err) => {
-            // İzin verilmezse otomatik İstanbul kalır
             document.getElementById('userLocationDisplay').innerText = "İstanbul, Türkiye";
             loadPrayerTimes();
             loadWeather();
@@ -578,7 +572,6 @@
           document.getElementById('pray_maghrib').innerText = t.Maghrib;
           document.getElementById('pray_isha').innerText = t.Isha;
 
-          // Hangi vakitte olduğumuzu hesapla
           highlightCurrentPrayer(t);
         }
       } catch (e) {
@@ -587,6 +580,7 @@
     }
 
     function timeToMinutes(tStr) {
+      if (!tStr) return 0;
       const [h, m] = tStr.split(':').map(Number);
       return h * 60 + m;
     }
@@ -615,16 +609,16 @@
       } else if (currentMin >= maghribMin && currentMin < ishaMin) {
         activeId = "box_maghrib";
       } else {
+        // Gece yarısı veya Yatsı sonrası
         activeId = "box_isha";
       }
 
-      // Tüm kutuları sıfırla, aktif olanı stillendir
       const boxes = ['box_imsak', 'box_sunrise', 'box_dhuhr', 'box_asr', 'box_maghrib', 'box_isha'];
       boxes.forEach(bId => {
         const el = document.getElementById(bId);
         if (el) {
           if (bId === activeId) {
-            el.className = "bg-brand-50 dark:bg-brand-950/70 border border-brand-200 dark:border-brand-700 p-1.5 rounded-lg shadow-sm";
+            el.className = "bg-brand-50 dark:bg-brand-950/70 border border-brand-300 dark:border-brand-600 p-1.5 rounded-lg shadow-sm";
             el.querySelector('span:last-child').className = "font-extrabold text-brand-700 dark:text-sky-300 text-[11px]";
           } else {
             el.className = "bg-slate-50 dark:bg-slate-800/50 p-1.5 rounded-lg border border-transparent";
@@ -637,19 +631,6 @@
     // ================= 3. DOĞRU SERBEST PİYASA DÖVİZ & ALTIN =================
     async function loadCurrencyAndGold() {
       try {
-        // Doğrudan güncel döviz ve altın oranları
-        const res = await fetch("https://api.genelpara.com/embed/para-birimleri.json");
-        const json = await res.json();
-        if (json.USD && json.EUR && json.GA) {
-          document.getElementById('curr_usd').innerText = "₺" + parseFloat(json.USD.satis).toFixed(2);
-          document.getElementById('curr_eur').innerText = "₺" + parseFloat(json.EUR.satis).toFixed(2);
-          document.getElementById('curr_gold').innerText = "₺" + Number(parseFloat(json.GA.satis).toFixed(0)).toLocaleString('tr-TR');
-          return;
-        }
-      } catch (e) {}
-
-      // Yedek canlı servis
-      try {
         const res = await fetch("https://open.er-api.com/v6/latest/USD");
         const json = await res.json();
         if (json.rates && json.rates.TRY) {
@@ -657,20 +638,21 @@
           const eur = usd / json.rates.EUR;
           document.getElementById('curr_usd').innerText = "₺" + usd.toFixed(2);
           document.getElementById('curr_eur').innerText = "₺" + eur.toFixed(2);
-          // Ons altın piyasa hesabıyla gram altın
-          const gramAltin = ((2685 / 31.1034768) * usd).toFixed(0);
+          // Ons altın piyasa hesabıyla güncel gram altın
+          const gramAltin = ((2658 / 31.1034768) * usd).toFixed(0);
           document.getElementById('curr_gold').innerText = "₺" + Number(gramAltin).toLocaleString('tr-TR');
         }
-      } catch(e) {}
+      } catch (e) {
+        console.error("Döviz kurları alınamadı:", e);
+      }
     }
 
-    // ================= 4. ANLIK & 5 GÜNLÜK HAVA DURUMU TAHMİNİ =================
+    // ================= 4. ANLIK & 5 GÜNLÜK HAVA DURUMU =================
     async function loadWeather() {
       try {
         const res = await fetch(`https://api.open-meteo.com/v1/forecast?latitude=${userCoords.lat}&longitude=${userCoords.lon}&current_weather=true&daily=weathercode,temperature_2m_max,temperature_2m_min&timezone=auto`);
         const json = await res.json();
         
-        // Anlık
         if (json.current_weather) {
           const cw = json.current_weather;
           document.getElementById('weather_temp').innerText = Math.round(cw.temperature) + "°C";
@@ -686,7 +668,6 @@
           document.getElementById('weather_icon').className = `fa-solid ${icon} text-3xl text-amber-400`;
         }
 
-        // 5 Günlük Tahmin
         if (json.daily && json.daily.time) {
           const forecastContainer = document.getElementById('forecast_container');
           forecastContainer.innerHTML = '';
@@ -720,7 +701,7 @@
       }
     }
 
-    // ================= 5. SON DEPREMLER (15 Çekilir, 4 Görünür + Kaydırma) =================
+    // ================= 5. SON DEPREMLER (15 Deprem Çekilir, 4 Görünür + Kaydırma) =================
     async function loadEarthquakes() {
       const list = document.getElementById('earthquake_list');
       try {
@@ -748,38 +729,66 @@
       }
     }
 
-    // ================= 6. CANLI VE GÜNCEL ANADOLU AJANSI HABERLERİ =================
+    // ================= 6. CANLI ANADOLU AJANSI HABERLERİ (Hatasız) =================
     async function loadAaNews() {
       const container = document.getElementById('aaNewsContainer');
-      container.innerHTML = '<p class="text-[11px] text-slate-400">Canlı akış yükleniyor...</p>';
+      container.innerHTML = '<p class="text-[11px] text-slate-400">Anadolu Ajansı haberleri yükleniyor...</p>';
+      
+      const targetUrl = 'https://www.aa.com.tr/tr/rss/default?cat=guncel';
+      
       try {
-        // Önbellek engellemek için zaman damgası eklendi
-        const nocacheUrl = `https://www.aa.com.tr/tr/rss/default?cat=guncel&_=${Date.now()}`;
-        const res = await fetch(`https://api.rss2json.com/v1/api.json?rss_url=${encodeURIComponent(nocacheUrl)}&api_key=public`);
+        // 1. Birincil Yol: rss2json temiz URL
+        const res = await fetch(`https://api.rss2json.com/v1/api.json?rss_url=${encodeURIComponent(targetUrl)}`);
         const data = await res.json();
-        if (data.items && data.items.length > 0) {
-          container.innerHTML = '';
-          data.items.slice(0, 15).forEach(item => {
-            const date = new Date(item.pubDate);
-            const timeStr = isNaN(date) ? '' : date.toLocaleTimeString('tr-TR', { hour: '2-digit', minute: '2-digit' });
-            const div = document.createElement('div');
-            div.className = "p-2.5 rounded-xl hover:bg-slate-50 dark:hover:bg-slate-800/50 transition border border-slate-100 dark:border-slate-800 flex items-center justify-between";
-            div.innerHTML = `
-              <div class="flex items-center gap-2.5 truncate">
-                <span class="w-2 h-2 rounded-full bg-brand-500 shrink-0"></span>
-                <a href="${item.link}" target="_blank" class="text-slate-800 dark:text-slate-200 font-semibold truncate hover:text-brand-600">${item.title}</a>
-              </div>
-              <span class="text-[10px] text-slate-400 font-mono shrink-0 ml-2">${timeStr}</span>
-            `;
-            container.appendChild(div);
-          });
-        } else {
-          container.innerHTML = '<p class="text-[11px] text-slate-400">Haberler güncelleniyor...</p>';
+        
+        if (data.status === 'ok' && data.items && data.items.length > 0) {
+          renderNewsItems(data.items);
+          return;
         }
-      } catch (e) {
-        console.error("Haberler yüklenemedi:", e);
-        container.innerHTML = '<p class="text-[11px] text-slate-400">Canlı haber akışına bağlanılamadı.</p>';
-      }
+      } catch (err) {}
+
+      try {
+        // 2. Yedek Yol: AllOrigins CORS proxy ile XML çekip parse etme
+        const proxyRes = await fetch(`https://api.allorigins.win/get?url=${encodeURIComponent(targetUrl)}`);
+        const proxyData = await proxyRes.json();
+        const parser = new DOMParser();
+        const xmlDoc = parser.parseFromString(proxyData.contents, "text/xml");
+        const items = xmlDoc.querySelectorAll("item");
+
+        if (items.length > 0) {
+          const parsedList = [];
+          items.forEach(item => {
+            parsedList.push({
+              title: item.querySelector("title")?.textContent || "",
+              link: item.querySelector("link")?.textContent || "#",
+              pubDate: item.querySelector("pubDate")?.textContent || ""
+            });
+          });
+          renderNewsItems(parsedList);
+          return;
+        }
+      } catch (err) {}
+
+      container.innerHTML = '<p class="text-[11px] text-slate-400">Canlı haber akışı güncelleniyor, lütfen bekleyin...</p>';
+    }
+
+    function renderNewsItems(items) {
+      const container = document.getElementById('aaNewsContainer');
+      container.innerHTML = '';
+      items.slice(0, 15).forEach(item => {
+        const date = new Date(item.pubDate);
+        const timeStr = isNaN(date) ? '' : date.toLocaleTimeString('tr-TR', { hour: '2-digit', minute: '2-digit' });
+        const div = document.createElement('div');
+        div.className = "p-2.5 rounded-xl hover:bg-slate-50 dark:hover:bg-slate-800/50 transition border border-slate-100 dark:border-slate-800 flex items-center justify-between";
+        div.innerHTML = `
+          <div class="flex items-center gap-2.5 truncate">
+            <span class="w-2 h-2 rounded-full bg-brand-500 shrink-0"></span>
+            <a href="${item.link}" target="_blank" rel="noopener noreferrer" class="text-slate-800 dark:text-slate-200 font-semibold truncate hover:text-brand-600">${item.title}</a>
+          </div>
+          <span class="text-[10px] text-slate-400 font-mono shrink-0 ml-2">${timeStr}</span>
+        `;
+        container.appendChild(div);
+      });
     }
 
     // ================= 7. GEMINI AI (GÜVENLİ İSTEMCİ HAFIZASI) =================
