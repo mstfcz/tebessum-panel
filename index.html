@@ -3,9 +3,11 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Yönetim ve Takip Paneli</title>
+  <title>Güvenli Veri & Yönetim Paneli</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <!-- Supabase Kütüphanesi -->
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 </head>
 <body class="bg-slate-900 text-slate-100 min-h-screen font-sans">
 
@@ -13,31 +15,28 @@
   <div id="loginSection" class="min-h-screen flex items-center justify-center p-4">
     <div class="bg-slate-800 border border-slate-700 p-8 rounded-2xl w-full max-w-md shadow-2xl space-y-6">
       <div class="text-center">
+        <div class="w-12 h-12 bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 rounded-xl flex items-center justify-center mx-auto mb-3 text-xl font-bold">
+          🔒
+        </div>
         <h2 class="text-2xl font-bold text-white tracking-tight">Sisteme Giriş Yap</h2>
-        <p class="text-sm text-slate-400 mt-1">Yönetim Paneline Devam Et</p>
+        <p class="text-sm text-slate-400 mt-1">Supabase Kriptolu Güvenli Altyapı</p>
       </div>
 
       <div id="loginError" class="hidden p-3 bg-rose-500/10 border border-rose-500/20 text-rose-400 text-sm rounded-lg text-center"></div>
 
       <form id="loginForm" class="space-y-4" onsubmit="handleLogin(event)">
         <div>
-          <label class="block text-xs font-semibold uppercase tracking-wider text-slate-400 mb-1">Kullanıcı Adı</label>
-          <input type="text" id="usernameInput" required class="w-full px-4 py-2.5 bg-slate-900 border border-slate-700 rounded-lg text-white focus:outline-none focus:border-indigo-500">
+          <label class="block text-xs font-semibold uppercase tracking-wider text-slate-400 mb-1">E-Posta Adresi</label>
+          <input type="email" id="emailInput" required placeholder="ornek@panel.com" class="w-full px-4 py-2.5 bg-slate-900 border border-slate-700 rounded-lg text-white focus:outline-none focus:border-emerald-500">
         </div>
         <div>
           <label class="block text-xs font-semibold uppercase tracking-wider text-slate-400 mb-1">Şifre</label>
-          <input type="password" id="passwordInput" required class="w-full px-4 py-2.5 bg-slate-900 border border-slate-700 rounded-lg text-white focus:outline-none focus:border-indigo-500">
+          <input type="password" id="passwordInput" required placeholder="••••••••" class="w-full px-4 py-2.5 bg-slate-900 border border-slate-700 rounded-lg text-white focus:outline-none focus:border-emerald-500">
         </div>
-        <button type="submit" class="w-full py-2.5 bg-indigo-600 hover:bg-indigo-500 text-white font-medium rounded-lg transition duration-150">
+        <button id="loginBtn" type="submit" class="w-full py-2.5 bg-emerald-600 hover:bg-emerald-500 text-white font-medium rounded-lg transition duration-150 shadow-lg shadow-emerald-900/30">
           Giriş Yap
         </button>
       </form>
-
-      <div class="p-3 bg-slate-900/60 border border-slate-700/60 rounded-lg text-xs text-slate-400 space-y-1">
-        <p class="font-semibold text-slate-300">İlk Giriş Bilgileri:</p>
-        <p>Kullanıcı: <span class="text-indigo-400">admin</span> | Şifre: <span class="text-indigo-400">123456</span> (Yönetici)</p>
-        <p>Kullanıcı: <span class="text-indigo-400">personel</span> | Şifre: <span class="text-indigo-400">123456</span> (Görüntüleyici)</p>
-      </div>
     </div>
   </div>
 
@@ -45,275 +44,108 @@
   <div id="dashboardSection" class="hidden min-h-screen p-6">
     <div class="max-w-6xl mx-auto space-y-6">
       
-      <!-- Üst Çubuk (Header) -->
+      <!-- Üst Bar -->
       <header class="flex flex-col md:flex-row md:items-center md:justify-between pb-4 border-b border-slate-800 gap-4">
         <div>
-          <h1 class="text-2xl font-bold text-white tracking-wide">Yönetim ve Veri Paneli</h1>
+          <h1 class="text-2xl font-bold text-white tracking-wide">Yönetim ve Operasyon Paneli</h1>
           <p class="text-sm text-slate-400">
-            Aktif Kullanıcı: <span id="currentUserDisplay" class="font-semibold text-indigo-400"></span> 
-            (<span id="currentRoleDisplay" class="text-xs uppercase px-2 py-0.5 rounded bg-slate-800 border border-slate-700"></span>)
+            Aktif Oturum: <span id="currentUserDisplay" class="font-semibold text-emerald-400"></span>
           </p>
         </div>
         <div>
           <button onclick="handleLogout()" class="px-4 py-2 bg-rose-600/20 text-rose-300 border border-rose-600/30 hover:bg-rose-600/30 rounded-lg text-sm font-medium transition">
-            Oturumu Kapat
+            Güvenli Çıkış
           </button>
         </div>
       </header>
 
-      <!-- KPI Bilgi Kartları -->
+      <!-- KPI Kartları -->
       <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
         <div class="bg-slate-800 p-5 rounded-xl border border-slate-700">
-          <p class="text-xs font-semibold text-slate-400 uppercase tracking-wider">Toplam İşlem</p>
-          <p class="text-3xl font-extrabold text-white mt-2">1,842</p>
-          <p class="text-xs text-emerald-400 mt-2">↑ Sistem stabil çalışıyor</p>
+          <p class="text-xs font-semibold text-slate-400 uppercase tracking-wider">Veritabanı Motoru</p>
+          <p class="text-2xl font-extrabold text-emerald-400 mt-2">PostgreSQL</p>
+          <p class="text-xs text-slate-400 mt-2">Supabase Bulut Servisi</p>
         </div>
         <div class="bg-slate-800 p-5 rounded-xl border border-slate-700">
-          <p class="text-xs font-semibold text-slate-400 uppercase tracking-wider">Aktif Kullanıcı Sayısı</p>
-          <p id="totalUsersCount" class="text-3xl font-extrabold text-white mt-2">0</p>
-          <p class="text-xs text-indigo-400 mt-2">Sistemde tanımlı hesaplar</p>
+          <p class="text-xs font-semibold text-slate-400 uppercase tracking-wider">Güvenlik Durumu</p>
+          <p class="text-2xl font-extrabold text-white mt-2">JWT Şifreli</p>
+          <p class="text-xs text-emerald-400 mt-2">Kriptolu Kimlik Doğrulama</p>
         </div>
         <div class="bg-slate-800 p-5 rounded-xl border border-slate-700">
-          <p class="text-xs font-semibold text-slate-400 uppercase tracking-wider">Bekleyen Onay</p>
-          <p class="text-3xl font-extrabold text-amber-400 mt-2">18</p>
-          <p class="text-xs text-slate-400 mt-2">İnceleme gerektirenler</p>
+          <p class="text-xs font-semibold text-slate-400 uppercase tracking-wider">Veri Kapasitesi</p>
+          <p class="text-2xl font-extrabold text-white mt-2">500 MB</p>
+          <p class="text-xs text-slate-400 mt-2">Ücretsiz & Güvenli Depolama</p>
         </div>
       </div>
 
-      <!-- Grafik Alanı -->
-      <div class="bg-slate-800 p-6 rounded-xl border border-slate-700">
-        <h2 class="text-base font-semibold text-white mb-4">Aylık Aktivite Analizi</h2>
-        <div class="relative h-64">
-          <canvas id="mainChart"></canvas>
-        </div>
-      </div>
-
-      <!-- ================= SADECE ADMİNİN GÖREBİLECEĞİ KULLANICI YÖNETİMİ ================= -->
-      <div id="adminUserManagement" class="hidden bg-slate-800 p-6 rounded-xl border border-slate-700 space-y-6">
-        <div>
-          <h2 class="text-lg font-bold text-white">Kullanıcı & Yetki Yönetimi</h2>
-          <p class="text-xs text-slate-400 mt-0.5">Sadece Yönetici (Admin) rolündeki hesaplar yeni kullanıcı oluşturabilir veya silebilir.</p>
-        </div>
-
-        <!-- Yeni Kullanıcı Ekleme Formu -->
-        <form id="addUserForm" onsubmit="handleAddUser(event)" class="grid grid-cols-1 md:grid-cols-4 gap-4 bg-slate-900/60 p-4 rounded-xl border border-slate-700">
-          <div>
-            <label class="block text-xs font-medium text-slate-400 mb-1">Kullanıcı Adı</label>
-            <input type="text" id="newUsername" required placeholder="ör. ahmet" class="w-full px-3 py-2 bg-slate-800 border border-slate-700 rounded-lg text-sm text-white focus:outline-none focus:border-indigo-500">
-          </div>
-          <div>
-            <label class="block text-xs font-medium text-slate-400 mb-1">Şifre</label>
-            <input type="text" id="newPassword" required placeholder="ör. 12345" class="w-full px-3 py-2 bg-slate-800 border border-slate-700 rounded-lg text-sm text-white focus:outline-none focus:border-indigo-500">
-          </div>
-          <div>
-            <label class="block text-xs font-medium text-slate-400 mb-1">Yetki Rolü</label>
-            <select id="newRole" class="w-full px-3 py-2 bg-slate-800 border border-slate-700 rounded-lg text-sm text-white focus:outline-none focus:border-indigo-500">
-              <option value="Admin">Admin (Tam Yetki)</option>
-              <option value="Goruntuleyici">Görüntüleyici (Sadece Okur)</option>
-            </select>
-          </div>
-          <div class="flex items-end">
-            <button type="submit" class="w-full py-2 bg-emerald-600 hover:bg-emerald-500 text-white text-sm font-semibold rounded-lg transition duration-150">
-              + Kullanıcı Ekle
-            </button>
-          </div>
-        </form>
-
-        <!-- Kullanıcı Listesi Tablosu -->
-        <div class="overflow-x-auto">
-          <table class="w-full text-left border-collapse text-sm">
-            <thead>
-              <tr class="border-b border-slate-700 text-slate-400 uppercase text-xs">
-                <th class="py-3 px-4">Kullanıcı Adı</th>
-                <th class="py-3 px-4">Şifre</th>
-                <th class="py-3 px-4">Rol</th>
-                <th class="py-3 px-4 text-right">İşlem</th>
-              </tr>
-            </thead>
-            <tbody id="userTableBody" class="divide-y divide-slate-700/60 text-slate-200">
-              <!-- JavaScript dinamik dolduracak -->
-            </tbody>
-          </table>
-        </div>
+      <!-- Veri Alanı -->
+      <div class="bg-slate-800 p-6 rounded-xl border border-slate-700 space-y-3">
+        <h2 class="text-lg font-bold text-white">Canlı Veri Alanı</h2>
+        <p class="text-sm text-slate-400">Bağlantınız başarıyla kuruldu. İhtiyacınıza göre buraya eklemek istediğiniz tabloları ve veri sütunlarını oluşturmaya hazırız.</p>
       </div>
 
     </div>
   </div>
 
   <script>
-    // Başlangıç varsayılan kullanıcı havuzu
-    const DEFAULT_USERS = [
-      { username: 'admin', password: '123', role: 'Admin' },
-      { username: 'personel', password: '123', role: 'Goruntuleyici' }
-    ];
+    // Supabase Bağlantısı
+    const SUPABASE_URL = "https://hmlhyhisdulbttsyzsvp.supabase.co";
+    const SUPABASE_ANON_KEY = "sb_publishable_NFS-iNYCga_9Nhc4yTElBA_9j7oU1An";
 
-    // Kullanıcıları yerel depolamadan al
-    function getUsers() {
-      const stored = localStorage.getItem('system_users');
-      if (!stored) {
-        localStorage.setItem('system_users', JSON.stringify(DEFAULT_USERS));
-        return DEFAULT_USERS;
-      }
-      return JSON.parse(stored);
-    }
+    const supabaseClient = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
 
-    // Kullanıcı listesini kaydet
-    function saveUsers(users) {
-      localStorage.setItem('system_users', JSON.stringify(users));
-    }
-
-    // Aktif oturumu al
-    function getActiveSession() {
-      return JSON.parse(sessionStorage.getItem('active_session'));
-    }
-
-    // Giriş Kontrolü
-    function handleLogin(event) {
-      event.preventDefault();
-      const usernameInput = document.getElementById('usernameInput').value.trim();
-      const passwordInput = document.getElementById('passwordInput').value.trim();
-      const errorDiv = document.getElementById('loginError');
-
-      const users = getUsers();
-      const foundUser = users.find(u => u.username === usernameInput && u.password === passwordInput);
-
-      if (foundUser) {
-        sessionStorage.setItem('active_session', JSON.stringify(foundUser));
-        errorDiv.classList.add('hidden');
-        document.getElementById('loginForm').reset();
-        initApp();
-      } else {
-        errorDiv.innerText = 'Hatalı kullanıcı adı veya şifre girdiniz.';
-        errorDiv.classList.remove('hidden');
-      }
-    }
-
-    // Çıkış Kontrolü
-    function handleLogout() {
-      sessionStorage.removeItem('active_session');
-      initApp();
-    }
-
-    // Yeni Kullanıcı Ekleme (Sadece Admin)
-    function handleAddUser(event) {
-      event.preventDefault();
-      const uname = document.getElementById('newUsername').value.trim();
-      const pass = document.getElementById('newPassword').value.trim();
-      const role = document.getElementById('newRole').value;
-
-      let users = getUsers();
-      if (users.some(u => u.username.toLowerCase() === uname.toLowerCase())) {
-        alert('Bu kullanıcı adı zaten mevcut!');
-        return;
-      }
-
-      users.push({ username: uname, password: pass, role: role });
-      saveUsers(users);
-      document.getElementById('addUserForm').reset();
-      renderUserTable();
-    }
-
-    // Kullanıcı Silme (Sadece Admin)
-    function deleteUser(usernameToDelete) {
-      const session = getActiveSession();
-      if (usernameToDelete === session.username) {
-        alert('Kendinizi silemezsiniz!');
-        return;
-      }
-
-      let users = getUsers();
-      users = users.filter(u => u.username !== usernameToDelete);
-      saveUsers(users);
-      renderUserTable();
-    }
-
-    // Kullanıcı Tablosunu Doldur
-    function renderUserTable() {
-      const users = getUsers();
-      const tbody = document.getElementById('userTableBody');
-      tbody.innerHTML = '';
-
-      document.getElementById('totalUsersCount').innerText = users.length;
-
-      users.forEach(user => {
-        const tr = document.createElement('tr');
-        tr.innerHTML = `
-          <td class="py-3 px-4 font-semibold text-white">${user.username}</td>
-          <td class="py-3 px-4 font-mono text-slate-400">••••••</td>
-          <td class="py-3 px-4">
-            <span class="px-2.5 py-1 text-xs rounded-full font-medium ${user.role === 'Admin' ? 'bg-indigo-500/20 text-indigo-300 border border-indigo-500/30' : 'bg-slate-700 text-slate-300'}">
-              ${user.role}
-            </span>
-          </td>
-          <td class="py-3 px-4 text-right">
-            <button onclick="deleteUser('${user.username}')" class="text-rose-400 hover:text-rose-300 text-xs font-semibold px-2 py-1 rounded bg-rose-500/10 hover:bg-rose-500/20">
-              Sil
-            </button>
-          </td>
-        `;
-        tbody.appendChild(tr);
-      });
-    }
-
-    // Grafiği Başlat
-    let chartInstance = null;
-    function renderChart() {
-      if (chartInstance) chartInstance.destroy();
-      const ctx = document.getElementById('mainChart').getContext('2d');
-      chartInstance = new Chart(ctx, {
-        type: 'bar',
-        data: {
-          labels: ['Ocak', 'Şubat', 'Mart', 'Nisan', 'Mayıs', 'Haziran'],
-          datasets: [{
-            label: 'Aylık Kayıt Sayısı',
-            data: [120, 190, 300, 250, 420, 510],
-            backgroundColor: '#6366f1',
-            borderRadius: 6
-          }]
-        },
-        options: {
-          responsive: true,
-          maintainAspectRatio: false,
-          plugins: { legend: { labels: { color: '#94a3b8' } } },
-          scales: {
-            x: { ticks: { color: '#94a3b8' }, grid: { display: false } },
-            y: { ticks: { color: '#94a3b8' }, grid: { color: '#334155' } }
-          }
-        }
-      });
-    }
-
-    // Sayfa Durumunu Yönetme (Ekran Değişimi)
-    function initApp() {
-      const session = getActiveSession();
+    // Oturum Kontrolü
+    async function checkSession() {
+      const { data: { session } } = await supabaseClient.auth.getSession();
       const loginSection = document.getElementById('loginSection');
       const dashboardSection = document.getElementById('dashboardSection');
-      const adminManagement = document.getElementById('adminUserManagement');
 
-      if (!session) {
-        loginSection.classList.remove('hidden');
-        dashboardSection.classList.add('hidden');
-      } else {
+      if (session) {
         loginSection.classList.add('hidden');
         dashboardSection.classList.remove('hidden');
-
-        document.getElementById('currentUserDisplay').innerText = session.username;
-        document.getElementById('currentRoleDisplay').innerText = session.role;
-
-        renderChart();
-
-        // Rol Kontrolü: Admin ise kullanıcı yönetimi alanını aç
-        if (session.role === 'Admin') {
-          adminManagement.classList.remove('hidden');
-          renderUserTable();
-        } else {
-          adminManagement.classList.add('hidden');
-        }
+        document.getElementById('currentUserDisplay').innerText = session.user.email;
+      } else {
+        loginSection.classList.remove('hidden');
+        dashboardSection.classList.add('hidden');
       }
     }
 
-    // Sayfa Yüklendiğinde Başlat
-    window.addEventListener('DOMContentLoaded', initApp);
+    // Giriş Fonksiyonu
+    async function handleLogin(e) {
+      e.preventDefault();
+      const email = document.getElementById('emailInput').value.trim();
+      const password = document.getElementById('passwordInput').value.trim();
+      const btn = document.getElementById('loginBtn');
+      const errorDiv = document.getElementById('loginError');
+
+      btn.innerText = "Doğrulanıyor...";
+      btn.disabled = true;
+
+      const { data, error } = await supabaseClient.auth.signInWithPassword({
+        email: email,
+        password: password
+      });
+
+      btn.innerText = "Giriş Yap";
+      btn.disabled = false;
+
+      if (error) {
+        errorDiv.innerText = "Giriş başarısız: " + (error.message === "Invalid login credentials" ? "E-posta veya şifre hatalı!" : error.message);
+        errorDiv.classList.remove('hidden');
+      } else {
+        errorDiv.classList.add('hidden');
+        document.getElementById('loginForm').reset();
+        checkSession();
+      }
+    }
+
+    // Çıkış Fonksiyonu
+    async function handleLogout() {
+      await supabaseClient.auth.signOut();
+      checkSession();
+    }
+
+    window.addEventListener('DOMContentLoaded', checkSession);
   </script>
 </body>
 </html>
